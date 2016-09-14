@@ -1,0 +1,14 @@
+@include susy-breakpoint(1280px, 12) {
+	.navigation {
+		.menu {
+			li {
+				@include gallery(1 of 9);
+				display: inline-block;
+				vertical-align: middle;
+			}
+		}
+	}
+	#mobile-trigger {
+		display: none;
+	}
+}

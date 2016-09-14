@@ -1,0 +1,47 @@
+//Layout Restrictions
+.restrict-large {
+	max-width: 1440px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	padding: 1em;
+}
+.restrict {
+	max-width: 960px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	padding: 1em;
+}
+.restrict-small {
+	max-width: 670px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	padding: 1em;
+}
+.restrict-tiny {
+	max-width: 550px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	padding: 1em;
+}
+.row {
+	@extend .clr;	
+}
+
+.middler-wrapper {
+	height: 100%;
+	font-size: 0;
+	text-align: center;
+	&:before {
+		content: '';
+		display: inline-block;
+		vertical-align: middle;
+		width: 0;
+		height: 100%;
+	}
+	.middler {
+		width: 97%;
+		font-size: 1rem;
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
