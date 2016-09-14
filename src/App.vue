@@ -1,7 +1,21 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }} !!!</h1>
+  <div>
+    <p>{{$route.params}}</p>
+    <p>{{$route.path}}</p>
+    <ul>
+      <li>
+        <router-link to="/" activeClass="active">HOME</router-link>
+      </li>
+      <li>
+        <router-link to="/post/1" activeClass="active">POST 1</router-link>
+      </li>
+      <li>
+        <router-link to="/post/2" activeClass="active">POST 2</router-link>
+      </li>
+    </ul>
+    <transition name="fade" mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 

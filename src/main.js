@@ -11,7 +11,6 @@ const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    { path: '/', component: App },
     { path: '/post', component: Post },
     { path: '/post/:id', component: Post }
   ]
@@ -19,6 +18,9 @@ const router = new VueRouter({
 
 new Vue({
   router: router,
+  components: {
+    App
+  },
   created: function () {
     console.log(this)
   }
