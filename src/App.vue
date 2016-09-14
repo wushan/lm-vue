@@ -1,22 +1,20 @@
-<template>
-  <div>
-    <p>{{$route.params}}</p>
-    <p>{{$route.path}}</p>
-    <ul>
-      <li>
-        <router-link to="/" activeClass="active">HOME</router-link>
-      </li>
-      <li>
-        <router-link to="/post/1" activeClass="active">POST 1</router-link>
-      </li>
-      <li>
-        <router-link to="/post/2" activeClass="active">POST 2</router-link>
-      </li>
-    </ul>
-    <transition name="fade" mode="out-in">
-      <router-view></router-view>
-    </transition>
-  </div>
+<template lang="pug">
+  #wrapper
+    transition(name="fade", mode="out-in")
+      router-view
+    footer#footer
+      .footer-inner
+        .block
+          a(href="javascript:;") Privacy
+          a(href="javascript:;") Term of use
+        .block
+          span
+            | Lywentech, Co., Ltd. All rights reserved. | Designed by 
+            a(href="javascript:;") SUBKARMA
+
+    .off-canvas
+      nav.off-canvas-navigation
+    
 </template>
 
 <script>

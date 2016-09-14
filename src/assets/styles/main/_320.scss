@@ -72,7 +72,7 @@
 }
 
 #intro-product {
-	background-image: url('../images/components/intro-product-background.png');
+	background-image: url('../assets/images/components/intro-product-background.png');
 	background-position: center bottom;
 	background-size: cover;
 	h1 {
@@ -89,7 +89,7 @@
 
 #intro-news {
 	background-color: $black;
-	background-image: url('../images/components/intro-news-background.png');
+	background-image: url('../assets/images/components/intro-news-background.png');
 	background-position: center;
 	background-size: cover;
 	color: $white;
@@ -100,7 +100,7 @@
 		right: 0;
 		left: 0;
 		bottom: 0;
-		background-image: url('../images/components/intro-news-cover.png');
+		background-image: url('../assets/images/components/intro-news-cover.png');
 		background-position: center;
 		background-size: 100%;
 		background-repeat: no-repeat;

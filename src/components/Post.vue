@@ -52,30 +52,5 @@ export default {
 </script>
 
 <style lang="scss">
-.loading {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-.error {
-  color: red;
-}
-.content {
-  transition: all .35s ease;
-  position: absolute;
-}
-.slide-enter {
-  opacity: 0;
-  transform: translate(30px, 0);
-}
-.slide-leave-active {
-  opacity: 0;
-  transform: translate(-30px, 0);
-}
-.post {
-  h2 {
-    font-size: 2em;
-  }
-}
 
 </style>
