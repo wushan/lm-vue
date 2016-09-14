@@ -11,6 +11,9 @@
 	a {
 		display: block;
 		color: $white;
+		&.hover, &.active, &:active {
+			color: $main;
+		}
 		img {
 			display: inline;
 		}

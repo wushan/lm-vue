@@ -28,6 +28,14 @@ export default {
 </script>
 
 <style lang="scss">
+  // Transitions
+  .fade-enter-active, .fade-leave-active {
+    transition: .3s all ease;
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0;
+    transform: translateX(40%);
+  }
   // Global Styles
   @import "bower_components/bourbon/app/assets/stylesheets/bourbon";
   @import "bower_components/susy/sass/susy";

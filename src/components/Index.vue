@@ -78,14 +78,27 @@
 
 <script>
 import Navigation from './Navigation.vue'
+// Expose Jquery Globally.
+import $ from 'jquery'
+window.jQuery = window.$ = $
+require('imports?$=jquery!../assets/vendor/parallax.js')
+require('imports?$=jquery!../assets/vendor/jquery.sticky.js')
 export default {
   components: {
     'page-navigation': Navigation
   },
   data () {
+    // $('#scene').parallax()
     return {
       msg: 'Hello Vue'
     }
+  },
+  mounted () {
+    $('#scene').parallax()
+    $('.sticker').sticky({
+      topSpacing: 0,
+      zIndex: 999
+    })
   }
 }
 </script>

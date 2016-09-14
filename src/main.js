@@ -3,16 +3,14 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import App from './App.vue'
 import Index from './components/Index.vue'
+import About from './components/About.vue'
 import Post from './components/Post.vue'
 // Page Scripts
-// Expose Jquery Globally.
-import $ from 'jquery'
-window.$ = $
 import OnScreen from 'onscreen'
-import Parallax from './assets/js/parallax'
-window.Parallax = Parallax
 
-console.log(Parallax)
+// window.Parallax = Parallax
+// $('#scene').Parallax()
+// console.log(Parallax)
 Vue.use(VueResource)
 Vue.use(VueRouter)
 
@@ -21,6 +19,7 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     { path: '/', component: Index },
+    { path: '/about', component: About },
     { path: '/post', component: Post },
     { path: '/post/:id', component: Post }
   ]
@@ -30,9 +29,6 @@ new Vue({
   router: router,
   components: {
     App
-  },
-  created: function () {
-    console.log(this)
   }
 }).$mount('#app')
 
@@ -44,19 +40,9 @@ const os = new OnScreen({
 })
 
 os.on('enter', '.track-animate', (element) => {
-  // element.style.translateX = 'red';
-  console.log(element.style)
   element.classList.add('os')
-  // element.style.transform = "translateY(0px)";
 })
 
 os.on('leave', '.track-animate', (element) => {
   element.classList.remove('os')
-})
-
-const scene = document.getElementById('scene')
-const parallax = new Parallax(scene)
-
-$(document).ready(function () {
-
 })
