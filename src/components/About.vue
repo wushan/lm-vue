@@ -36,11 +36,5 @@ export default {
 </script>
 
 <style lang="scss">
-	// Global Styles
-	@import "bower_components/bourbon/app/assets/stylesheets/bourbon";
-	@import "bower_components/susy/sass/susy";
-	@import "bower_components/breakpoint-sass/stylesheets/breakpoint";
-	@import "src/assets/styles/general/variable/variable";
-	@import "src/assets/styles/general/base/base";
-	@import "src/assets/styles/main/main";
+	
 </style>

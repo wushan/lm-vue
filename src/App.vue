@@ -49,5 +49,6 @@ export default {
     math: fluid,
   );
   @import "src/assets/styles/general/general";
+  @import "src/assets/styles/font-awesome/font-awesome";
   
 </style>

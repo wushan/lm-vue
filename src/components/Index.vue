@@ -4,8 +4,7 @@
 			section#intro
 				ul#scene
 					li.layer(data-depth="0.00")
-						.background
-							//(style="background-image: url('../assets/images/parallax/background.jpg');")
+						.background(style="background-image: 'url(' + require('../assets/images/parallax/background.jpg') + ')'")
 
 					li.layer(data-depth="0.40")
 						.people
