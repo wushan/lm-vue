@@ -1,19 +1,40 @@
 <template lang="pug">
-  #wrapper
-    transition(name="fade", mode="out-in")
-      router-view
-    footer#footer
-      .footer-inner
-        .block
-          a(href="javascript:;") Privacy
-          a(href="javascript:;") Term of use
-        .block
-          span
-            | Lywentech, Co., Ltd. All rights reserved. | Designed by 
-            a(href="javascript:;") SUBKARMA
+  #application(v-on:click="toggleMenu", v-bind:class="{ off_canvas_on: isActive }")
+    #wrapper
+      transition(name="fade", mode="out-in")
+        router-view
+      footer#footer
+        .footer-inner
+          .block
+            a(href="javascript:;") Privacy
+            a(href="javascript:;") Term of use
+          .block
+            span
+              | Lywentech, Co., Ltd. All rights reserved. | Designed by 
+              a(href="javascript:;") SUBKARMA
 
     .off-canvas
       nav.off-canvas-navigation
+        ul.menu
+          li
+            router-link(to='/about', activeClass="active") ABOUT US
+          li
+            router-link(to='javascript:;', activeClass="active") PRODUCTS
+          li
+            router-link(to='javascript:;', activeClass="active") NEWS
+          li
+            router-link(to='javascript:;', activeClass="active") CONTACTS
+          li
+            router-link(to='/', activeClass="active")
+              img(src="./assets/images/components/lymco-brand.png")
+          li
+            router-link(to='javascript:;', activeClass="active") DEALER'S PORTAL
+          li
+            router-link(to='javascript:;', activeClass="active") ERROR SHOOTING
+          li
+            router-link(to='javascript:;', activeClass="active") INQUIRY(3)
+          li
+            router-link(to='javascript:;', activeClass="active") SUBSCRIPTION
     
 </template>
 
@@ -21,7 +42,15 @@
 export default {
   data () {
     return {
-      msg: 'Hello Vue'
+      isActive: false
+    }
+  },
+  methods: {
+    toggleMenu () {
+      if (this.$data.isActive) {
+        this.$data.isActive = false
+        console.log('pp')
+      }
     }
   }
 }
@@ -50,5 +79,6 @@ export default {
   );
   @import "src/assets/styles/general/general";
   @import "src/assets/styles/font-awesome/font-awesome";
+  @import "src/assets/styles/footer/footer";
   
 </style>

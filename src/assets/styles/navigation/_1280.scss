@@ -2,7 +2,7 @@
 	.navigation {
 		.menu {
 			li {
-				@include gallery(1 of 9);
+				@include gallery(1 of 9 0);
 				display: inline-block;
 				vertical-align: middle;
 			}

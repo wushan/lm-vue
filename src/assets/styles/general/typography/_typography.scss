@@ -1,4 +1,16 @@
-// @import "https://fonts.googleapis.com/css?family=Montserrat";
+
+@font-face {
+	font-family: 'GothamPro';
+	src: url('assets/fonts/GothamPro.eot?') format('eot'), 
+	     url('assets/fonts/GothamPro.otf')  format('opentype'),
+	     url('assets/fonts/GothamPro.woff') format('woff'), 
+	     url('assets/fonts/GothamPro.ttf')  format('truetype'),
+	     url('assets/fonts/GothamPro.svg#GothamPro') format('svg');
+}
+//Fonts
+$sans-serif: "GothamPro", "Helvetica Neue", Arial, "source-han-sans-traditional", sans-serif;
+$heading: "GothamPro", "Helvetica Neue", Arial, "source-han-sans-traditional", sans-serif;
+
 body {
 	font-family: $sans-serif;
 	font-size: 87.5%;

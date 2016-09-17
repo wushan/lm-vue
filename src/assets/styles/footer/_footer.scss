@@ -1,0 +1,27 @@
+#footer {
+	background-color: $darkgray;
+	color: $white;
+	padding: 1em;
+	a {
+		color: $white;
+	}
+	.footer-inner {
+		@extend .clr;
+		.block {
+			display: block;
+			text-align: center;
+			margin-bottom: 1em;
+			&:first-child {
+				a {
+					display: inline-block;
+					vertical-align: middle;
+					border-right: 1px solid $white;
+					padding: 0 1em;
+					&:last-child {
+						border: 0;
+					}
+				}
+			}
+		}
+	}
+}

@@ -7,7 +7,7 @@
 				li
 					router-link(to='javascript:;', activeClass="active") PRODUCTS
 				li
-					router-link(to='javascript:;', activeClass="active") NEWS
+					router-link(to='/news', activeClass="active") NEWS
 				li
 					router-link(to='javascript:;', activeClass="active") CONTACTS
 				li
@@ -21,12 +21,24 @@
 					router-link(to='javascript:;', activeClass="active") INQUIRY(3)
 				li
 					router-link(to='javascript:;', activeClass="active") SUBSCRIPTION
-			a#mobile-trigger(href="javascript:;")
+			a#mobile-trigger(href="javascript:;", v-on:click.stop="toggleMenu")
 				.fa.fa-bars.fa-2x
   
 </template>
 
 <script>
+export default {
+  methods: {
+    toggleMenu () {
+      this.$root.$emit('toggle', 1)
+    }
+  },
+  data () {
+    return {
+      msg: 'Hello Vue'
+    }
+  }
+}
 </script>
 
 <style lang="scss">

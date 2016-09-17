@@ -32,6 +32,7 @@
 		left: 0;
 		background-size: cover;
 		background-position: center bottom;
+		background-image: url('../assets/images/parallax/background.jpg');
 	}
 	.people {
 		position: absolute;
@@ -48,6 +49,9 @@
 		background-position: center;
 		position: relative;
 		color: $white;
+		&:first-child {
+			background-image: url('../assets/images/components/intro-brand-1.png');
+		}
 		.overlay {
 			position: absolute;
 			bottom: 0;
@@ -133,6 +137,8 @@
 		}
 		h4 {
 			margin: 0;
+			height: 3em;
+			overflow: hidden;
 		}
 		.thumbnail {
 			position: relative;
@@ -163,11 +169,14 @@
 				.title {
 					display: inline-block;
 					vertical-align: middle;
+					width: 90%;
 				}
 			}
 		}
 		.content {
 			padding: 1em 2em;
+			height: 4em;
+			margin-bottom: 1em;
 			overflow: hidden;
 			text-align: left;
 		}
@@ -176,35 +185,4 @@
 			background-color: $main;
 		}
 	}
-}
-
-#footer {
-	background-color: $darkgray;
-	color: $white;
-	padding: 1em;
-	a {
-		color: $white;
-	}
-	.footer-inner {
-		@extend .clr;
-		.block {
-			display: block;
-			text-align: center;
-			margin-bottom: 1em;
-			&:first-child {
-				a {
-					display: inline-block;
-					vertical-align: middle;
-					border-right: 1px solid $white;
-					padding: 0 1em;
-					&:last-child {
-						border: 0;
-					}
-				}
-			}
-		}
-	}
-}
-#about {
-	background-color: $darkestgray;
 }

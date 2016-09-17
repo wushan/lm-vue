@@ -90,7 +90,7 @@ nav.off-canvas-navigation {
 }
 
 //Toggle
-body.off-canvas-on {
+#application.off_canvas_on {
 	.off-canvas {
 		transform: translateX(0);
 	}
