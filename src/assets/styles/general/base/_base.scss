@@ -1,13 +1,3 @@
-.transition {
-  transition: .3s all ease-in-out;
-}
-.clr {
-  &:before, &:after {
-    content:'';
-    clear: both;
-    display: block;
-  }
-}
 //Fix HTML5 Tag
 main {
   display: block;

@@ -2,27 +2,45 @@
 	main
 		#main
 			page-navigation
-			section#news-slider
-				.container.restrict
-					h2 News List
-			section#news-list
-				.cover
-				.container.restrict-large.middler-wrapper
-					.middler
-						.news-list
-							article.news-item(v-for="news in data")
-								header
-									.thumbnail
-										a(href="javascript:;")
-											img(v-bind:src="news.thumbnail")
-										a.overlay(href="javascript:;")
-											.title
-												time {{news.updated_time}}
-												h4 {{news.title}}
-								.content {{news.excerpt}}
-								footer.footer.right
-									a(v-bind:href="'/news/' + news.id")
-										span read more &#9656;
+			#news
+				section#news-slider
+					.container.restrict-large
+						h1
+							|	LATEST
+							span.bold NEWS
+						.restrict-mid
+							#slider
+								each i in Array(3)
+									.item
+										.block
+											img(src="../assets/images/components/news-slide-1.png")
+										.block
+											.content
+												time June, 2008
+												h2 Lymco at EMO 2016
+												.context
+													p The stock list has been updated in the dealer's portal. Our latest stock includes the DV-3000MT vertical platform lathe, the RAL seies vertical lathe, and the MH-500 horizontal machining center with auto pallet changer.
+												.call-action.right
+													a.btn.bordered(href="javascript:;") READ MORE
+
+				section#news-list
+					.cover
+					.container.restrict-large.middler-wrapper
+						.middler
+							.news-list
+								article.news-item(v-for="news in data")
+									header
+										.thumbnail
+											a(href="javascript:;")
+												img(v-bind:src="news.thumbnail")
+											a.overlay(href="javascript:;")
+												.title
+													time {{news.updated_time}}
+													h4 {{news.title}}
+									.content {{news.excerpt}}
+									footer.footer.right
+										a(v-bind:href="'/news/' + news.id")
+											span read more &#9656;
 
 </template>
 
@@ -33,6 +51,7 @@ import Api from '../api'
 import $ from 'jquery'
 window.jQuery = window.$ = $
 require('imports?$=jquery!../assets/vendor/jquery.sticky.js')
+require('imports?$=jquery!../assets/vendor/slick.min.js')
 export default {
   components: {
     'page-navigation': Navigation
@@ -46,6 +65,9 @@ export default {
   },
   mounted () {
     this.fetchData()
+    $('#slider').slick({
+      dots: true
+    })
   },
   updated () {
     $('#scene').parallax()
@@ -78,10 +100,98 @@ export default {
 	@import "bower_components/susy/sass/susy";
 	@import "bower_components/breakpoint-sass/stylesheets/breakpoint";
 	@import "src/assets/styles/general/variable/variable";
-	@import "src/assets/styles/general/base/base";
+	@import "src/assets/styles/general/helper/helper";
 	
-	#about {
+	#news {
 		background-color: $darkestgray;
 		color: $white;
+		background-image: url('../assets/images/components/news-bg-1.png');
+		background-repeat: no-repeat;
+		background-position: center top; 
+	}
+	#news-slider {
+		h1 {
+			font-size: 3.6em;
+			line-height: 1; 
+			span {
+				display: block;
+			}
+		}
+		.item {
+			@extend .clr;
+			.block {
+				position: relative;
+				&:first-child {
+					margin-bottom: 3em;
+					&:after {
+						content: '';
+						border: 1px solid $main;
+						display: block;
+						width: 100%;
+						height: 100%;
+						position: absolute;
+						top: 1em;
+						left: 1em;
+					}
+				}
+				img {
+					width: 100%;
+					position: relative;
+					z-index: 1;
+				}
+			}
+			h2 {
+				margin: 0;
+			}
+			time {
+				color: $main;
+			}
+			@include breakpoint(768px) {
+				.block {
+					@include span(6 of 12 2);
+					&:last-child {
+						@include last;
+					}
+				}
+			}
+		}
+		#slider {
+			margin: 2em 0;
+			height: 100%; 
+			.item {
+				height: 100%; 
+				position: relative;
+			}
+			.slick-list, .slick-track {
+				height: 100%;
+			}
+			.slick-dots {
+				li {
+					width: 40px;
+					height: 6px;
+					button {
+						width: 40px;
+						height: 6px;
+						padding: 0;
+						&:before {
+							content: '';
+							width: 40px;
+							height: 6px;
+							color: $main;
+							border: 1px solid $main;
+							background-color: transparent;
+							opacity: 1; 
+						}
+					}
+					&.slick-active {
+						button {
+							&:before {
+								background-color: $main;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 </style>

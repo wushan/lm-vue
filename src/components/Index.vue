@@ -114,6 +114,6 @@ export default {
 	@import "bower_components/susy/sass/susy";
 	@import "bower_components/breakpoint-sass/stylesheets/breakpoint";
 	@import "src/assets/styles/general/variable/variable";
-	@import "src/assets/styles/general/base/base";
+	@import "src/assets/styles/general/helper/helper";
 	@import "src/assets/styles/main/main";
 </style>

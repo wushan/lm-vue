@@ -80,5 +80,7 @@ export default {
   @import "src/assets/styles/general/general";
   @import "src/assets/styles/font-awesome/font-awesome";
   @import "src/assets/styles/footer/footer";
+  @import "src/assets/styles/slick/slick";
+  @import "src/assets/styles/slick/slick-theme";
   
 </style>

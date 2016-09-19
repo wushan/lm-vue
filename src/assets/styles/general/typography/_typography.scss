@@ -7,8 +7,19 @@
 	     url('assets/fonts/GothamPro.ttf')  format('truetype'),
 	     url('assets/fonts/GothamPro.svg#GothamPro') format('svg');
 }
+
+@font-face {
+	font-family: 'GothamPro-Bold';
+	src: url('assets/fonts/GothamPro-Bold.eot?') format('eot'), 
+	     url('assets/fonts/GothamPro-Bold.otf')  format('opentype'),
+	     url('assets/fonts/GothamPro-Bold.woff') format('woff'), 
+	     url('assets/fonts/GothamPro-Bold.ttf')  format('truetype'),
+	     url('assets/fonts/GothamPro-Bold.svg#GothamPro-Bold') format('svg');
+}
+
 //Fonts
 $sans-serif: "GothamPro", "Helvetica Neue", Arial, "source-han-sans-traditional", sans-serif;
+$bold-sans-serif: "GothamPro-Bold", "Helvetica Neue", Arial, "source-han-sans-traditional", sans-serif;
 $heading: "GothamPro", "Helvetica Neue", Arial, "source-han-sans-traditional", sans-serif;
 
 body {
@@ -45,6 +56,12 @@ body {
 .green {
 	color: $main;
 }
+.black {
+	color: $black;
+}
+.bold {
+	font-family: $bold-sans-serif; 
+}
 
 h1,h2,h3,h4,h5,h6 {
 	font-family: $heading;
@@ -64,10 +81,10 @@ h4 {
 	font-size: $largetst*0.8*0.8*0.8;
 }
 h5 {
-	font-size: $largetst*0.8*0.8*0.8;
+	font-size: $largetst*0.8*0.8*0.8*0.8;
 }
 h6 {
-	font-size: $largetst*0.8*0.8*0.8*0.8;
+	font-size: $largetst*0.8*0.8*0.8*0.8*0.8;
 }
 
 @include breakpoint(768px) {
@@ -85,9 +102,9 @@ h6 {
 		font-size: $largetst*0.8*0.8*0.8;
 	}
 	h5 {
-		font-size: $largetst*0.8*0.8*0.8;
+		font-size: $largetst*0.8*0.8*0.8*0.8;
 	}
 	h6 {
-		font-size: $largetst*0.8*0.8*0.8*0.8;
+		font-size: $largetst*0.8*0.8*0.8*0.8*0.8;
 	}
 }
