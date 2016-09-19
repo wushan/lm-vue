@@ -16,13 +16,13 @@
 									h2 {{ article.title }}
 					article.post
 						.container.restrict-large
-							#slider
+							#news-single-slider
 								.item(v-for="slide in article.media")
 									img(v-bind:src="slide.url")
-						.container.restrict
-							.share-component
-								p xxx share
-							.content(v-html="article.content")
+						
+						.share-component
+							p xxx share
+						.content(v-html="article.content")
 					
 				section(v-else)
 					p.
@@ -57,14 +57,119 @@ export default {
   },
   updated () {
     console.log(this.article.media.length)
-    $('#slider').slick({
-      infinite: true,
-      dots: true,
-      arrows: true,
-      slidesToShow: this.article.media.length - 1,
-      slidesToScroll: 1,
-      centerMode: true
-    })
+    if (this.article.media.length === 3) {
+      $('#news-single-slider').slick({
+        infinite: true,
+        dots: true,
+        arrows: true,
+        slidesToShow: this.article.media.length - 1,
+        slidesToScroll: 1,
+        centerMode: true,
+        centerPadding: '240px',
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true,
+              centerMode: true,
+              dots: true,
+              centerPadding: '160px'
+            }
+          },
+          {
+            breakpoint: 800,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true,
+              centerMode: true,
+              dots: true,
+              centerPadding: '100px'
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true,
+              centerMode: true,
+              dots: true,
+              centerPadding: '100px'
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true,
+              centerMode: true,
+              dots: true,
+              centerPadding: '50px'
+            }
+          }
+        ]
+      })
+    } else if (this.article.media.length === 4) {
+      $('#news-single-slider').slick({
+        infinite: true,
+        dots: true,
+        arrows: true,
+        slidesToShow: this.article.media.length - 1,
+        slidesToScroll: 1,
+        centerMode: true,
+        centerPadding: '50px',
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true,
+              centerMode: true,
+              dots: true,
+              centerPadding: '160px'
+            }
+          },
+          {
+            breakpoint: 800,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true,
+              centerMode: true,
+              dots: true,
+              centerPadding: '100px'
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true,
+              centerMode: true,
+              dots: true,
+              centerPadding: '100px'
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true,
+              centerMode: true,
+              dots: true,
+              centerPadding: '50px'
+            }
+          }
+        ]
+      })
+    }
   },
   methods: {
     fetchData () {
@@ -135,26 +240,61 @@ export default {
 	}
 	.post {
 		&>.container {
-			overflow: hidden;
+			// overflow: hidden;
 			padding: 4rem 0;
 			position: relative;
-			margin-top: -4em;
+			margin-top: -6rem;
 		}
 	}
-	#slider {
-		margin: 2em 0;
-		position: relative;
-		left: -8.5em;
-		.slick-slide {
-			transition: .3s transform ease;
-			margin: 0 10px;
+	#news-single-slider {
+		// margin: 2em 0;
+		// position: relative;
+		// left: -8.5em;
+		@extend .clr;
+		text-align: center;
+		.item {
+			display: inline-block;
+			vertical-align: middle;
+			width: 48%;
+			margin: 0 1%;
+		}
+		img {
 			box-shadow: 0 3px 6px rgba($black, .66);
 		}
+		.slick-slide {
+			opacity: .4; 
+			transition: .3s transform ease;
+			margin: 0 2px;
+			img {
+				width: 100%;
+			}
+			@include breakpoint(1024px) {
+				margin: 0 10px;
+			}
+		}
 		.slick-list {
-			overflow: initial;
+			padding-top: 50px !important;
+			padding-bottom: 50px !important;
+			overflow: initial; 
+			@include breakpoint(1024px) {
+				// padding-top: 100px !important;
+				// padding-bottom: 100px !important;
+			}
 		}
 		.slick-current {
-			transform: scale(1.7);
+			opacity: 1;
+			position: relative;
+			z-index: 1;
+			transform: scale(1.2);
+			@include breakpoint(1024px) {
+				transform: scale(1.7);
+			}
+			@include breakpoint(1440px) {
+				// transform: scale(1.5);
+			}
+			@include breakpoint(1680px) {
+				// transform: scale(1.3);
+			}
 		}
 	}
 </style>
