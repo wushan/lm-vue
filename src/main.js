@@ -7,6 +7,7 @@ import About from './components/About.vue'
 import News from './components/News.vue'
 import NewsSingle from './components/NewsSingle.vue'
 import Post from './components/Post.vue'
+
 // Page Scripts
 import OnScreen from 'onscreen'
 

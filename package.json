@@ -22,8 +22,10 @@
     "pug": "^2.0.0-beta6",
     "sass-loader": "^4.0.2",
     "vue": "^2.0.0-rc.6",
+    "vue-paginate": "^2.1.2",
     "vue-resource": "^1.0.2",
-    "vue-router": "^2.0.0-rc.5"
+    "vue-router": "^2.0.0-rc.5",
+    "vuejs-paginator": "^1.0.15"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

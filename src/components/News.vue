@@ -21,7 +21,7 @@
 												.context
 													p The stock list has been updated in the dealer's portal. Our latest stock includes the DV-3000MT vertical platform lathe, the RAL seies vertical lathe, and the MH-500 horizontal machining center with auto pallet changer.
 												.call-action.right
-													a.btn.bordered(href="javascript:;") READ MORE
+													a.btn.bordered(href="javascript:;") READ MORE &#9656;
 
 				section#news-list
 					.cover
@@ -31,9 +31,11 @@
 								article.news-item(v-for="news in data")
 									header
 										.thumbnail
-											a(href="javascript:;")
+											//- a(v-bind:href="'/news/' + news.id")
+											router-link(:to="'/news/' + news.id")
 												img(v-bind:src="news.thumbnail")
-											a.overlay(href="javascript:;")
+											//- a.overlay(v-bind:href="'/news/' + news.id")
+											router-link.overlay(:to="'/news/' + news.id")
 												.title
 													time {{news.updated_time}}
 													h4 {{news.title}}
@@ -41,7 +43,9 @@
 									footer.footer.right
 										a(v-bind:href="'/news/' + news.id")
 											span read more &#9656;
-
+				section#discover
+					a(href="javascript:;") DISCOVER MORE
+							
 </template>
 
 <script>
@@ -52,6 +56,7 @@ import $ from 'jquery'
 window.jQuery = window.$ = $
 require('imports?$=jquery!../assets/vendor/jquery.sticky.js')
 require('imports?$=jquery!../assets/vendor/slick.min.js')
+
 export default {
   components: {
     'page-navigation': Navigation
@@ -66,7 +71,8 @@ export default {
   mounted () {
     this.fetchData()
     $('#slider').slick({
-      dots: true
+      dots: true,
+      arrows: false
     })
   },
   updated () {
@@ -86,7 +92,6 @@ export default {
           this.error = err.toString()
         } else {
           this.data = data
-          console.log(this.data)
         }
       })
     }
@@ -102,14 +107,13 @@ export default {
 	@import "src/assets/styles/general/variable/variable";
 	@import "src/assets/styles/general/helper/helper";
 	
-	#news {
-		background-color: $darkestgray;
+	#news {}
+	#news-slider {
 		color: $white;
+		background-color: $darkestgray;
 		background-image: url('../assets/images/components/news-bg-1.png');
 		background-repeat: no-repeat;
 		background-position: center top; 
-	}
-	#news-slider {
 		h1 {
 			font-size: 3.6em;
 			line-height: 1; 
@@ -182,6 +186,11 @@ export default {
 							background-color: transparent;
 							opacity: 1; 
 						}
+						&:hover {
+							&:before {
+								background-color: $main;
+							}
+						}
 					}
 					&.slick-active {
 						button {
@@ -191,6 +200,37 @@ export default {
 						}
 					}
 				}
+			}
+		}
+	}
+	#news-list {
+		background-color: $smokygray;
+		background-image: url('../assets/images/components/news-bg-2.png');
+		background-repeat: no-repeat;
+		background-position: top right; 
+		padding: 2em 0;
+	}
+	#discover {
+		text-align: center;
+		padding: 4em 0;
+		background-image: url('../assets/images/components/footer-gray-bg.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		a {
+			display: inline-block;
+			vertical-align: middle;
+			color: $white;
+			position: relative;
+			&:after {
+				content: '';
+				display: block;
+				border-bottom: 2px solid $main;
+				position: absolute;
+				bottom: -1em;
+				left: 0;
+				right: 0;
+				width: 20%;
+				margin: auto; 
 			}
 		}
 	}

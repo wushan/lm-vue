@@ -55,6 +55,14 @@
       }
     }
   }
+  &.bordered {
+    border: 1px solid $main;
+    color: $main;
+    &:hover {
+      background-color: $main;
+      color: $black;
+    }
+  }
   &.btn-with-icon {
     border: 2px solid $main;
     color: $black;

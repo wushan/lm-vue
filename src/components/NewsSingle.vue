@@ -2,29 +2,85 @@
 	main
 		#main
 			page-navigation
-			section#news
-				.container.restrict
-					h2 News Single
+			#news
+				section#news-single(v-if="article")
+					header(v-bind:style="'background-image: url('+ article.thumbnail + ');'")
+						.container.restrict-large
+							h1
+								|	LATEST
+								span.bold NEWS
+
+							.article-title.centered
+								.restrict
+									time.green {{ article.updated_time }}
+									h2 {{ article.title }}
+					article.post
+						.container.restrict-large
+							#slider
+								.item(v-for="slide in article.media")
+									img(v-bind:src="slide.url")
+						.container.restrict
+							.share-component
+								p xxx share
+							.content(v-html="article.content")
+					
+				section(v-else)
+					p.
+						There isn't a matched article during the search.
+
+
 					
 
 </template>
 
 <script>
 import Navigation from './Navigation.vue'
+import Api from '../api'
 // Expose Jquery Globally.
 import $ from 'jquery'
 window.jQuery = window.$ = $
 require('imports?$=jquery!../assets/vendor/jquery.sticky.js')
+require('imports?$=jquery!../assets/vendor/slick.min.js')
 export default {
   components: {
     'page-navigation': Navigation
   },
   data () {
     return {
-      msg: 'Hello Vue'
+      loading: false,
+      error: null,
+      article: null
     }
   },
-  mounted () {}
+  mounted () {
+    this.fetchData()
+  },
+  updated () {
+    console.log(this.article.media.length)
+    $('#slider').slick({
+      infinite: true,
+      dots: true,
+      arrows: true,
+      slidesToShow: this.article.media.length - 1,
+      slidesToScroll: 1,
+      centerMode: true
+    })
+  },
+  methods: {
+    fetchData () {
+      this.error = this.data = null
+      this.loading = true
+      Api.getNewsSingle((err, data) => {
+        this.loading = false
+        if (err) {
+          this.error = err.toString()
+        } else {
+          this.article = data
+          console.log(this.article)
+        }
+      })
+    }
+  }
 }
 </script>
 
@@ -34,10 +90,71 @@ export default {
 	@import "bower_components/susy/sass/susy";
 	@import "bower_components/breakpoint-sass/stylesheets/breakpoint";
 	@import "src/assets/styles/general/variable/variable";
-	@import "src/assets/styles/general/base/base";
+	@import "src/assets/styles/general/helper/helper";
 	
-	#about {
-		background-color: $darkestgray;
-		color: $white;
+	#news-single {
+		header {
+			color: $white;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center;
+			position: relative;
+			padding: 2em 0 4em 0;
+			&:after {
+				content: '';
+				display: block;
+				position: absolute;
+				right: 0;
+				left: 0;
+				bottom: 0;
+				height: 200%; 
+				/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+99&0.29+0,1+81 */
+				background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.29) 0%, rgba(0,0,0,1) 81%, rgba(0,0,0,1) 99%); /* FF3.6-15 */
+				background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0.29) 0%,rgba(0,0,0,1) 81%,rgba(0,0,0,1) 99%); /* Chrome10-25,Safari5.1-6 */
+				background: radial-gradient(ellipse at center,  rgba(0,0,0,0.29) 0%,rgba(0,0,0,1) 81%,rgba(0,0,0,1) 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4a000000', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+			}
+			h1 {
+				font-size: 3.6em;
+				line-height: 1; 
+				span {
+					display: block;
+				}
+			}
+			h2 {
+				margin: 0;
+			}
+			.container {
+				position: relative;
+				z-index: 1;
+			}
+			.article-title {
+				margin-top: 10em;
+			}
+		}
+	}
+	.post {
+		&>.container {
+			overflow: hidden;
+			padding: 4rem 0;
+			position: relative;
+			margin-top: -4em;
+		}
+	}
+	#slider {
+		margin: 2em 0;
+		position: relative;
+		left: -8.5em;
+		.slick-slide {
+			transition: .3s transform ease;
+			margin: 0 10px;
+			box-shadow: 0 3px 6px rgba($black, .66);
+		}
+		.slick-list {
+			overflow: initial;
+		}
+		.slick-current {
+			transform: scale(1.7);
+		}
 	}
 </style>
