@@ -32,16 +32,16 @@
 									header
 										.thumbnail
 											//- a(v-bind:href="'/news/' + news.id")
-											router-link(:to="'/news/' + news.id")
+											router-link(:to="'/news/single/' + news.id")
 												img(v-bind:src="news.thumbnail")
 											//- a.overlay(v-bind:href="'/news/' + news.id")
-											router-link.overlay(:to="'/news/' + news.id")
+											router-link.overlay(:to="'/news/single/' + news.id")
 												.title
 													time {{news.updated_time}}
 													h4 {{news.title}}
 									.content {{news.excerpt}}
 									footer.footer.right
-										a(v-bind:href="'/news/' + news.id")
+										a(v-bind:href="'/news/single/' + news.id")
 											span read more &#9656;
 				section#discover
 					a(href="javascript:;") DISCOVER MORE
@@ -86,7 +86,7 @@ export default {
     fetchData () {
       this.error = this.data = null
       this.loading = true
-      Api.getNewsHome((err, data) => {
+      Api.getNewsHome(this.$route.params.page, (err, data) => {
         this.loading = false
         if (err) {
           this.error = err.toString()
@@ -213,6 +213,7 @@ export default {
 	#discover {
 		text-align: center;
 		padding: 4em 0;
+		background-color: $darkestgray;
 		background-image: url('../assets/images/components/footer-gray-bg.png');
 		background-size: 100% 100%;
 		background-repeat: no-repeat;

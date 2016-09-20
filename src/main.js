@@ -6,6 +6,9 @@ import Index from './components/Index.vue'
 import About from './components/About.vue'
 import News from './components/News.vue'
 import NewsSingle from './components/NewsSingle.vue'
+import Contact from './components/Contact.vue'
+import Category from './components/Category.vue'
+
 import Post from './components/Post.vue'
 
 // Page Scripts
@@ -23,10 +26,14 @@ const router = new VueRouter({
   routes: [
     { path: '/', component: Index },
     { path: '/about', component: About },
-    { path: '/news', component: News },
-    { path: '/news/:id', component: NewsSingle },
+    { path: '/news', redirect: '/news/1' },
+    { path: '/news/single', redirect: '/news' },
+    { path: '/news/:page', component: News },
+    { path: '/news/single/:id', component: NewsSingle },
+    { path: '/product/category', component: Category },
     { path: '/post', component: Post },
-    { path: '/post/:id', component: Post }
+    { path: '/post/:id', component: Post },
+    { path: '/contact', component: Contact }
   ]
 })
 

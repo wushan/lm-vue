@@ -1,0 +1,207 @@
+{
+    "categories": [
+        {
+            "id": 1,
+            "name": "CNC Vertical Lathes",
+            "description": "Suitable for big sized complex workpieces with requirement of high precision in 5-axes.",
+            "image": "https://dummyimage.com/1000x1000/",
+            "products": [
+                {
+                    "id": "1",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "2",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "3",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "4",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Horizontal Boring/<br>Milling Machine",
+            "description": "Machining operations in 5 axes and on 5 sides, in one setup part clamping, from roughing to finishing, as well as turning operations.",
+            "image": "https://dummyimage.com/1000x1000/",
+            "products": [
+                {
+                    "id": "1",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "2",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "3",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "4",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Bridge Type Double<br>Column Machining<br>Center",
+            "description": "Machining operations in 5 axes and on 5 sides, in one setup part clamping, from roughing to finishing, as well as turning operations.",
+            "image": "https://dummyimage.com/1000x1000/",
+            "products": [
+                {
+                    "id": "1",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "2",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "3",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "4",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Horizontal<br>Machining Center",
+            "description": "Machining operations in 5 axes and on 5 sides, in one setup part clamping, from roughing to finishing, as well as turning operations.",
+            "image": "https://dummyimage.com/1000x1000/",
+            "products": [
+                {
+                    "id": "1",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "2",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "3",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "4",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Vertical<br>Machining Center",
+            "description": "Machining operations in 5 axes and on 5 sides, in one setup part clamping, from roughing to finishing, as well as turning operations.",
+            "image": "https://dummyimage.com/1000x1000/",
+            "products": [
+                {
+                    "id": "1",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "2",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "3",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "4",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "name": "High Speed<br>Mold & Die<br>Machines",
+            "description": "Machining operations in 5 axes and on 5 sides, in one setup part clamping, from roughing to finishing, as well as turning operations.",
+            "image": "https://dummyimage.com/1000x1000/",
+            "products": [
+                {
+                    "id": "1",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "2",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "3",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                },
+                {
+                    "id": "4",
+                    "name": "Vertical Turning Center",
+                    "thumbnail": "https://dummyimage.com/250x250/"
+                }
+            ]
+        }
+    ],
+    "highlightproduct": [
+        {
+          "id":1,
+          "name":"Horizontal Machine Center",
+          "model":"MCV-M11",
+          "category":{
+             "name":"bibendum imperdiet nullam",
+             "id":1
+          },
+          "image":"http://dummyimage.com/600x600.png/dddddd/000000",
+          "description":"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris."
+       },
+       {
+          "id":2,
+          "name":"Horizontal Machine Center 2",
+          "model":"MCV-M11",
+          "category":{
+             "name":"bibendum imperdiet nullam",
+             "id":1
+          },
+          "image":"http://dummyimage.com/600x600.png/dddddd/000000",
+          "description":"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris."
+       },
+       {
+          "id":3,
+          "name":"Horizontal Machine Center 3",
+          "model":"MCV-M11",
+          "category":{
+             "name":"bibendum imperdiet nullam",
+             "id":1
+          },
+          "image":"http://dummyimage.com/600x600.png/dddddd/000000",
+          "description":"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris."
+       }
+    ]
+}

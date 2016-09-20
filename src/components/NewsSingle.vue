@@ -2,8 +2,8 @@
 	main
 		#main
 			page-navigation
-			#news
-				section#news-single(v-if="article")
+			#news(v-if="article")
+				section#news-single
 					header(v-bind:style="'background-image: url('+ article.thumbnail + ');'")
 						.container.restrict-large
 							h1
@@ -13,18 +13,35 @@
 							.article-title.centered
 								.restrict
 									time.green {{ article.updated_time }}
-									h2 {{ article.title }}
+									h1 {{ article.title }}
 					article.post
 						.container.restrict-large
 							#news-single-slider
 								.item(v-for="slide in article.media")
 									img(v-bind:src="slide.url")
 						
-						.share-component
-							p xxx share
-						.content(v-html="article.content")
+						.share-component.restrict
+							a.fa.fa-2x.fa-facebook(href="javascript:;")
+							a.fa.fa-2x.fa-twitter(href="javascript:;")
+							a.fa.fa-2x.fa-google-plus(href="javascript:;")
+						.restrict
+							.content(v-html="article.content")
 					
-				section(v-else)
+						.news-navigation.restrict.right
+							router-link.btn.rounded(:to="'/news/' + article.pagination.prev.id")
+								.fa.fa-angle-left.fa-3x
+								span PREV
+								span.bold {{ article.pagination.prev.title }}
+								
+							router-link.btn.rounded(:to="'/news/' + article.pagination.next.id")
+								span NEXT
+								span.bold {{ article.pagination.next.title }}
+								.fa.fa-angle-right.fa-3x
+				section#discover
+					router-link(:to="'/news/'") BACK TO LIST
+			
+			#news(v-else)
+				section
 					p.
 						There isn't a matched article during the search.
 
@@ -175,7 +192,7 @@ export default {
     fetchData () {
       this.error = this.data = null
       this.loading = true
-      Api.getNewsSingle((err, data) => {
+      Api.getNewsSingle(this.$route.params.id, (err, data) => {
         this.loading = false
         if (err) {
           this.error = err.toString()
@@ -198,6 +215,7 @@ export default {
 	@import "src/assets/styles/general/helper/helper";
 	
 	#news-single {
+		background-color: $smokygray;
 		header {
 			color: $white;
 			background-size: cover;
@@ -239,11 +257,47 @@ export default {
 		}
 	}
 	.post {
+		background-color: $smokygray;
+		background-image: url('../assets/images/components/news-bg-2.png');
+		background-repeat: no-repeat;
+		background-position: top right;
 		&>.container {
 			// overflow: hidden;
 			padding: 4rem 0;
 			position: relative;
 			margin-top: -6rem;
+		}
+		.content {
+			padding: 0 0 4em 0;
+		}
+	}
+	.news-navigation {
+		.fa {
+			position: absolute;
+		}
+		a {
+			margin: .5em;
+			position: relative;
+			&:first-child {
+				padding-left: 4em;
+				.fa {
+					left: .2em;
+					top: -2px;
+				}
+			}
+			&:last-child {
+				padding-right: 4em;
+				.fa {
+					right: .2em;
+					top: -2px;
+				}
+			}
+		}
+
+		span {
+			display: inline-block;
+			vertical-align: middle;
+			margin: 0 .5em;
 		}
 	}
 	#news-single-slider {
@@ -252,6 +306,32 @@ export default {
 		// left: -8.5em;
 		@extend .clr;
 		text-align: center;
+		.slick-prev, .slick-next {
+			z-index: 7;
+			height: 40px;
+			width: 20px;
+			background-color: $main;
+			cursor: pointer;
+			opacity: .75;
+			&:before {
+				font-size: 16px;
+			}
+			&:hover {
+				opacity: 1;
+			}
+		}
+		.slick-prev {
+			left: 0;
+			&:before {
+				content: '<';
+			}
+		}
+		.slick-next {
+			right: 0;
+			&:before {
+				content: '>';
+			}
+		}
 		.item {
 			display: inline-block;
 			vertical-align: middle;
@@ -262,11 +342,12 @@ export default {
 			box-shadow: 0 3px 6px rgba($black, .66);
 		}
 		.slick-slide {
-			opacity: .4; 
 			transition: .3s transform ease;
 			margin: 0 2px;
+			background-color: $white;
 			img {
 				width: 100%;
+				opacity: .4;
 			}
 			@include breakpoint(1024px) {
 				margin: 0 10px;
@@ -282,7 +363,9 @@ export default {
 			}
 		}
 		.slick-current {
-			opacity: 1;
+			img {
+				opacity: 1;
+			}
 			position: relative;
 			z-index: 1;
 			transform: scale(1.2);

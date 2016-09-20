@@ -5,11 +5,11 @@
 				li
 					router-link(to='/about', activeClass="active") ABOUT US
 				li
-					router-link(to='javascript:;', activeClass="active") PRODUCTS
+					router-link(to='/product/category', activeClass="active") PRODUCTS
 				li
 					router-link(to='/news', activeClass="active") NEWS
 				li
-					router-link(to='javascript:;', activeClass="active") CONTACTS
+					router-link(to='/contact', activeClass="active") CONTACTS
 				li
 					router-link(to='/', activeClass="active")
 						img(src="../assets/images/components/lymco-brand.png")

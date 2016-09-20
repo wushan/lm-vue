@@ -2,6 +2,7 @@
 import Home from './assets/schema/home.json'
 import NewsList from './assets/schema/news-list.json'
 import NewsSingle from './assets/schema/news-single.json'
+import Categories from './assets/schema/product-category.json'
 
 import Vue from 'vue'
 
@@ -27,7 +28,7 @@ export default {
       }
     }, 100)
   },
-  getNewsHome (cb) {
+  getNewsHome (page, cb) {
     setTimeout(() => {
       if (NewsList) {
         cb(null, NewsList)
@@ -36,11 +37,19 @@ export default {
       }
     }, 100)
   },
-  // 要補 id 查詢
-  getNewsSingle (cb) {
+  getNewsSingle (id, cb) {
     setTimeout(() => {
       if (NewsSingle) {
         cb(null, NewsSingle)
+      } else {
+        cb(new Error('Data not found.'))
+      }
+    }, 100)
+  },
+  getCategories (cb) {
+    setTimeout(() => {
+      if (Categories) {
+        cb(null, Categories)
       } else {
         cb(new Error('Data not found.'))
       }

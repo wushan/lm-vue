@@ -45,20 +45,20 @@
 						h1.track-animate
 							|	LATEST NEWS
 							small
-								a(href="javascript:;") MORE NEWS HERE &#9656;
+								router-link(:to="'/news'") MORE NEWS HERE &#9656;
 						.news-list.track-animate
 							article.news-item(v-for="news in data.intronews")
 								header
 									.thumbnail
-										a(href="javascript:;")
+										router-link(:to="'/news/single/' + news.id")
 											img(v-bind:src="news.thumbnail")
-										a.overlay(href="javascript:;")
+										router-link.overlay(:to="'/news/single/' + news.id")
 											.title
 												time {{news.updated_time}}
 												h4 {{news.title}}
 								.content {{news.excerpt}}
 								footer.footer.right
-									a(v-bind:href="'/news/' + news.id")
+									router-link(:to="'/news/single/' + news.id")
 										span read more &#9656;
 </template>
 

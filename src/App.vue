@@ -74,7 +74,7 @@ export default {
   // Susy Global
   $susy: (
     columns: 12,
-    gutters: .1,
+    gutters: 1,
     math: fluid,
   );
   @import "src/assets/styles/general/general";

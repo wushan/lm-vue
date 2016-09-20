@@ -126,19 +126,28 @@ export default {
 				background-color: white;
 				padding: 2em 0;
 				.inner {
+					transition: .3s all ease;
 					background-image: url('../assets/images/components/about-bg-1.png');
-					background-size: cover;
+					background-size: auto 100%;
 					background-position: left center;
+					background-repeat: no-repeat;
 					color: $black;
 					padding: 8em 0;
 					@include breakpoint(768px) {
 						padding: 12em 0;
 					}
-					@include breakpoint(1280px) {
-						background-position: right center;
+					@include breakpoint(1200px) {
+						background-position: -560px center;
 						.content {
-							@include span(6 of 12);
+							@include span(7 of 12);
 						}
+					}
+					@include breakpoint(1300px) {
+						background-position: -440px center;
+						
+					}
+					@include breakpoint(1680px) {
+						background-position: right center;
 					}
 				}
 				.container {
@@ -209,7 +218,8 @@ export default {
 				}
 				#slider {
 					margin: 2em 0;
-					height: 100%; 
+					height: 100%;
+					overflow: hidden; 
 					.item {
 						height: 100%; 
 						position: relative;
