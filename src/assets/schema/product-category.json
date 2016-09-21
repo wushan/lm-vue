@@ -4,7 +4,7 @@
             "id": 1,
             "name": "CNC Vertical Lathes",
             "description": "Suitable for big sized complex workpieces with requirement of high precision in 5-axes.",
-            "image": "https://dummyimage.com/1000x1000/",
+            "image": "https://unsplash.it/1000/1000?random",
             "products": [
                 {
                     "id": "1",
@@ -30,9 +30,9 @@
         },
         {
             "id": 2,
-            "name": "Horizontal Boring/<br>Milling Machine",
+            "name": "Horizontal Boring/Milling Machine",
             "description": "Machining operations in 5 axes and on 5 sides, in one setup part clamping, from roughing to finishing, as well as turning operations.",
-            "image": "https://dummyimage.com/1000x1000/",
+            "image": "https://unsplash.it/1000/1000?random",
             "products": [
                 {
                     "id": "1",
@@ -58,9 +58,9 @@
         },
         {
             "id": 3,
-            "name": "Bridge Type Double<br>Column Machining<br>Center",
+            "name": "Bridge Type Double Column Machining Center",
             "description": "Machining operations in 5 axes and on 5 sides, in one setup part clamping, from roughing to finishing, as well as turning operations.",
-            "image": "https://dummyimage.com/1000x1000/",
+            "image": "https://unsplash.it/1000/1000?random",
             "products": [
                 {
                     "id": "1",
@@ -86,9 +86,9 @@
         },
         {
             "id": 4,
-            "name": "Horizontal<br>Machining Center",
+            "name": "Horizontal Machining Center",
             "description": "Machining operations in 5 axes and on 5 sides, in one setup part clamping, from roughing to finishing, as well as turning operations.",
-            "image": "https://dummyimage.com/1000x1000/",
+            "image": "https://unsplash.it/1000/1000?random",
             "products": [
                 {
                     "id": "1",
@@ -114,9 +114,9 @@
         },
         {
             "id": 5,
-            "name": "Vertical<br>Machining Center",
+            "name": "Vertical Machining Center",
             "description": "Machining operations in 5 axes and on 5 sides, in one setup part clamping, from roughing to finishing, as well as turning operations.",
-            "image": "https://dummyimage.com/1000x1000/",
+            "image": "https://unsplash.it/1000/1000?random",
             "products": [
                 {
                     "id": "1",
@@ -142,9 +142,9 @@
         },
         {
             "id": 6,
-            "name": "High Speed<br>Mold & Die<br>Machines",
+            "name": "High Speed Mold & Die Machines",
             "description": "Machining operations in 5 axes and on 5 sides, in one setup part clamping, from roughing to finishing, as well as turning operations.",
-            "image": "https://dummyimage.com/1000x1000/",
+            "image": "https://unsplash.it/1000/1000?random",
             "products": [
                 {
                     "id": "1",

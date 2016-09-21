@@ -1,0 +1,191 @@
+{
+   "id":1,
+   "name":"Horizontal Machine Center",
+   "model":"MCV-M11",
+   "category":{
+      "name":"bibendum imperdiet nullam",
+      "id":1
+   },
+   "image":"http://dummyimage.com/600x600.png/dddddd/000000",
+   "backgroundimage":"http://dummyimage.com/234x230.jpg/000000/ffffff",
+   "description":"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.",
+   "brochure":"https://opensource.org/libero/rutrum/ac/lobortis/vel.jsp?urna=massa\u0026pretium=id\u0026nisl=nisl\u0026ut=venenatis\u0026volutpat=lacinia\u0026sapien=aenean\u0026arcu=sit\u0026sed=amet\u0026augue=justo\u0026aliquam=morbi\u0026erat=ut\u0026volutpat=odio\u0026in=cras\u0026congue=mi\u0026etiam=pede\u0026justo=malesuada\u0026etiam=in\u0026pretium=imperdiet\u0026iaculis=et\u0026justo=commodo\u0026in=vulputate\u0026hac=justo\u0026habitasse=in\u0026platea=blandit\u0026dictumst=ultrices\u0026etiam=enim\u0026faucibus=lorem\u0026cursus=ipsum\u0026urna=dolor",
+   "media":[
+      {
+         "url":"http://unsplash.it/800/450?random",
+         "type": "image"
+      },
+      {
+         "url":"https://www.youtube.com/embed/gnNO4nTWBWw",
+         "type": "video"
+      },
+      {
+         "url":"http://unsplash.it/800/450?random",
+         "type": "image"
+      }
+   ],
+   "features":[
+      {
+         "title":"a libero",
+         "description":"Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem."
+      },
+      {
+         "title":"vestibulum",
+         "description":"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+      },
+      {
+         "title":"eleifend quam",
+         "description":"Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus."
+      },
+      {
+         "title":"eros elementum",
+         "description":"Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst."
+      }
+   ],
+   "specification": {
+	  "columns": [
+	    {
+	      "name": "spec-1"
+	    },
+	    {
+	      "name": "spec-2"
+	    },
+	    {
+	      "name": "spec-3"
+	    },
+	    {
+	      "name": "spec-4"
+	    },
+	    {
+	      "name": "spec-5"
+	    }
+	  ],
+	  "models": [
+	    {
+	      "id": 1,
+	      "name": "MCV-M1",
+	      "spec": ["27mm","206mm","536mm","","110mm"]
+	    },
+	    {
+	      "id": 2,
+	      "name": "MCV-M2",
+	      "spec": ["7mm","","36mm","459mm","4610mm"]
+	    },
+	    {
+	      "id": 3,
+	      "name": "MCV-M3",
+	      "spec": ["7mm","271mm","6mm","459mm","4cm"]
+	    },
+	    {
+	      "id": 4,
+	      "name": "MCV-M4",
+	      "spec": ["5m","301mm","","459mm","430mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    },
+	    {
+	      "id": 5,
+	      "name": "MCV-M5",
+	      "spec": ["12mm","","59436mm","459mm","0mm"]
+	    }
+	  ]
+	}
+}

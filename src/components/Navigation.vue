@@ -5,7 +5,7 @@
 				li
 					router-link(to='/about', activeClass="active") ABOUT US
 				li
-					router-link(to='/product/category', activeClass="active") PRODUCTS
+					router-link(to='/product/series', activeClass="active") PRODUCTS
 				li
 					router-link(to='/news', activeClass="active") NEWS
 				li

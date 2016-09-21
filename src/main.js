@@ -7,7 +7,8 @@ import About from './components/About.vue'
 import News from './components/News.vue'
 import NewsSingle from './components/NewsSingle.vue'
 import Contact from './components/Contact.vue'
-import Category from './components/Category.vue'
+import Series from './components/Series.vue'
+import Product from './components/Product.vue'
 
 import Post from './components/Post.vue'
 
@@ -30,7 +31,9 @@ const router = new VueRouter({
     { path: '/news/single', redirect: '/news' },
     { path: '/news/:page', component: News },
     { path: '/news/single/:id', component: NewsSingle },
-    { path: '/product/category', component: Category },
+    { path: '/product/series', component: Series },
+    { path: '/product/single', redirect: '/product/series' },
+    { path: '/product/single/:id', component: Product },
     { path: '/post', component: Post },
     { path: '/post/:id', component: Post },
     { path: '/contact', component: Contact }

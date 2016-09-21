@@ -76,7 +76,6 @@ export default {
     })
   },
   updated () {
-    $('#scene').parallax()
     $('.sticker').sticky({
       topSpacing: 0,
       zIndex: 999

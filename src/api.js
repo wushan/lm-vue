@@ -3,6 +3,7 @@ import Home from './assets/schema/home.json'
 import NewsList from './assets/schema/news-list.json'
 import NewsSingle from './assets/schema/news-single.json'
 import Categories from './assets/schema/product-category.json'
+import Product from './assets/schema/product-single.json'
 
 import Vue from 'vue'
 
@@ -50,6 +51,15 @@ export default {
     setTimeout(() => {
       if (Categories) {
         cb(null, Categories)
+      } else {
+        cb(new Error('Data not found.'))
+      }
+    }, 100)
+  },
+  getProduct (id, cb) {
+    setTimeout(() => {
+      if (Product) {
+        cb(null, Product)
       } else {
         cb(new Error('Data not found.'))
       }

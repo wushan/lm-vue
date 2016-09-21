@@ -47,15 +47,11 @@
 						.content
 							.container.restrict
 								h1(v-html="category.name")
-								.context
-									|	{{ category.description }}
-									ul
-										li(v-for="product in category.products")
-											router-link(:to="'/product/single/' + product.id") {{ product.name }}
-									.product-slider
-										.item(v-for="product in category.products")
-											router-link(:to="'/product/single/' + product.id")
-												img(v-bind:src="product.thumbnail")
+								.context(v-html="category.description")
+								.product-slider
+									.item(v-for="product in category.products")
+										router-link(:to="'/product/single/' + product.id")
+											img(v-bind:src="product.thumbnail")
 						
 				section#discover
 					a(href="javascript:;") BACK TO TOP
@@ -276,6 +272,18 @@ export default {
 					color: $main;
 				}
 			}
+			.content {
+				h1 {
+					height: 5em;
+					overflow: hidden;
+					line-height: 1.4; 
+					
+				}
+				.context {
+					height: 10em;
+					overflow: hidden;
+				}
+			}
 			ul {
 				margin: 2em 0;
 				padding: 0;
@@ -322,6 +330,11 @@ export default {
 				.coverage, .content {
 					width: 50%; 
 				}
+				.coverage {
+					img {
+						display: none;
+					}
+				}
 				&:nth-child(odd) {
 					.content {
 						
@@ -349,11 +362,9 @@ export default {
 					top: 50%;
 					height: 100%; 
 					img {
-						display: none;
+						display: block;
 						position: absolute;
-						top: 0;
 						right: 0;
-						bottom: 0;
 						left: 0;
 						margin: auto;
 					}
@@ -362,13 +373,14 @@ export default {
 					justify-content: flex-end;
 					.coverage {
 					    transform-origin: top right;
-					    transform: skew(-10deg) translateY(-65%) translateX(-1%) scale(1.1);
+					    transform: skew(-10deg) translateY(-65%) translateX(-4%) scale(1.1);
 					    overflow: hidden;
 					    z-index: 2;
 					    left: 0;
 					    img {
 				    	    transform-origin: top right;
-						    transform: skew(10deg);
+						    transform: skew(10deg) scale(1.2) translate(10%, -50%);
+						    top: 50%;
 					    }
 					}
 					.content {
@@ -386,13 +398,14 @@ export default {
 				&:nth-child(even) {
 					.coverage {
 					    transform-origin: bottom right;
-					    transform: skew(-10deg) translateY(-55%) translateX(-1%) scale(1.1);
+					    transform: skew(-10deg) translateY(-55%) translateX(-9%) scale(1.1);
 					    overflow: hidden;
 					    right: 0; 
 					    z-index: 2;
 					    img {
 				    	    transform-origin: bottom right;
-						    transform: skew(10deg);
+						    transform: skew(10deg) scale(1.2) translate(0, 50%);
+						    bottom: 50%;
 					    }
 					}
 					.content {
@@ -413,16 +426,35 @@ export default {
 					.content {
 						padding: 4em 2em 4em 16em;
 					}
+					.coverage {
+					    transform-origin: top right;
+					    transform: skew(-10deg) translateY(-65%) translateX(-4%) scale(1.1);
+					    img {
+					    	transform: skew(10deg) scale(1.1) translate(10%, -50%);
+					    }
+					}
 				}
 				&:nth-child(even) {
 					.content {
 						padding: 4em 16em 4em 2em;
+					}
+					.coverage {
+					    transform-origin: bottom right;
+					    transform: skew(-10deg) translateY(-55%) translateX(-7%) scale(1.1);
+					    img {
+					    	transform: skew(10deg) scale(1.1) translate(0, 50%);
+					    }
 					}
 				}
 			}
 		}
 	}
 	.product-slider {
+		padding: 0 2em;
+		box-sizing: border-box;
+		img {
+			width: 100%; 
+		}
 		.slick-track {
 			padding: 1em 0;
 		}
@@ -431,6 +463,7 @@ export default {
 			box-shadow: 3px 3px 3px rgba($black, .33);
 			position: relative;
 			&:before, &:after {
+				pointer-events: none;
 				content: '';
 				transition: .3s all ease;
 				border-color: $main;
@@ -438,6 +471,7 @@ export default {
 			a {
 				&:before {
 					transition: .3s all ease;
+					pointer-events: none;
 				}
 			}
 			&:hover {
@@ -488,12 +522,14 @@ export default {
 			} 
 		}
 		.slick-prev {
+			left: 0;
 			&:before {
 				background-image: url('../assets/images/components/green-arrow-prev.png');
 				background-position: center;
 			}
 		}
 		.slick-next {
+			right: 0;
 			&:before {
 				background-image: url('../assets/images/components/green-arrow-next.png');
 				background-position: center;
