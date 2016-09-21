@@ -12,6 +12,8 @@
             span
               | Lywentech, Co., Ltd. All rights reserved. | Designed by 
               a(href="javascript:;") SUBKARMA
+      transition(name="drop", mode="out-in")
+        subscription(v-if="subscription")
 
     .off-canvas
       nav.off-canvas-navigation
@@ -39,11 +41,26 @@
 </template>
 
 <script>
+import Subscription from './components/Subscription.vue'
 export default {
+  components: {
+    'subscription': Subscription
+  },
   data () {
     return {
-      isActive: false
+      isActive: false,
+      subscription: false
     }
+  },
+  created () {
+    this.$on('openSubscription', function (res) {
+      console.log('1111')
+      this.subscription = true
+    })
+    this.$on('leaveSubscription', function (res) {
+      console.log('222')
+      this.subscription = false
+    })
   },
   methods: {
     toggleMenu () {
@@ -64,6 +81,14 @@ export default {
   .fade-enter, .fade-leave-active {
     opacity: 0;
     transform: translateX(40%);
+  }
+  // Transitions
+  .drop-enter-active, .drop-leave-active {
+    transition: .3s all ease;
+  }
+  .drop-enter, .drop-leave-active {
+    
+    transform: translateY(-100%);
   }
   // Global Styles
   @import "bower_components/bourbon/app/assets/stylesheets/bourbon";

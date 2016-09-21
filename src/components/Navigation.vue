@@ -20,7 +20,7 @@
 				li
 					router-link(to='javascript:;', activeClass="active") INQUIRY(3)
 				li
-					router-link(to='javascript:;', activeClass="active") SUBSCRIPTION
+					a(v-on:click.stop.prevent="emitSubscription", activeClass="active") SUBSCRIPTION
 			a#mobile-trigger(href="javascript:;", v-on:click.stop="toggleMenu")
 				.fa.fa-bars.fa-2x
   
@@ -31,6 +31,9 @@ export default {
   methods: {
     toggleMenu () {
       this.$root.$emit('toggle', 1)
+    },
+    emitSubscription () {
+      this.$parent.$parent.$emit('openSubscription')
     }
   },
   data () {
