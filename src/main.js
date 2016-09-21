@@ -14,7 +14,6 @@ import Post from './components/Post.vue'
 
 // Page Scripts
 import OnScreen from 'onscreen'
-
 // window.Parallax = Parallax
 // $('#scene').Parallax()
 // console.log(Parallax)

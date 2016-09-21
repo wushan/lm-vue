@@ -1,5 +1,5 @@
 <template lang="pug">
-	#inventory(v-if="inventory")
+	#inventory
 		.inventory-wrapper
 			.container.restrict-large
 				.title
@@ -16,7 +16,7 @@
 								.name {{ item.name }}
 								.description(v-html="item.description")
 								.call-action
-									a.btn.btn-with-icon.white(@click="sendToInquiry(item.id)", href="javascript:;")
+									a.btn.btn-with-icon.white(href="javascript:;")
 										span INQUIRE
 										.fa.fa-plus.fa-lg
 
@@ -28,7 +28,6 @@
 <script>
 import Api from '../api'
 export default {
-  props: ['inventory'],
   data () {
     return {
       loading: false,
@@ -38,9 +37,9 @@ export default {
   },
   created () {
     console.log(this)
-    if (this.$route.name === 'inventory') {
-      this.inventory = true
-    }
+    // if (this.$route.name === 'inventory') {
+    //   this.inventory = true
+    // }
   },
   mounted () {
     this.fetchData()
@@ -64,8 +63,10 @@ export default {
       console.log(id + ' sent')
     },
     leaveInventory () {
-      console.log(this.$parent.inventory)
-      // this.$parent.inventory = false
+      this.$parent.$emit('leaveInventory', 1)
+      // console.log(this)
+      // this.inventory = false
+      // this.$router.replace({ path: '/product/series' })
     }
   }
 }

@@ -2,7 +2,8 @@
     main
         #main
             page-navigation
-            inventory(:inventory="inventory")
+            transition(name="fade", mode="out-in")
+                my-inventory(v-if="inventory")
             #category(v-if="data")
                 section#category-highlights
                     .container.restrict-large
@@ -23,7 +24,7 @@
                                                 small.bold {{ slide.model }}
                                             .context(v-html="slide.description")
                                             .call-action
-                                                a.btn.btn-with-icon.dark(href="javascript:;")
+                                                router-link.btn.btn-with-icon.dark(:to="'/product/single/' + slide.id", href="javascript:;")
                                                     span DETAIL
                                                     .fa.fa-angle-right.fa-lg
                             .block
@@ -33,7 +34,7 @@
                                             |   PRODUCTS
                                             span.bold INVENTORY
                                     .call-action
-                                        a.btn.btn-with-icon.white(href="javascript:;")
+                                        router-link.btn.btn-with-icon.white(:to="'inventory'")
                                             span DETAIL
                                             .fa.fa-angle-right.fa-lg
                                 
@@ -68,11 +69,10 @@ import $ from 'jquery'
 window.jQuery = window.$ = $
 require('imports?$=jquery!../assets/vendor/jquery.sticky.js')
 require('imports?$=jquery!../assets/vendor/slick.min.js')
-
 export default {
   components: {
     'page-navigation': Navigation,
-    'inventory': Inventory
+    'my-inventory': Inventory
   },
   data () {
     return {
@@ -80,6 +80,15 @@ export default {
       data: null,
       error: null,
       inventory: false
+    }
+  },
+  created () {
+    this.$on('leaveInventory', function (res) {
+      this.$router.replace('series')
+    })
+    if (this.$route.name === 'inventory') {
+      // 自動開啟，條件還缺登入
+      this.inventory = true
     }
   },
   mounted () {
@@ -90,6 +99,9 @@ export default {
       topSpacing: 0,
       zIndex: 999
     })
+  },
+  watch: {
+    '$route': 'toggleInventory'
   },
   methods: {
     fetchData () {
@@ -125,6 +137,14 @@ export default {
           })
         })
       })
+    },
+    toggleInventory () {
+      console.log(this.$route)
+      if (this.$route.name === 'inventory') {
+        this.inventory = true
+      } else {
+        this.inventory = false
+      }
     }
   }
 }
