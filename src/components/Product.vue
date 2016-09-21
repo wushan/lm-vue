@@ -44,7 +44,6 @@
                                         h3 {{ feature.title }}
                                         .description(v-html="feature.description")
                         .content(v-show="spec")
-                            h2 Table
                             .container.restrict-large
                                 .data-group(v-for="table in splitTable")
                                     table

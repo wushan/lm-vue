@@ -34,6 +34,7 @@ const router = new VueRouter({
     { path: '/product/series', component: Series },
     { path: '/product/single', redirect: '/product/series' },
     { path: '/product/single/:id', component: Product },
+    { path: '/product/inventory', component: Series, name: 'inventory' },
     { path: '/post', component: Post },
     { path: '/post/:id', component: Post },
     { path: '/contact', component: Contact }

@@ -4,6 +4,7 @@ import NewsList from './assets/schema/news-list.json'
 import NewsSingle from './assets/schema/news-single.json'
 import Categories from './assets/schema/product-category.json'
 import Product from './assets/schema/product-single.json'
+import Inventory from './assets/schema/inventory.json'
 
 import Vue from 'vue'
 
@@ -60,6 +61,15 @@ export default {
     setTimeout(() => {
       if (Product) {
         cb(null, Product)
+      } else {
+        cb(new Error('Data not found.'))
+      }
+    }, 100)
+  },
+  getInventory (cb) {
+    setTimeout(() => {
+      if (Inventory) {
+        cb(null, Inventory)
       } else {
         cb(new Error('Data not found.'))
       }
