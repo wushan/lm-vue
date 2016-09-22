@@ -171,7 +171,7 @@ export default {
 				background-color: rgba($main, .3);
 			}
 		}
-		input[type=text],input[type=email],input[type=password] input[type=search] {
+		input[type="text"],input[type="number"],input[type="email"],input[type="password"] input[type="search"] {
 			background-color: transparent;
 			border-top: 0;
 			border-right: 0;

@@ -66,12 +66,13 @@ export default {
   },
   created () {
     this.$on('openSubscription', function (res) {
-      console.log('1111')
       this.subscription = true
     })
     this.$on('leaveSubscription', function (res) {
-      console.log('222')
       this.subscription = false
+    })
+    this.$on('updateInquiry', function () {
+      this.inquiryLength = Inquiry.getLength()
     })
   },
   mounted () {

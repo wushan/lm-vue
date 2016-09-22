@@ -16,8 +16,8 @@
 								.name {{ item.name }}
 								.description(v-html="item.description")
 								.call-action
-									a.btn.btn-with-icon.white(href="javascript:;")
-										span INQUIRE
+									a.btn.btn-with-icon.white(@click="sendToInquiry(item.id)")
+										span INQUIRY
 										.fa.fa-plus.fa-lg
 
 		a.leave-inventory(@click="leaveInventory")
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import Inquiry from '../cart/inquiry'
 import Api from '../api'
 export default {
   data () {
@@ -60,7 +61,8 @@ export default {
       })
     },
     sendToInquiry (id) {
-      console.log(id + ' sent')
+      Inquiry.add(id)
+      this.$parent.$parent.$emit('updateInquiry', 1)
     },
     leaveInventory () {
       this.$parent.$emit('leaveInventory', 1)

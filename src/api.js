@@ -24,7 +24,7 @@ export default {
   },
   getHome (cb) {
     // Mount some real ajax calls
-    Vue.http.get('http://192.168.0.33/index.php/api/Gethome').then((response) => {
+    Vue.http.get('/backend/api/getHome').then((response) => {
     // success callback
       if (response.data) {
         cb(null, response.data)
