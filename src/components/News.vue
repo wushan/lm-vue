@@ -1,7 +1,7 @@
 <template lang="pug">
 	main
 		#main
-			page-navigation
+			page-navigation(v-bind:inquiryLength="inquiryLength")
 			#news
 				section#news-slider
 					.container.restrict-large
@@ -61,6 +61,7 @@ export default {
   components: {
     'page-navigation': Navigation
   },
+  props: ['inquiryLength'],
   data () {
     return {
       loading: false,

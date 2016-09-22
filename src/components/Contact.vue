@@ -1,7 +1,7 @@
 <template lang="pug">
 	main
 		#main
-			page-navigation
+			page-navigation(v-bind:inquiryLength="inquiryLength")
 			#contact
 				section
 					.container.restrict-large
@@ -75,6 +75,7 @@ export default {
   components: {
     'page-navigation': Navigation
   },
+  props: ['inquiryLength'],
   data () {
     return {
       msg: 'Hello Vue'
@@ -85,6 +86,7 @@ export default {
       topSpacing: 0,
       zIndex: 999
     })
+    console.log(this.inquiryLength)
   }
 }
 </script>

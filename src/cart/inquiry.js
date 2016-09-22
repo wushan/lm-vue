@@ -3,6 +3,8 @@ export default {
   getLength () {
     if (Store.get('inquiry')) {
       return Store.get('inquiry').length
+    } else {
+      return '0'
     }
   },
   add (id) {

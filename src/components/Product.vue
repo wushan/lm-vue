@@ -88,11 +88,12 @@ export default {
   created () {
   },
   mounted () {
+    $('.sticker').sticky({
+      topSpacing: 0,
+      zIndex: 999
+    })
     this.fetchData()
-    this.updateCount()
-  },
-  watch: {
-    'this.inquiryLength': 'updateCount'
+    this.inquiryLength = Inquiry.getLength()
   },
   computed: {
     splitTable: function () {
@@ -142,12 +143,10 @@ export default {
     },
     addInquiry (id) {
       Inquiry.add(id)
+      this.inquiryLength = Inquiry.getLength()
     },
     removeInquiry () {
       Inquiry.remove()
-    },
-    updateCount () {
-      this.inquiryLength = Inquiry.getLength()
     }
   }
 }

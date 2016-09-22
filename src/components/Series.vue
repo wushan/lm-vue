@@ -1,7 +1,7 @@
 <template lang="pug">
     main
         #main
-            page-navigation
+            page-navigation(v-bind:inquiryLength="inquiryLength")
             transition(name="fade", mode="out-in")
                 my-inventory(v-if="inventory")
             #category(v-if="data")
@@ -74,6 +74,7 @@ export default {
     'page-navigation': Navigation,
     'my-inventory': Inventory
   },
+  props: ['inquiryLength'],
   data () {
     return {
       loading: false,
@@ -118,7 +119,6 @@ export default {
       })
     },
     initSlick () {
-      console.log('init')
       this.$nextTick(function () {
         $('#highlight-slider').slick({
           dots: true,

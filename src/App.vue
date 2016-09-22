@@ -2,7 +2,7 @@
   #application(v-on:click="toggleMenu", v-bind:class="{ off_canvas_on: isActive }")
     #wrapper
       transition(name="fade", mode="out-in")
-        router-view
+        router-view(v-bind:inquiryLength="inquiryLength")
       footer#footer
         .footer-inner
           .block
@@ -41,15 +41,27 @@
 </template>
 
 <script>
+import Inquiry from './cart/inquiry'
+// Main Components
+// import About from './components/About.vue'
+// import News from './components/News.vue'
+// import NewsSingle from './components/NewsSingle.vue'
+import Contact from './components/Contact.vue'
+// import Series from './components/Series.vue'
+// import Product from './components/Product.vue'
+// import Inquiry from './components/Inquiry.vue'
+// Side Effect
 import Subscription from './components/Subscription.vue'
 export default {
   components: {
+    'contact': Contact,
     'subscription': Subscription
   },
   data () {
     return {
       isActive: false,
-      subscription: false
+      subscription: false,
+      inquiryLength: 0
     }
   },
   created () {
@@ -61,6 +73,9 @@ export default {
       console.log('222')
       this.subscription = false
     })
+  },
+  mounted () {
+    this.inquiryLength = Inquiry.getLength()
   },
   methods: {
     toggleMenu () {
