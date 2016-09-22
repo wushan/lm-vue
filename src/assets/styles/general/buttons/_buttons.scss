@@ -12,6 +12,11 @@
   background-color: transparent;
   border: 0;
   margin: 0 .1em;
+  height: 40px;
+  cursor: pointer;
+  &.full {
+    width: 100%;
+  }
   &.basic {
     background-color: $main;
     color: $white;
@@ -70,6 +75,13 @@
     &:hover {
       background-color: $main;
     }
+    &.green {
+      background-color: $main;
+      &:hover {
+        background-color: $white;
+        color: $main;
+      }
+    }
   }
   &.btn-with-icon {
     border: 2px solid $main;
@@ -78,22 +90,24 @@
     text-align: center;
     font-size: 0;
     margin: 0 .6rem;
+    box-sizing: border-box;
+    cursor: pointer;
     span {
       display: inline-block;
       vertical-align: middle;
-      line-height: 32px;
-      height: 30px;
       border-right: 2px solid $main;
       font-size: 1rem;
       padding: 0 2em;
+      box-sizing: border-box;
+      line-height: 38px;
     }
     .fa {
       color: $main;
-      line-height: 30px;
       vertical-align: middle;
-      height: 30px;
       font-size: 1rem;
       padding: 0 .5em;
+      box-sizing: border-box;
+      line-height: 38px;
     }
     &:hover {
       .fa {

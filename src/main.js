@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+
 import App from './App.vue'
 import Index from './components/Index.vue'
 import About from './components/About.vue'
@@ -9,6 +10,7 @@ import NewsSingle from './components/NewsSingle.vue'
 import Contact from './components/Contact.vue'
 import Series from './components/Series.vue'
 import Product from './components/Product.vue'
+import Inquiry from './components/Inquiry.vue'
 
 import Post from './components/Post.vue'
 
@@ -34,6 +36,7 @@ const router = new VueRouter({
     { path: '/product/single', redirect: '/product/series' },
     { path: '/product/single/:id', component: Product },
     { path: '/product/inventory', component: Series, name: 'inventory' },
+    { path: '/inquiry', component: Inquiry, name: 'inquiry' },
     { path: '/post', component: Post },
     { path: '/post/:id', component: Post },
     { path: '/contact', component: Contact }

@@ -66,7 +66,6 @@ export default {
     toggleMenu () {
       if (this.$data.isActive) {
         this.$data.isActive = false
-        console.log('pp')
       }
     }
   }
@@ -99,7 +98,7 @@ export default {
   // Susy Global
   $susy: (
     columns: 12,
-    gutters: 1,
+    gutters: .5,
     math: fluid,
   );
   @import "src/assets/styles/general/general";

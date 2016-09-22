@@ -1,0 +1,23 @@
+[
+	{
+		"id": 1,
+		"name": "Horixxxxx Product name",
+		"inventory": true,
+		"model": "MCV-M11",
+		"image": "http://unsplash.it/100/100"
+	},
+	{
+		"id": 2,
+		"name": "Horixxxxx Prod2uct name",
+		"inventory": true,
+		"model": "MCV-M12",
+		"image": "http://unsplash.it/100/100"
+	},
+	{
+		"id": 3,
+		"name": "Horixxxxx 3t name",
+		"inventory": false,
+		"model": "MCV-M13",
+		"image": "http://unsplash.it/100/100"
+	}
+]

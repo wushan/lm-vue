@@ -13,7 +13,7 @@
 			page-navigation
 			section#intro-brand
 				.table
-					.block.table-c.t-5-10
+					.block.table-c.t-5-10(v-bind:style="'background-image: url(' + data.introbrand.background + ');'")
 						img(src="../assets/images/components/intro-brand-1-placeholder.png")
 						.overlay.track-animate
 							h1(v-html="data.introbrand.title")

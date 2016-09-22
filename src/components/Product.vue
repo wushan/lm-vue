@@ -1,7 +1,7 @@
 <template lang="pug">
     main
         #main
-            page-navigation
+            page-navigation(v-bind:inquiryLength="inquiryLength")
             #product(v-if="product")
                 section.product-single-wrapper
                     header(v-bind:style="'background-image: url(' + product.backgroundimage + ');'")
@@ -21,7 +21,7 @@
                                 a.btn.btn-with-icon(v-bind:href="product.brochure")
                                     span DOWNLOAD BROCHURE
                                     .fa.fa-plus.fa-lg
-                                a.btn.btn-with-icon(href="javascript:;")
+                                a.btn.btn-with-icon(@click="addInquiry(product.id)", href="javascript:;")
                                     span INQUIRY
                                     .fa.fa-plus.fa-lg
                         
@@ -64,6 +64,7 @@
 <script>
 import Navigation from './Navigation.vue'
 import Api from '../api'
+import Inquiry from '../cart/inquiry'
 // Expose Jquery Globally.
 import $ from 'jquery'
 window.jQuery = window.$ = $
@@ -80,16 +81,18 @@ export default {
       loading: false,
       product: null,
       error: null,
-      spec: false
+      spec: false,
+      inquiryLength: 0
     }
   },
   created () {
-    console.log($('.media-slider'))
   },
   mounted () {
     this.fetchData()
+    this.updateCount()
   },
-  updated () {
+  watch: {
+    'this.inquiryLength': 'updateCount'
   },
   computed: {
     splitTable: function () {
@@ -136,6 +139,15 @@ export default {
         })
         $('.media-slider').fitVids()
       })
+    },
+    addInquiry (id) {
+      Inquiry.add(id)
+    },
+    removeInquiry () {
+      Inquiry.remove()
+    },
+    updateCount () {
+      this.inquiryLength = Inquiry.getLength()
     }
   }
 }

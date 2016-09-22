@@ -18,9 +18,12 @@
 				li
 					router-link(to='javascript:;', activeClass="active") ERROR SHOOTING
 				li
-					router-link(to='javascript:;', activeClass="active") INQUIRY(3)
+					router-link(to='/inquiry', activeClass="active")
+						|	INQUIRY( 
+						span.green {{ inquiryLength }}
+						|	)
 				li
-					a(v-on:click.stop.prevent="emitSubscription", activeClass="active") SUBSCRIPTION
+					a(v-on:click.stop.prevent="emitSubscription", href="javascript:;", activeClass="active") SUBSCRIPTION
 			a#mobile-trigger(href="javascript:;", v-on:click.stop="toggleMenu")
 				.fa.fa-bars.fa-2x
   
@@ -36,9 +39,9 @@ export default {
       this.$parent.$parent.$emit('openSubscription')
     }
   },
+  props: ['inquiryLength'],
   data () {
     return {
-      msg: 'Hello Vue'
     }
   }
 }

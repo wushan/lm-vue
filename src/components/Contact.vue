@@ -154,6 +154,7 @@ export default {
 		padding: 2em;
 		box-sizing: border-box;
 		font-size: 1.3em;
+		border: 1px solid $white;
 		@include breakpoint(1280px) {
 			margin-top: 0;
 		}

@@ -5,7 +5,7 @@
   @extend .clr;
   label {
     font-size: 1.1em;
-    line-height: 44px;
+    line-height: 40px;
     @include breakpoint(1280px) {
       width: 140px;
       display: inline-block;
@@ -37,7 +37,7 @@ textarea {
   width: 100%;
   border: 1px solid $gray;
   box-sizing: border-box;
-  height: 44px;
+  height: 40px;
   background-color: $smokygray;
   padding: 1em;
   outline: none;
@@ -48,19 +48,18 @@ textarea {
     color: $white;
   }
 }
-input,input[type=search] {
+input[type="text"], input[type=search], input[type="email"], input[type="password"],{
   width: 100%;
   border: 1px solid $gray;
   box-sizing: border-box;
-  height: 44px;
-  background-color: $smokygray;
+  height: 40px;
+  background-color: $gray;
   padding: 0 1em;
   outline: none;
-
   &:focus {
-    border: 1px solid $main-dark;
-    background-color: $main-dark;
-    color: $white;
+    border: 1px solid $white;
+    background-color: $white;
+    color: $black;
   }
   &.calc {
     display: inline-block;
@@ -71,6 +70,9 @@ input,input[type=search] {
     display: inline-block;
     vertical-align: middle;
     width: calc( 100% - 93px );
+  }
+  &.rounded {
+    border-radius: 22px;
   }
 }
 //Select
@@ -101,7 +103,7 @@ input,input[type=search] {
     background-position: 94% center;
     background-repeat: no-repeat;
     box-sizing: border-box;
-    height: 44px;
+    height: 40px;
     padding: .3em 1.6em;
     &:focus {
       outline: none;
@@ -125,10 +127,10 @@ input,input[type=search] {
   }
 }
 //Placehoder
-::-webkit-input-placeholder { /* WebKit browsers */ color: $gray; }
+::-webkit-input-placeholder { /* WebKit browsers */ color: $darkgray; }
 
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ color: $gray; opacity: 1; }
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ color: $darkgray; opacity: 1; }
 
-::-moz-placeholder { /* Mozilla Firefox 19+ */ color: $gray; opacity: 1; }
+::-moz-placeholder { /* Mozilla Firefox 19+ */ color: $darkgray; opacity: 1; }
 
-:-ms-input-placeholder { /* Internet Explorer 10+ */ color: $gray; }
+:-ms-input-placeholder { /* Internet Explorer 10+ */ color: $darkgray; }
