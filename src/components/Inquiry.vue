@@ -387,7 +387,7 @@ export default {
       }
     },
     submit () {
-      var myForm = document.getElementById('inquiryForm')
+      // var myForm = document.getElementById('inquiryForm')
       // Do some validate then POST to backend.
       console.log('submit inquiry.')
     }
