@@ -1,9 +1,12 @@
 //
 // filters.js
 //
-function filterBy (list, value) {
+function filterBy (list, value, field) {
   return list.filter(function (item) {
-    return item.indexOf(value) > -1
+    let filtera = item[field[0]].indexOf(value[0]) > -1
+    let filterb = item[field[1]].indexOf(value[1]) > -1
+    // temp = item[field[1]].indexOf(value[1]) > -1
+    return filtera && filterb
   })
 }
 

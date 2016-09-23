@@ -18,7 +18,7 @@
                       .row
                         .grid.g-4-12
                           .controlgroup
-                            input(type="text")
+                            input(type="text", placeholder="date", v-model="filterdate")
                         .grid.g-4-12
                           .controlgroup
                             input(type="text", placeholder="Key words", v-model="filtername")
@@ -37,15 +37,15 @@
                         th(width="10%") SERIAL NO.
                         th(width="15%")
                     tbody
-                      tr(v-for="word in filterBy(words, filtername)")
-                        //- td {{ order.date }}
-                        td {{ word }}
-                        //- td {{ order.expire }}
-                        td {{ word }}
-                        //- td {{ order.name }}
-                        td {{ word }}
-                        //- td {{ order.no }}
-                        td {{ word }}
+                      tr(v-for="order in filterBy(dealer.orders, orderFilter, ['date', 'name'])")
+                        td {{ order.date }}
+                        //- td {{ word }}
+                        td {{ order.expire }}
+                        //- td {{ word }}
+                        td {{ order.name }}
+                        //- td {{ word }}
+                        td {{ order.no }}
+                        //- td {{ word }}
                         td.centered
                           a.btn.rounded(href="javascript:;")
                             .fa.fa-eye.fa-lg
@@ -79,7 +79,7 @@ export default {
       dealer: null,
       error: null,
       filtername: '',
-      words: ['Black', 'Block', 'Blue', 'Alpha']
+      filterdate: ''
     }
   },
   created () {
@@ -112,6 +112,11 @@ export default {
     reverse,
     filterBy,
     findBy
+  },
+  computed: {
+    orderFilter () {
+      return [this.filterdate, this.filtername]
+    }
   }
 }
 </script>
