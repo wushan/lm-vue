@@ -6,6 +6,7 @@ import Categories from './assets/schema/product-category.json'
 import Product from './assets/schema/product-single.json'
 import Inventory from './assets/schema/inventory.json'
 import Inquiry from './assets/schema/inquiry.json'
+import Dealer from './assets/schema/dealer.json'
 
 import Vue from 'vue'
 
@@ -85,6 +86,15 @@ export default {
     setTimeout(() => {
       if (Inventory) {
         cb(null, Inventory)
+      } else {
+        cb(new Error('Data not found.'))
+      }
+    }, 100)
+  },
+  getDealer (cb) {
+    setTimeout(() => {
+      if (Dealer) {
+        cb(null, Dealer)
       } else {
         cb(new Error('Data not found.'))
       }

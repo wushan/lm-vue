@@ -314,9 +314,6 @@
                                     .call-action.right
                                         button.btn.basic(type="reset") RESET
                                         button.btn.basic(@click.prevent="submit") SUBMIT
-
-
-
 </template>
 
 <script>
@@ -413,7 +410,7 @@ export default {
             border-bottom: 1px solid $main;
             h1 {
                 font-size: 3.6em;
-                line-height: 1; 
+                line-height: 1;
                 span {
                     display: block;
                 }

@@ -2,18 +2,18 @@
   #application(v-on:click="toggleMenu", v-bind:class="{ off_canvas_on: isActive }")
     #wrapper
       transition(name="fade", mode="out-in")
-        router-view(v-bind:inquiryLength="inquiryLength")
+        router-view(v-bind:inquiryLength="inquiryLength", :isAuth="isAuth")
       footer#footer
         .footer-inner
           .block
-            a(href="javascript:;") Privacy
-            a(href="javascript:;") Term of use
+            router-link(:to="'/privacy'") Privacy | Term of use
           .block
             span
-              | Lywentech, Co., Ltd. All rights reserved. | Designed by 
+              | Lywentech, Co., Ltd. All rights reserved. | Designed by
               a(href="javascript:;") SUBKARMA
       transition(name="drop", mode="out-in")
         subscription(v-if="subscription")
+        login(v-if="login")
 
     .off-canvas
       nav.off-canvas-navigation
@@ -37,7 +37,6 @@
             router-link(to='javascript:;', activeClass="active") INQUIRY(3)
           li
             router-link(to='javascript:;', activeClass="active") SUBSCRIPTION
-    
 </template>
 
 <script>
@@ -52,16 +51,20 @@ import Contact from './components/Contact.vue'
 // import Inquiry from './components/Inquiry.vue'
 // Side Effect
 import Subscription from './components/Subscription.vue'
+import Login from './components/Login.vue'
 export default {
   components: {
     'contact': Contact,
-    'subscription': Subscription
+    'subscription': Subscription,
+    'login': Login
   },
   data () {
     return {
       isActive: false,
       subscription: false,
-      inquiryLength: 0
+      login: false,
+      inquiryLength: 0,
+      isAuth: true
     }
   },
   created () {
@@ -70,6 +73,12 @@ export default {
     })
     this.$on('leaveSubscription', function (res) {
       this.subscription = false
+    })
+    this.$on('showLogin', function (res) {
+      this.login = true
+    })
+    this.$on('leaveLogin', function (res) {
+      this.login = false
     })
     this.$on('updateInquiry', function () {
       this.inquiryLength = Inquiry.getLength()
@@ -102,7 +111,7 @@ export default {
     transition: .3s all ease;
   }
   .drop-enter, .drop-leave-active {
-    
+
     transform: translateY(-100%);
   }
   // Global Styles
@@ -122,5 +131,5 @@ export default {
   @import "src/assets/styles/footer/footer";
   @import "src/assets/styles/slick/slick";
   @import "src/assets/styles/slick/slick-theme";
-  
+
 </style>

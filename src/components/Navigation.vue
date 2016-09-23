@@ -14,18 +14,18 @@
 					router-link(to='/', activeClass="active")
 						img(src="../assets/images/components/lymco-brand.png")
 				li
-					router-link(to='javascript:;', activeClass="active") DEALER'S PORTAL
+					router-link(to='/dealers', activeClass="active") DEALER'S PORTAL
 				li
 					router-link(to='javascript:;', activeClass="active") ERROR SHOOTING
 				li
 					router-link(to='/inquiry', activeClass="active")
-						|	INQUIRY 
+						|	INQUIRY
 						span.green ({{ inquiryLength }})
 				li
 					a(v-on:click.stop.prevent="emitSubscription", href="javascript:;", activeClass="active") SUBSCRIPTION
 			a#mobile-trigger(href="javascript:;", v-on:click.stop="toggleMenu")
 				.fa.fa-bars.fa-2x
-  
+
 </template>
 
 <script>
