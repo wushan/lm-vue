@@ -2,7 +2,6 @@
 // filters.js
 //
 function filterBy (list, value) {
-  console.log(list)
   return list.filter(function (item) {
     return item.indexOf(value) > -1
   })

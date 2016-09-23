@@ -37,11 +37,15 @@
                         th(width="10%") SERIAL NO.
                         th(width="15%")
                     tbody
-                      tr(v-for="order in filterBy(dealer.orders, filtername)")
-                        td {{ order.date }}
-                        td {{ order.expire }}
-                        td {{ order.name }}
-                        td {{ order.no }}
+                      tr(v-for="word in filterBy(words, filtername)")
+                        //- td {{ order.date }}
+                        td {{ word }}
+                        //- td {{ order.expire }}
+                        td {{ word }}
+                        //- td {{ order.name }}
+                        td {{ word }}
+                        //- td {{ order.no }}
+                        td {{ word }}
                         td.centered
                           a.btn.rounded(href="javascript:;")
                             .fa.fa-eye.fa-lg
@@ -74,7 +78,8 @@ export default {
       loading: false,
       dealer: null,
       error: null,
-      filtername: ''
+      filtername: '',
+      words: ['Black', 'Block', 'Blue', 'Alpha']
     }
   },
   created () {
