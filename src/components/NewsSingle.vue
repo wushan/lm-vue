@@ -278,6 +278,7 @@ export default {
   .news-navigation {
     .fa {
       position: absolute;
+      top: 0;
     }
     a {
       margin: .5em;
@@ -285,15 +286,13 @@ export default {
       &:first-child {
         padding-left: 4em;
         .fa {
-          left: .2em;
-          top: -2px;
+          left: .5em;
         }
       }
       &:last-child {
         padding-right: 4em;
         .fa {
-          right: .2em;
-          top: -2px;
+          right: .5em;
         }
       }
     }

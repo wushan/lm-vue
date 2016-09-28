@@ -2,6 +2,7 @@
 // filters.js
 //
 function filterBy (list, value, field) {
+  // console.log(list)
   return list.filter(function (item) {
     let filtera = item[field[0]].indexOf(value[0]) > -1
     let filterb = item[field[1]].indexOf(value[1]) > -1

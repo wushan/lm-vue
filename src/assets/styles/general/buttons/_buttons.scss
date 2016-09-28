@@ -6,20 +6,22 @@
   @extend .transition;
   display: inline-block;
   vertical-align: middle;
-  padding: .6em 2em;
   box-sizing: border-box;
   outline: none;
   background-color: transparent;
   border: 0;
-  margin: 0 .1em;
-  height: 40px;
+  padding: 0;
   cursor: pointer;
+  & + .btn {
+    margin-left: .5em;
+  }
   &.full {
     width: 100%;
   }
   &.basic {
     background-color: $main;
     color: $white;
+    padding: .5em 2em;
     &:hover {
       background-color: $main-dark;
     }
@@ -63,6 +65,7 @@
   &.bordered {
     border: 1px solid $main;
     color: $main;
+    padding: .5em 2em;
     &:hover {
       background-color: $main;
       color: $black;
@@ -72,6 +75,7 @@
     border-radius: 22px;
     background-color: $gray;
     color: $white;
+    padding: .7em 2em;
     &:hover {
       background-color: $main;
     }
@@ -81,6 +85,11 @@
         background-color: $white;
         color: $main;
       }
+    }
+    span {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 .5em;
     }
   }
   &.btn-with-icon {
@@ -99,7 +108,6 @@
       font-size: 1rem;
       padding: 0 2em;
       box-sizing: border-box;
-      line-height: 38px;
     }
     .fa {
       color: $main;
@@ -107,7 +115,6 @@
       font-size: 1rem;
       padding: 0 .5em;
       box-sizing: border-box;
-      line-height: 38px;
     }
     &:hover {
       .fa {
