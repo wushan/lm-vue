@@ -1,0 +1,72 @@
+[
+	{
+		"id": 1,
+		"name": "Horizontal Boring/Milling Machine",
+		"error": {
+			"code": 403,
+			"steps": [
+				{
+					"id": 1,
+					"name": "Status A",
+					"description": "some paragraphs",
+					"image": "https://dummyimage.com/250x150/000/fff",
+					"downloads": "https://dummyimage.com/250x150/000/fff",
+					"steps": [
+						{
+							"id": 1,
+							"name": "Status AA",
+							"description": "some paragraphs",
+							"image": "https://dummyimage.com/250x150/000/fff",
+							"downloads": "https://dummyimage.com/250x150/000/fff",
+							"steps": [
+								{
+									"id": 1,
+									"name": "Status AAA",
+									"description": "some paragraphs",
+									"image": "https://dummyimage.com/250x150/000/fff",
+									"downloads": "https://dummyimage.com/250x150/000/fff",
+									"steps": null
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"id": 1,
+		"name": "Horizontal Boring/Milling Machine",
+		"error": {
+			"code": 403,
+			"steps": [
+				{
+					"id": 1,
+					"name": "Status A",
+					"description": "some paragraphs",
+					"image": "https://dummyimage.com/250x150/000/fff",
+					"downloads": "https://dummyimage.com/250x150/000/fff",
+					"steps": [
+						{
+							"id": 1,
+							"name": "Status AA",
+							"description": "some paragraphs",
+							"image": "https://dummyimage.com/250x150/000/fff",
+							"downloads": "https://dummyimage.com/250x150/000/fff",
+							"steps": [
+								{
+									"id": 1,
+									"name": "Status AAA",
+									"description": "some paragraphs",
+									"image": "https://dummyimage.com/250x150/000/fff",
+									"downloads": "https://dummyimage.com/250x150/000/fff",
+									"steps": null
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	}
+]

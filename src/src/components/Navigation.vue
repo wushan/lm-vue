@@ -16,7 +16,7 @@
 				li
 					router-link(to='/dealers', activeClass="active") DEALER'S PORTAL
 				li
-					router-link(to='javascript:;', activeClass="active") ERROR SHOOTING
+					router-link(to='/errorshooting', activeClass="active") ERROR SHOOTING
 				li
 					router-link(to='/inquiry', activeClass="active")
 						|	INQUIRY

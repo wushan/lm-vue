@@ -13,6 +13,7 @@ import Product from './components/Product.vue'
 import Inquiry from './components/Inquiry.vue'
 import Privacy from './components/Privacy.vue'
 import Dealers from './components/Dealers.vue'
+import ErrorShooting from './components/ErrorShooting.vue'
 
 import Post from './components/Post.vue'
 
@@ -43,7 +44,8 @@ const router = new VueRouter({
     { path: '/dealers', component: Dealers, name: 'dealers' },
     { path: '/post', component: Post },
     { path: '/post/:id', component: Post },
-    { path: '/contact', component: Contact }
+    { path: '/contact', component: Contact },
+    { path: '/errorshooting', component: ErrorShooting }
   ]
 })
 
