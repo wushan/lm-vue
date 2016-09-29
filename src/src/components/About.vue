@@ -7,7 +7,7 @@
 					.container.restrict-large
 						.title
 							img(src="../assets/images/components/about-heading.png")
-					.container.restrict
+					.container.restrict.track-animate
 						
 						h2 TO BE THE HEART OF THE MACHINE TOOL INDUSTRY.
 						p.
@@ -19,8 +19,8 @@
 					.inner
 						.container.restrict-large
 							.title
-								h2 FRIENDLY THROUGHTFUL DRIVEN
-							.content
+								h2.track-animate FRIENDLY THROUGHTFUL DRIVEN
+							.content.track-animate
 								p.
 									Because of our history as a respected machine tool builder, Lymco understands that a high precision product means there is no room for error. Our own Lymco(r) machining centers and machine tools and the other high-quality lines we sell are manufactured to ensure that the precision our customers seek is there every step of the way-from sub-assembly to final delivery to after-sale support. Every order we get receives detailed attention from start to finish ... and beyond.
 
@@ -41,8 +41,8 @@
 									When you partner with Lymco, you invest in our company's history, expertise and service-an investment that will pay off for years to come, not only for you but for your customers as well. As a Lymco dealer, you'll provide customers with benefits that make a positive difference to their financial health: reliable long-lasting equipment, higher productivity, faster output, and more satisfied customers of their own. 
 				section
 					.container.restrict-large
-						.block
-							h1 ALL THE<br>ANSWERS
+						.block.track-animate
+							h1.track-animate ALL THE<br>ANSWERS
 							p.
 								We know you wish not having to worry about half the things you worry about today.
 							p We understand that suppliers delivering on-time and within your required specs is essential.<br>We realize that talking to someone who actually cares about you, let alone understands your language, is really important. And its even better if he has the answers to your questions.<br>We see that you want a wide choice of quality machines to choose from, all of which have been certified to be reliable and performant.
@@ -68,7 +68,7 @@
 										.container.restrict-large
 											p.
 												Votre veille est pilotée par un Directeur de Clientèle et réalisée par nos veilleurs. Salariés en CDI, Bac +5 et trilingues, notre équipe de veille est une garantie de stabilité et d’expertise dans la gestion de vos problématiques.
-					.container.restrict
+					.container.restrict.track-animate
 						p Votre veille est pilotée par un Directeur de Clientèle et réalisée par nos veilleurs. Salariés en CDI, Bac +5 et trilingues, notre équipe de veille est une garantie de stabilité et d’expertise dans la gestion de vos problématiques. Nos veilleurs s’appuient également sur l’ensemble des métiers de Reputation Squad (social media, juridique, SEO, influence, etc.) pour une analyse fine de vos enjeux et de vos parties prenantes.
 </template>
 

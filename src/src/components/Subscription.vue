@@ -13,10 +13,7 @@
                 input.rounded(type="text", placeholder="Company")
             .grid.g-4-12
               .controlgroup
-                .select-wrapper.rounded
-                  select
-                    option Country
-                    option USA
+                input.rounded(type="text", placeholder="Country")
           .row
             .controlgroup
               input.rounded(type="email", placeholder="Email")

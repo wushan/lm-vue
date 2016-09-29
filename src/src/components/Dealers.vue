@@ -112,6 +112,8 @@ import {reverse, filterBy, findBy} from '../filter.js'
 import $ from 'jquery'
 window.jQuery = window.$ = $
 require('imports?$=jquery!../assets/vendor/jquery.sticky.js')
+require('imports?$=jquery!../assets/vendor/jquery.mousewheel.js')
+require('imports?$=jquery!../assets/vendor/jquery.mCustomScrollbar.js')
 export default {
   components: {
     'page-navigation': Navigation
@@ -141,7 +143,17 @@ export default {
       topSpacing: 0,
       zIndex: 999
     })
-    console.log(this.inquiryLength)
+    $('.order-history-table').mCustomScrollbar({
+      theme: 'light'
+    })
+    console.log('mounted')
+  },
+  updated () {
+    console.log('updated')
+    $('.order-history-table').mCustomScrollbar({
+      theme: 'light',
+      mouseWheel: true
+    })
   },
   methods: {
     fetchData () {
@@ -222,7 +234,8 @@ export default {
     }
     .order-history-table {
       height: 400px;
-      overflow: scroll;
+      overflow: auto;
     }
   }
+  @import "src/assets/styles/vendor/jquery.mCustomScrollbar";
 </style>
