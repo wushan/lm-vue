@@ -10,7 +10,7 @@
 					li.layer(data-depth="0.40")
 						.people
 							img(src="../assets/images/parallax/object.png")
-			page-navigation
+			page-navigation(v-bind:inquiryLength="inquiryLength")
 			section#intro-brand
 				.table
 					.block.table-c.t-5-10(v-bind:style="'background-image: url(' + data.introbrand.background + ');'")
@@ -32,7 +32,7 @@
 						small.model.track-animate {{data.introproduct.model}}
 					.description.track-animate {{data.introproduct.description}}
 					.call-action.right
-						a.btn.btn-with-icon(href="javascript:;")
+						a.btn.btn-with-icon(@click="addInquiry(data.introproduct.id)", href="javascript:;")
 							span INQUIRY
 							.fa.fa-plus.fa-lg
 						a.btn.btn-with-icon(href="javascript:;")
@@ -65,6 +65,7 @@
 <script>
 import Navigation from './Navigation.vue'
 import Api from '../api'
+import Inquiry from '../cart/inquiry'
 // Expose Jquery Globally.
 import $ from 'jquery'
 window.jQuery = window.$ = $
@@ -78,11 +79,13 @@ export default {
     return {
       loading: false,
       data: null,
-      error: null
+      error: null,
+      inquiryLength: 0
     }
   },
   mounted () {
     this.fetchData()
+    this.inquiryLength = Inquiry.getLength()
   },
   updated () {
     $('#scene').parallax()
@@ -103,6 +106,10 @@ export default {
           this.data = data
         }
       })
+    },
+    addInquiry (id) {
+      Inquiry.add(id)
+      this.inquiryLength = Inquiry.getLength()
     }
   }
 }

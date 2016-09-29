@@ -1,5 +1,5 @@
 // schema
-// import Home from './assets/schema/home.json'
+import Home from './assets/schema/home.json'
 import NewsList from './assets/schema/news-list.json'
 import NewsSingle from './assets/schema/news-single.json'
 import Categories from './assets/schema/product-category.json'
@@ -24,18 +24,25 @@ export default {
     })
   },
   getHome (cb) {
-    // Mount some real ajax calls
-    Vue.http.get('/backend/api/getHome').then((response) => {
-    // success callback
-      if (response.data) {
-        cb(null, response.data)
-        console.log(response)
+    // // Mount some real ajax calls
+    // Vue.http.get('/backend/api/getHome').then((response) => {
+    // // success callback
+    //   if (response.data) {
+    //     cb(null, response.data)
+    //     console.log(response)
+    //   }
+    // }, (response) => {
+    // // error callback
+    //   cb(new Error(response.data))
+    //   console.log(response)
+    // })
+    setTimeout(() => {
+      if (Home) {
+        cb(null, Home)
+      } else {
+        cb(new Error('Data not found.'))
       }
-    }, (response) => {
-    // error callback
-      cb(new Error(response.data))
-      console.log(response)
-    })
+    }, 100)
   },
   getNewsHome (page, cb) {
     setTimeout(() => {

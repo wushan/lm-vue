@@ -64,7 +64,7 @@ export default {
       subscription: false,
       login: false,
       inquiryLength: 0,
-      isAuth: false
+      isAuth: true
     }
   },
   created () {

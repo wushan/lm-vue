@@ -64,7 +64,7 @@
                             input(type="text", placeholder="date", v-model="detailfilterdate")
                         .grid.g-4-12
                           .controlgroup
-                            input(type="text", placeholder="Key words", v-model="detailfiltersubject")
+                            input(type="text", placeholder="Subject", v-model="detailfiltersubject")
                         .grid.g-4-12
                           .controlgroup
                             button.btn.rounded.green.full(type="submit")
