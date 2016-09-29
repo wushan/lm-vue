@@ -69,7 +69,7 @@ export default {
       } else {
         cb(new Error('Data not found.'))
       }
-    }, 100)
+    }, 3000)
   },
   getProduct (id, cb) {
     setTimeout(() => {

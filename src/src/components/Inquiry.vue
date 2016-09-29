@@ -314,6 +314,10 @@
                                     .call-action.right
                                         button.btn.basic(type="reset") RESET
                                         button.btn.basic(@click.prevent="submit") SUBMIT
+        transition(name="fade", mode="out-in")
+            #loader(v-if="loading")
+                .uil-ring-css(style="transform:scale(0.6);")
+                    div
 </template>
 
 <script>

@@ -51,6 +51,10 @@
                   .fa.fa-lg.fa-caret-right
         section#discover
           a(href="javascript:;") DISCOVER MORE
+    transition(name="fade", mode="out-in")
+      #loader(v-if="loading")
+        .uil-ring-css(style="transform:scale(0.6);")
+          div
               
 </template>
 

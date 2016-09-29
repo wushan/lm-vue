@@ -102,6 +102,10 @@
           .dealers-inner
             .container.restrict-large
               p You don't have permission to view this section.
+    transition(name="fade", mode="out-in")
+      #loader(v-if="loading")
+          .uil-ring-css(style="transform:scale(0.6);")
+              div
 </template>
 
 <script>
