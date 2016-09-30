@@ -16,17 +16,17 @@
                       h4 ORDER HISTORY LIST
                     .grid.g-6-12
                       .row
-                        .grid.g-4-12
+                        .grid.g-6-12
                           .controlgroup
                             input(type="text", placeholder="date", v-model="filterdate")
-                        .grid.g-4-12
+                        .grid.g-6-12
                           .controlgroup
                             input(type="text", placeholder="Key words", v-model="filtername")
-                        .grid.g-4-12
-                          .controlgroup
-                            button.btn.rounded.green.full(type="submit")
-                              .fa.fa-serach.fa-lg
-                              | Search
+                        //- .grid.g-4-12
+                        //-   .controlgroup
+                        //-     button.btn.rounded.green.full(type="submit")
+                        //-       .fa.fa-serach.fa-lg
+                        //-       | Search
                 .order-history-table
                   table.left
                     thead
@@ -46,7 +46,7 @@
                         //- td {{ word }}
                         td {{ order.no }}
                         //- td {{ word }}
-                        td.centered
+                        td
                           button.btn.rounded.green(@click="getDetails(order)")
                             .fa.fa-eye.fa-lg
                             span Details
@@ -59,29 +59,29 @@
                       p SERIAL NO. {{ selectedOrder.no }}
                     .grid.g-6-12
                       .row
-                        .grid.g-4-12
+                        .grid.g-6-12
                           .controlgroup
                             input(type="text", placeholder="date", v-model="detailfilterdate")
-                        .grid.g-4-12
+                        .grid.g-6-12
                           .controlgroup
                             input(type="text", placeholder="Subject", v-model="detailfiltersubject")
-                        .grid.g-4-12
-                          .controlgroup
-                            button.btn.rounded.green.full(type="submit")
-                              .fa.fa-serach.fa-lg
-                              | Search
+                        //- .grid.g-4-12
+                        //-   .controlgroup
+                        //-     button.btn.rounded.green.full(type="submit")
+                        //-       .fa.fa-serach.fa-lg
+                        //-       | Search
                 .order-history-table
                   table.left
                     thead
                       tr
                         th(width="15%") DATE
                         th(width="15%") CONTACT NAME
-                        th(width="15%") MODEL PART
+                        th(width="15%") MACHINE PART
                         th(width="10%") SUBJECT
                         th(width="30%") DESCRIPTION
                         th(width="15%") DOWNLOADS
                     tbody
-                      tr(v-for="detail in filterBy(selectedOrder.detail, detailFilter, ['date', 'subject'])")
+                      tr(v-for="detail in filterBy(selectedOrder.detail, detailFilter, ['date', 'part'])")
                         td {{ detail.date }}
                         //- td {{ word }}
                         td {{ detail.contact }}
@@ -91,10 +91,8 @@
                         td {{ detail.subject }}
                         td {{ detail.description }}
                         //- td {{ word }}
-                        td.centered
-                          a.btn.rounded.green(href="javascript:;")
-                            .fa.fa-eye.fa-lg
-                            span Details
+                        td
+                          a.btn.rounded.green(href="javascript:;") Download PDF
         .dealers-wrapper(v-else)
           .container.restrict-large
             .title
@@ -214,11 +212,53 @@ export default {
       color: $white;
       box-shadow: inset 3px 3px 3px rgba($black,.33);
     }
+    /* Force table to not be like tables anymore */
+      table, thead, tbody, th, td, tr { 
+        display: block; 
+      }
+      
+      /* Hide table headers (but not display: none;, for accessibility) */
+      thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+      
+      tr {margin-bottom: 2em;}
+      
+      td { 
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid $darkgray; 
+        position: relative;
+        padding-left: 50%; 
+      }
+      
+      td:before { 
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        // top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+      }
     .order-history-wrapper {
       border: 1px solid $white;
       box-sizing: border-box;
       padding: 1em;
       margin-bottom: 2em;
+      .order-history-table {        
+        /*
+        Label the data
+        */
+        td:nth-of-type(1):before { content: "DATE"; }
+        td:nth-of-type(2):before { content: "WARRANTY EXPIRATION"; }
+        td:nth-of-type(3):before { content: "MACHINES MODEL"; }
+        td:nth-of-type(4):before { content: "SERIAL"; }
+        td:nth-of-type(5):before { content: "DETAILS"; }
+      }
     }
     .order-history-header {
       h4 {
@@ -226,7 +266,17 @@ export default {
       }
     }
     .order-detail-wrapper {
-      
+      .order-history-table {
+        /*
+        Label the data
+        */
+        td:nth-of-type(1):before { content: "DATE"; }
+        td:nth-of-type(2):before { content: "CONTACT NAME"; }
+        td:nth-of-type(3):before { content: "MACHINE PART"; }
+        td:nth-of-type(4):before { content: "SUBJECT"; }
+        td:nth-of-type(5):before { content: "DESCRIPTION"; }
+        td:nth-of-type(6):before { content: "DOWNLOADS"; }
+      }
     }
     .order-detail-header {
       h4 {
@@ -239,6 +289,52 @@ export default {
     .order-history-table {
       height: 400px;
       overflow: auto;
+    }
+    @include breakpoint(1024px) {
+      table, thead, tbody, th, td, tr { 
+        display: inherit; 
+      }
+      table {
+        display: table;
+      }
+      thead {
+        display: table-header-group;
+      }
+      tbody {
+        display: table-row-group; 
+      }
+      tr {
+        display: table-row; 
+      }
+      td,th {
+        display: table-cell; 
+      }
+      /* Hide table headers (but not display: none;, for accessibility) */
+      thead tr { 
+        position: static;
+        top: 0;
+        left: 0;
+      }
+      
+      tr {margin-bottom: 0;}
+      
+      td { 
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 0; 
+        position: relative;
+        padding-left: 0;
+      }
+      .order-detail-wrapper, .order-history-wrapper {
+        .order-history-table {
+          td:nth-of-type(1):before { content: ""; }
+          td:nth-of-type(2):before { content: ""; }
+          td:nth-of-type(3):before { content: ""; }
+          td:nth-of-type(4):before { content: ""; }
+          td:nth-of-type(5):before { content: ""; }
+          td:nth-of-type(6):before { content: ""; } 
+        } 
+      }
     }
   }
   @import "src/assets/styles/vendor/jquery.mCustomScrollbar";
