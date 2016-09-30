@@ -2,58 +2,25 @@
     main
         #main
             page-navigation(v-bind:inquiryLength="inquiryLength")
-            #about
+            #about(v-if="data")
                 section
                     .container.restrict-large
                         .title
                             img(src="../assets/images/components/about-heading.png")
-                    .container.restrict.track-animate
-                        
-                        h2 TO BE THE HEART OF THE MACHINE TOOL INDUSTRY.
-                        p.
-                            At Lymco we are dedicated to being the Number One manufacturing and supplying partner to dealers of CNC machining centers and other CNC machine tools around the world. Quality is our top priority in every step of the production of our CNC machining centers, in the sourcing of machine tool solutions for every application, and in the service we provide to our partners.
-
-                        p.
-                            We strive to not just meet but to exceed our customers' expectations, to satisfy dealers' needs with immediate service and full support, and to deliver value and enhance our dealers' profits through systems efficiencies. From this commitment to superior service and product quality, we will continue building partnerships with machine tool dealers for generations to come.
+                    .container.restrict
+                        h2(v-html="data.titleA")
+                        .content(v-html="data.contentA")
                 section
                     .inner
                         .container.restrict-large
                             .title
-                                h2.track-animate FRIENDLY THROUGHTFUL DRIVEN
-                            .content.track-animate
-                                p.
-                                    Because of our history as a respected machine tool builder, Lymco understands that a high precision product means there is no room for error. Our own Lymco(r) machining centers and machine tools and the other high-quality lines we sell are manufactured to ensure that the precision our customers seek is there every step of the way-from sub-assembly to final delivery to after-sale support. Every order we get receives detailed attention from start to finish ... and beyond.
-
-                                p.
-                                    Our company is committed to providing superior customer service and added value to dealers around the world who are on the market for machine tools of every kind, for every application: boring and milling machines, lathes, horizontal and vertical machining centers, and horizontal and vertical turning centers. Simply put, Lymco dealers get more than just equipment, they get:
-
-                                ul
-                                    li ▪ Quality machines that perform 100% to specifications - our engineers carry out two detailed quality assurance inspections and test-run every single machine prior to shipment.
-                                    li ▪ Follow- up throughout the manufacturing processes at every critical stage of each order to ensure timely delivery of machines.
-                                    li ▪ Efficiency through a computerized sales management system.
-                                    li ▪ Customer support before and after the sale that includes feasibility studies, training and service programs.
-                                    li ▪ Consolidation of the best shipping practices to save on freight expenses.
-                                    li ▪ Responses for every inquiry within 24 to 48 hours.
-                                    li ▪ Professional staff engineers who can help troubleshoot problems on any machine after delivery.
-                                    li ▪ Competitive pricing thanks to our long-standing relationships with our machine builders.
-
-                                p.
-                                    When you partner with Lymco, you invest in our company's history, expertise and service-an investment that will pay off for years to come, not only for you but for your customers as well. As a Lymco dealer, you'll provide customers with benefits that make a positive difference to their financial health: reliable long-lasting equipment, higher productivity, faster output, and more satisfied customers of their own. 
+                                h2.track-animate(v-html="data.titleB")
+                            .content.track-animate(v-html="data.contentB")
                 section
                     .container.restrict-large
                         .block.track-animate
-                            h1.track-animate ALL THE<br>ANSWERS
-                            p.
-                                We know you wish not having to worry about half the things you worry about today.
-                            p We understand that suppliers delivering on-time and within your required specs is essential.<br>We realize that talking to someone who actually cares about you, let alone understands your language, is really important. And its even better if he has the answers to your questions.<br>We see that you want a wide choice of quality machines to choose from, all of which have been certified to be reliable and performant.
-
-                            p We get it.
-
-                            p Lymco is the answer to everything you have been looking for.<br>Lymco is almost certainly the CNC machine tool expert that will make your day a whole lot sweeter. With a deep understanding of how to make machines, we are constantly developing ahead of market trends and needs. We design, manufacture and supply within and beyond the specs of our clients; And we make sure that these machines continue to function for years to come.
-
-                            p Lymco brings you closer to what you have been looking for.
-                            
-                            p THE EASY CHOICE
+                            h1.track-animate(v-html="data.titleC")
+                            .content(v-html="data.contentC")
                         .block
                             img(src="../assets/images/components/about-people.png")
 
@@ -62,14 +29,12 @@
                         img(src="../assets/images/components/about-csr-title.png")
                     .slider-wrapper
                         #slider
-                            each i in Array(3)
-                                .item
-                                    .overlay
-                                        .container.restrict-large
-                                            p.
-                                                Votre veille est pilotée par un Directeur de Clientèle et réalisée par nos veilleurs. Salariés en CDI, Bac +5 et trilingues, notre équipe de veille est une garantie de stabilité et d’expertise dans la gestion de vos problématiques.
-                    .container.restrict.track-animate
-                        p Votre veille est pilotée par un Directeur de Clientèle et réalisée par nos veilleurs. Salariés en CDI, Bac +5 et trilingues, notre équipe de veille est une garantie de stabilité et d’expertise dans la gestion de vos problématiques. Nos veilleurs s’appuient également sur l’ensemble des métiers de Reputation Squad (social media, juridique, SEO, influence, etc.) pour une analyse fine de vos enjeux et de vos parties prenantes.
+                            .item(v-for="slide in data.slides", :style="'background-image: url(' + slide.image + ');'")
+                                .overlay
+                                    .container.restrict-large(v-html="slide.paragraph")
+
+                    .container.restrict.track-animate(v-html="data.contentD")
+                      
         transition(name="fade", mode="out-in")
             #loader(v-if="loading")
                 .uil-ring-css(style="transform:scale(0.6);")
@@ -78,6 +43,7 @@
 
 <script>
 import Navigation from './Navigation.vue'
+import Api from '../api'
 // Expose Jquery Globally.
 import $ from 'jquery'
 window.jQuery = window.$ = $
@@ -90,17 +56,35 @@ export default {
   props: ['inquiryLength'],
   data () {
     return {
-      loading: false
+      loading: false,
+      data: null
     }
+  },
+  created () {
+    this.fetchData()
   },
   mounted () {
     $('.sticker').sticky({
       topSpacing: 0,
       zIndex: 999
     })
-    $('#slider').slick({
-      dots: true
-    })
+    // $('#slider').slick({
+    //   dots: true
+    // })
+  },
+  methods: {
+    fetchData () {
+      this.error = this.data = null
+      this.loading = true
+      Api.getAbout((err, data) => {
+        this.loading = false
+        if (err) {
+          this.error = err.toString()
+        } else {
+          this.data = data
+        }
+      })
+    }
   }
 }
 </script>

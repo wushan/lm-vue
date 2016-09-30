@@ -1,5 +1,6 @@
 // schema
 import Home from './assets/schema/home.json'
+import About from './assets/schema/about.json'
 import NewsList from './assets/schema/news-list.json'
 import NewsSingle from './assets/schema/news-single.json'
 import Categories from './assets/schema/product-category.json'
@@ -41,6 +42,15 @@ export default {
     setTimeout(() => {
       if (Home) {
         cb(null, Home)
+      } else {
+        cb(new Error('Data not found.'))
+      }
+    }, 500)
+  },
+  getAbout (cb) {
+    setTimeout(() => {
+      if (About) {
+        cb(null, About)
       } else {
         cb(new Error('Data not found.'))
       }
