@@ -1,40 +1,49 @@
 {
-  "introbrand": {
-    "title": "AT THE HEART OF THE<br>MACHINE TOOL INDUSTRY",
-    "background": "http://unsplash.it/964/1080",
-    "contentheader": "ALL THE ANSWERS",
-    "content": "<p>We know you wish not having to worry about half the things you worry about today.<br>We understand that suppliers delivering on-time and within your required specs is essential.<br>We realize that talking to someone who actually cares about you, let alone understands your language, is really important. And its even better if he has the answers to your questions.<br>We see that you want a wide choice of quality machines to choose from, all of which have been certified to be reliable and performant.</p><p> We get it.<p>Lymco is the answer to everything you have been looking for.</p><p>Lymco is almost certainly the CNC machine tool expert that will make your day a whole lot sweeter. With a deep understanding of how to make machines, we are constantly developing ahead of market trends and needs. We design, manufacture and supply within and beyond the specs of our clients; And we make sure that these machines continue to function for years to come.</p><p>Lymco brings you closer to what you have been looking for.</p><p class='green'>THE EASY CHOICE</p>"
-  },
-  "introproduct": {"id": 198, "name": "Horizontal Machine Center", "model": "MCV-M11", "category": {"name": "bibendum imperdiet nullam", "id": 1}, "image": "http://dummyimage.com/600x600.png/dddddd/000000", "backgroundimage": "http://dummyimage.com/234x230.jpg/ff4444/ffffff", "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.", "brochure": "https://opensource.org/libero/rutrum/ac/lobortis/vel.jsp?urna=massa\u0026pretium=id\u0026nisl=nisl\u0026ut=venenatis\u0026volutpat=lacinia\u0026sapien=aenean\u0026arcu=sit\u0026sed=amet\u0026augue=justo\u0026aliquam=morbi\u0026erat=ut\u0026volutpat=odio\u0026in=cras\u0026congue=mi\u0026etiam=pede\u0026justo=malesuada\u0026etiam=in\u0026pretium=imperdiet\u0026iaculis=et\u0026justo=commodo\u0026in=vulputate\u0026hac=justo\u0026habitasse=in\u0026platea=blandit\u0026dictumst=ultrices\u0026etiam=enim\u0026faucibus=lorem\u0026cursus=ipsum\u0026urna=dolor", "media": [{"url": "http://dummyimage.com/202x177.bmp/cc0000/ffffff"}, {"url": "http://dummyimage.com/135x218.jpg/5fa2dd/ffffff"}, {"url": "http://dummyimage.com/200x104.bmp/5fa2dd/ffffff"}], "features": [{"title": "a libero", "description": "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem."}, {"title": "vestibulum", "description": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."}, {"title": "eleifend quam", "description": "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus."}, {"title": "eros elementum", "description": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst."}], "specifications": [{"model": "amet", "spec1": "dapibus", "spec2": "nulla", "spec3": "dui", "spec4": "pede", "spec5": "in"}, {"model": "in", "spec1": "velit", "spec2": "in", "spec3": "faucibus", "spec4": "cras", "spec5": "ipsum"}, {"model": "augue", "spec1": "elit", "spec2": "porttitor", "spec3": "nisl", "spec4": "ante", "spec5": "pretium"}]},
-  "intronews": [
-    {
-      "id": 1,
-      "created_time": "4/2/2016",
-      "updated_time": "1/3/2016",
-      "title": "Vivamus vestibulum sagittis sapien.",
-      "excerpt": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
-      "thumbnail": "http://unsplash.it/400/250"
-    }, {
-      "id": 2,
-      "created_time": "8/12/2016",
-      "updated_time": "10/10/2015",
-      "title": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-      "excerpt": "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
-      "thumbnail": "http://unsplash.it/400/250"
-    }, {
-      "id": 3,
-      "created_time": "1/19/2016",
-      "updated_time": "11/4/2015",
-      "title": "Donec ut mauris eget massa tempor convallis.",
-      "excerpt": "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-      "thumbnail": "http://unsplash.it/400/250"
-    }, {
-      "id": 4,
-      "created_time": "2/12/2016",
-      "updated_time": "4/18/2016",
-      "title": "Nulla tellus.",
-      "excerpt": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-      "thumbnail": "http://unsplash.it/400/250"
-    }
-  ]
+   "introbrand":{
+      "title":"AT THE HEART OF THE<br>MACHINE TOOL INDUSTRY",
+      "background":"http://unsplash.it/964/1080",
+      "contentheader":"ALL THE ANSWERS",
+      "content":"<p>We know you wish not having to worry about half the things you worry about today.<br>We understand that suppliers delivering on-time and within your required specs is essential.<br>We realize that talking to someone who actually cares about you, let alone understands your language, is really important. And its even better if he has the answers to your questions.<br>We see that you want a wide choice of quality machines to choose from, all of which have been certified to be reliable and performant.</p><p> We get it.<p>Lymco is the answer to everything you have been looking for.</p><p>Lymco is almost certainly the CNC machine tool expert that will make your day a whole lot sweeter. With a deep understanding of how to make machines, we are constantly developing ahead of market trends and needs. We design, manufacture and supply within and beyond the specs of our clients; And we make sure that these machines continue to function for years to come.</p><p>Lymco brings you closer to what you have been looking for.</p><p class='green'>THE EASY CHOICE</p>"
+   },
+   "introproduct":{
+      "id":198,
+      "name":"Horizontal Machine Center",
+      "model":"MCV-M11",
+      "image":"http://dummyimage.com/600x600.png/dddddd/000000",
+      "description":"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris."
+   },
+   "intronews":[
+      {
+         "id":1,
+         "created_time":"4/2/2016",
+         "updated_time":"1/3/2016",
+         "title":"Vivamus vestibulum sagittis sapien.",
+         "excerpt":"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
+         "thumbnail":"http://unsplash.it/400/250"
+      },
+      {
+         "id":2,
+         "created_time":"8/12/2016",
+         "updated_time":"10/10/2015",
+         "title":"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+         "excerpt":"Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
+         "thumbnail":"http://unsplash.it/400/250"
+      },
+      {
+         "id":3,
+         "created_time":"1/19/2016",
+         "updated_time":"11/4/2015",
+         "title":"Donec ut mauris eget massa tempor convallis.",
+         "excerpt":"Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
+         "thumbnail":"http://unsplash.it/400/250"
+      },
+      {
+         "id":4,
+         "created_time":"2/12/2016",
+         "updated_time":"4/18/2016",
+         "title":"Nulla tellus.",
+         "excerpt":"Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
+         "thumbnail":"http://unsplash.it/400/250"
+      }
+   ]
 }
