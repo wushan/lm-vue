@@ -10,18 +10,17 @@
               span.bold NEWS
             .restrict-mid
               #slider
-                each i in Array(3)
-                  .item
-                    .block
-                      img(src="../assets/images/components/news-slide-1.png")
-                    .block
-                      .content
-                        time June, 2008
-                        h2 Lymco at EMO 2016
-                        .context
-                          p The stock list has been updated in the dealer's portal. Our latest stock includes the DV-3000MT vertical platform lathe, the RAL seies vertical lathe, and the MH-500 horizontal machining center with auto pallet changer.
-                        .call-action.right
-                          a.btn.bordered(href="javascript:;") READ MORE &#9656;
+                .item(v-for="news in latestNews")
+                  .block
+                    img(src="../assets/images/components/news-slide-1.png")
+                  .block
+                    .content
+                      time June, 2008
+                      h2 Lymco at EMO 2016
+                      .context
+                        p The stock list has been updated in the dealer's portal. Our latest stock includes the DV-3000MT vertical platform lathe, the RAL seies vertical lathe, and the MH-500 horizontal machining center with auto pallet changer.
+                      .call-action.right
+                        a.btn.bordered(href="javascript:;") READ MORE &#9656;
 
         section#news-list
           .cover
@@ -84,6 +83,11 @@ export default {
     }
   },
   computed: {
+    latestNews () {
+      if (this.data) {
+        return this.data.slice(0, 3)
+      }
+    },
     currentPage () {
       return this.$route.params.page
     },
@@ -106,10 +110,6 @@ export default {
   },
   mounted () {
     this.fetchData()
-    $('#slider').slick({
-      dots: true,
-      arrows: false
-    })
   },
   updated () {
     $('.sticker').sticky({
@@ -127,7 +127,16 @@ export default {
           this.error = err.toString()
         } else {
           this.data = data
+          this.initSlick()
         }
+      })
+    },
+    initSlick () {
+      this.$nextTick(function () {
+        $('#slider').slick({
+          dots: true,
+          arrows: false
+        })
       })
     }
   }

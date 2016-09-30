@@ -14,10 +14,10 @@
                   .controlgroup
                     input.rounded(type="password", placeholder="Password", v-model="signin.password")
               .row
-                .grid.g-3-12
+                .grid.g-2-12
                   .controlgroup
                     img(src="http://unsplash.it/100/44")
-                .grid.g-9-12
+                .grid.g-10-12
                   .controlgroup
                     input.rounded(type="text", placeholder="Captcha")
               .controlgroup
@@ -28,10 +28,10 @@
               .controlgroup
                 input.rounded(type="email", placeholder="Email")
               .row
-                .grid.g-3-12
+                .grid.g-2-12
                   .controlgroup
                     img(src="http://unsplash.it/100/44")
-                .grid.g-9-12
+                .grid.g-10-12
                   .controlgroup
                     input.rounded(type="text", placeholder="Captcha")
               .controlgroup

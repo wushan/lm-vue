@@ -45,7 +45,8 @@ const router = new VueRouter({
     { path: '/post', component: Post },
     { path: '/post/:id', component: Post },
     { path: '/contact', component: Contact },
-    { path: '/errorshooting', component: ErrorShooting }
+    { path: '/errorshooting', component: ErrorShooting },
+    { path: '/errorshooting/:model', component: ErrorShooting }
   ]
 })
 

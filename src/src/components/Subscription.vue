@@ -18,10 +18,10 @@
             .controlgroup
               input.rounded(type="email", placeholder="Email")
           .row
-            .grid.g-3-12
+            .grid.g-2-12
               .controlgroup
                 img(src="http://unsplash.it/100/44")
-            .grid.g-6-12
+            .grid.g-7-12
               .controlgroup
                 input.rounded(type="text", placeholder="Captcha")
             .grid.g-3-12

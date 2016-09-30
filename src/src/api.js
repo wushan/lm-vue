@@ -44,7 +44,7 @@ export default {
       } else {
         cb(new Error('Data not found.'))
       }
-    }, 100)
+    }, 500)
   },
   getNewsHome (page, cb) {
     setTimeout(() => {
@@ -53,7 +53,7 @@ export default {
       } else {
         cb(new Error('Data not found.'))
       }
-    }, 100)
+    }, 500)
   },
   getNewsSingle (id, cb) {
     setTimeout(() => {
@@ -62,7 +62,7 @@ export default {
       } else {
         cb(new Error('Data not found.'))
       }
-    }, 100)
+    }, 500)
   },
   getCategories (cb) {
     setTimeout(() => {
@@ -71,7 +71,7 @@ export default {
       } else {
         cb(new Error('Data not found.'))
       }
-    }, 3000)
+    }, 500)
   },
   getProduct (id, cb) {
     setTimeout(() => {
@@ -80,7 +80,7 @@ export default {
       } else {
         cb(new Error('Data not found.'))
       }
-    }, 100)
+    }, 500)
   },
   getProducts (id, cb) {
     setTimeout(() => {
@@ -89,7 +89,7 @@ export default {
       } else {
         cb(new Error('Data not found.'))
       }
-    }, 100)
+    }, 500)
   },
   getInventory (cb) {
     setTimeout(() => {
@@ -98,7 +98,7 @@ export default {
       } else {
         cb(new Error('Data not found.'))
       }
-    }, 100)
+    }, 500)
   },
   getDealer (cb) {
     setTimeout(() => {
@@ -107,7 +107,7 @@ export default {
       } else {
         cb(new Error('Data not found.'))
       }
-    }, 100)
+    }, 500)
   },
   getMachine (cb) {
     setTimeout(() => {
@@ -116,7 +116,7 @@ export default {
       } else {
         cb(new Error('Data not found.'))
       }
-    }, 100)
+    }, 500)
   },
   getSolution (id, code, cb) {
     setTimeout(() => {
@@ -125,6 +125,6 @@ export default {
       } else {
         cb(new Error('Data not found.'))
       }
-    }, 1000)
+    }, 500)
   }
 }

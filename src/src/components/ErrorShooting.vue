@@ -153,7 +153,7 @@ export default {
         min-height: 100vh;
         @include breakpoint(1280px) {
             background-size: auto 90%;
-            background-position: 5em top;
+            background-position: right top;
         }
         @include breakpoint(1680px) {
             background-position: right top;
