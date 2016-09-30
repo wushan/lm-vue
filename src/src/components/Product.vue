@@ -166,7 +166,16 @@ export default {
         padding: 0;
         box-shadow: 3px 3px 3px rgba($black,.33);
         img {
-            width: 100%; 
+            width: 100%;
+            transition: 3s all ease;
+        }
+        .slick-slide {
+            &:hover {
+                img {
+                    transform: scale(1.5);
+                    transform-origin: center center;
+                }
+            }
         }
         .slick-dots {
             bottom: -3em;
