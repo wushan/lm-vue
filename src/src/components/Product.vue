@@ -11,13 +11,13 @@
                                 h1
                                     |   PRODUCTS
                                     span.bold {{ product.name }}
-                            .product-image
+                            .product-image.track-animate
                                 img(v-bind:src="product.image")
 
                     .product-single-inner.restrict-large
                         .container.restrict-small
-                            .content {{ product.description }}
-                            .call-action.right
+                            .content.track-animate {{ product.description }}
+                            .call-action.right.track-animate
                                 a.btn.btn-with-icon(v-bind:href="product.brochure")
                                     span DOWNLOAD BROCHURE
                                     .fa.fa-plus.fa-lg
@@ -26,7 +26,7 @@
                                     .fa.fa-plus.fa-lg
                         
                         
-                        .media-slider.restrict
+                        .media-slider.restrict.track-animate
                             .item(v-for="slide in product.media")
                                 iframe(v-if="slide.type === 'video'", width="800", height="450", v-bind:src="slide.url", frameborder="0" allowfullscreen)
                                 img(v-else, v-bind:src="slide.url")
@@ -159,7 +159,9 @@ export default {
     @import "bower_components/breakpoint-sass/stylesheets/breakpoint";
     @import "src/assets/styles/general/variable/variable";
     @import "src/assets/styles/general/helper/helper";
-    #product {}
+    #product {
+        background-color: $white;
+    }
     .media-slider {
         padding: 0;
         box-shadow: 3px 3px 3px rgba($black,.33);

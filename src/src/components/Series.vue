@@ -18,11 +18,11 @@
                                     .item(v-for="slide in data.highlightproduct")
                                         .thumbnail
                                             img(v-bind:src="slide.image")
-                                        .content
-                                            h1
+                                        .content.track-animate
+                                            h1.track-animate
                                                 |   {{ slide.name }}
                                                 small.bold {{ slide.model }}
-                                            .context(v-html="slide.description")
+                                            .context.track-animate(v-html="slide.description")
                                             .call-action
                                                 router-link.btn.btn-with-icon.dark(:to="'/product/single/' + slide.id", href="javascript:;")
                                                     span DETAIL
@@ -43,7 +43,7 @@
                         span.bold SCROLL
                         .fa.fa-long-arrow-down.fa-lg
                 #category-list
-                    .category(v-for="category in data.categories")
+                    .category.track-animate(v-for="category in data.categories")
                         .coverage(v-bind:style="'background-image: url(' + category.image + ');'")
                             img(v-bind:src="category.image")
                         .content
@@ -473,6 +473,20 @@ export default {
                     .coverage {
                         transform-origin: bottom right;
                         transform: skew(-10deg) translateY(-55%) translateX(-7%) scale(1.1);
+                        img {
+                            transform: skew(10deg) scale(1.1) translate(0, 50%);
+                        }
+                    }
+                }
+            }
+            @include breakpoint(1440px) {
+                &:nth-child(odd) {
+                    
+                }
+                &:nth-child(even) {
+                    .coverage {
+                        transform-origin: bottom right;
+                        transform: skew(-10deg) translateY(-55%) translateX(-3%) scale(1.1);
                         img {
                             transform: skew(10deg) scale(1.1) translate(0, 50%);
                         }
