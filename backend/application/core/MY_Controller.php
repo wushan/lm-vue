@@ -110,7 +110,7 @@ class MY_Controller extends CI_Controller
                 endif;
             endif;
             @rename($uploadData['full_path'], $filePath);
-        elseif (isset($_FILES['file']) && $this->upload->do_upload('file')):
+        elseif (isset($_FILES[$nickname.'File']) && $this->upload->do_upload($nickname.'File')):
             $uploadData = $this->upload->data();
             $filePath = $config['upload_path'] . '/'. uniqid($name) . $uploadData['file_ext'];
             @rename($uploadData['full_path'], $filePath);

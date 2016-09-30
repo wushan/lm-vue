@@ -22,7 +22,7 @@
 
                     <div>
                         <div class="widget-body no-padding">
-                            <form class="form-horizontal" method="post" action="<?=site_url('bkproduct/add_product_list')?>" enctype="multipart/form-data">
+                            <form class="form-horizontal" method="post" action="<?=site_url('bkproductlist/add_product_list')?>" enctype="multipart/form-data">
                                 <div id="content">
                                     <fieldset>
                                         <legend>新增產品系列</legend>
@@ -72,7 +72,7 @@
 
                                 <div class="widget-footer">
                                     <button type="submit" class="btn btn-primary" id="submit">確定</button>
-                                    <button type="button" class="btn btn-default" onclick="location.href='<?= site_url("bkproduct/product_list") ?>';">返回</button>
+                                    <button type="button" class="btn btn-default" onclick="location.href='<?= site_url("bkproductlist") ?>';">返回</button>
                                 </div>
                             </form>
                         </div>
