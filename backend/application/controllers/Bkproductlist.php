@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Bkproduct extends MY_Controller
+class Bkproductlist extends MY_Controller
 {
     public function __construct()
     {
@@ -11,7 +11,7 @@ class Bkproduct extends MY_Controller
         $this->load->model('tb_product_model','product');
     }
 
-    public function product_list()
+    public function index()
     {
 
         $plist=$this->product->get_product_list();
@@ -31,7 +31,7 @@ class Bkproduct extends MY_Controller
             endif;
             $post['create_time'] = date('Y-m-d H:i:s');
             $this->db->insert('tb_product_list', $post);
-            redirect('bkproduct/product_list');
+            redirect('bkproductlist');
         }
         $data = array(
             'order'=>$this->product->select_product_list_order()
@@ -44,6 +44,10 @@ class Bkproduct extends MY_Controller
 
         $plist = $this->product->get_product_list_by_plid($PLID);
 
+        if (!$plist) {
+            redirect('bkproductlist');
+        }
+
         if ($post = $this->input->post(null, true)) {
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
                 $post['image']=$this->upload('product_list', 850);
@@ -53,10 +57,7 @@ class Bkproduct extends MY_Controller
             endif;
             $post['update_time'] = date('Y-m-d H:i:s');
             $this->db->update('tb_product_list', $post, array('PLID' => $PLID));
-            redirect('bkproduct/product_list');
-        }
-        if (!$plist) {
-            redirect('bkproduct/product_list');
+            redirect('bkproductlist');
         }
 
         $data = array(
@@ -75,18 +76,7 @@ class Bkproduct extends MY_Controller
             }
             $this->db->delete('tb_product_list', array('PLID' => $PLID));
         }
-        redirect('bkproduct/product_list');
-    }
-
-    public function products()
-    {
-
-        $plist=$this->product->get_product_list();
-
-        $data=array(
-            'plist'=>$plist
-        );
-        $this->get_view('products',$data);
+        redirect('bkproductlist');
     }
 
     private function get_view($page, $data = '')

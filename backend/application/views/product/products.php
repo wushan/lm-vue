@@ -38,7 +38,7 @@
                         <div class="widget-body-toolbar">
                             <div class="row">
                                 <div class="col-xs-6 text-left">
-                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkproduct/add_product_list") ?>';"><i class="fa fa-plus"></i> <span>新增產品</span></a>
+                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkproducts/add_products") ?>';"><i class="fa fa-plus"></i> <span>新增產品</span></a>
                                 </div>
 
                             </div>
@@ -48,28 +48,32 @@
                             <table class="table table-bordered" id="table">
                                 <thead>
                                 <tr>
+                                    <th width="5%">顯示首頁</th>
+                                    <th width="7%">顯示產品列表首頁</th>
                                     <th>排序</th>
-                                    <th width="50%">圖片預覽</th>
+                                    <th width="30%">圖片預覽</th>
                                     <th width="30%">名稱</th>
                                     <th>編輯</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <? if ($plist) { ?>
-                                    <? foreach ($plist as $row) { ?>
+                                <? if ($product) { ?>
+                                    <? foreach ($product as $row) { ?>
                                         <tr>
+                                            <td><?=($row->is_home==1)?'<i class="fa txt-color-green fa-check"></i>':'<i class="fa txt-color-red fa-times"></i>' ?></td>
+                                            <td><?=($row->is_product_page==1)?'<i class="fa txt-color-green fa-check"></i>':'<i class="fa txt-color-red fa-times"></i>' ?></td>
                                             <td><?= $row->order ?></td>
                                             <td>
-                                                <? if (isset($row->image)) { ?>
+                                                <? if (isset($row->pdimage)) { ?>
                                                     <div id="preview">
-                                                        <img src="<?= base_url($row->image) ?>">
+                                                        <img src="<?= base_url($row->pdimage) ?>">
                                                     </div>
                                                 <? } ?>
                                             </td>
                                             <td><?= $row->name ?></td>
                                             <td>
-                                                <a href="<?= site_url('bkproduct/edit_product_list/' . $row->PLID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
-                                                <a href="<?= site_url('bkproduct/delete_product_list/' . $row->PLID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
+                                                <a href="<?= site_url('bkproducts/edit_products/' . $row->PID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
+                                                <a href="<?= site_url('bkproducts/delete_product_list/' . $row->PID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
                                             </td>
                                         </tr>
                                     <? } ?>

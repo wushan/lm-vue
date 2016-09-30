@@ -40,4 +40,18 @@ class Tb_product_model extends CI_Model
         if ($query->num_rows() > 0) return $query->row();
         return false;
     }
+
+    public function get_products(){
+
+        $query = $this->db->order_by('order','desc')->get('tb_products');
+        if ($query->num_rows() > 0) return $query->result();
+        return false;
+    }
+    public function get_products_by_pid($PID=false){
+        $this->db->where('PID',$PID);
+        $query = $this->db->get('tb_products');
+        if ($query->num_rows() > 0) return $query->row();
+        return false;
+    }
+
 }
