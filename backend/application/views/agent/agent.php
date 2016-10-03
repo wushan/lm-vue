@@ -29,7 +29,7 @@
                 <header>
                     <span class="widget-icon"><i class="fa fa-table"></i></span>
 
-                    <h2>新聞管理</h2>
+                    <h2>經銷商列表</h2>
                 </header>
 
                 <div>
@@ -38,7 +38,7 @@
                         <div class="widget-body-toolbar">
                             <div class="row">
                                 <div class="col-xs-6 text-left">
-                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("backend/bknews/add_news") ?>';"><i class="fa fa-plus"></i> <span>新增新聞</span></a>
+                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkagent/add_agent") ?>';"><i class="fa fa-plus"></i> <span>新增經銷商</span></a>
                                 </div>
 
                             </div>
@@ -48,26 +48,18 @@
                             <table class="table table-bordered" id="table">
                                 <thead>
                                 <tr>
-                                    <th width="50%">圖片預覽</th>
-                                    <th width="30%">名稱</th>
-                                    <th>編輯</th>
+                                    <th width="15%">公司名稱</th>
+                                    <th width="8%">編輯</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <? if ($news) { ?>
-                                    <? foreach ($news as $row) { ?>
+                                <? if ($agent) { ?>
+                                    <? foreach ($agent as $row) { ?>
                                         <tr>
+                                            <td><?= $row->company ?></td>
                                             <td>
-                                                <? if (isset($row->bgimage)) { ?>
-                                                    <div id="preview">
-                                                        <img src="<?= base_url($row->bgimage) ?>">
-                                                    </div>
-                                                <? } ?>
-                                            </td>
-                                            <td><?= $row->title ?></td>
-                                            <td>
-                                                <a href="<?= site_url('backend/bknews/edit_news/' . $row->NID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
-                                                <a href="<?= site_url('backend/bknews/delete_news/' . $row->NID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
+                                                <a href="<?= site_url('bkagent/edit_agent/' . $row->AID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
+                                                <a href="<?= site_url('bkagent/delete_agent/' . $row->AID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
                                             </td>
                                         </tr>
                                     <? } ?>

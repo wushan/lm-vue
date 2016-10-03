@@ -8,18 +8,18 @@ class Bkproducts extends MY_Controller
         if (!is_logged_in(true)) {
             redirect("admin");
         }
-        $this->load->model('tb_product_model','product');
+        $this->load->model('tb_product_model', 'product');
     }
 
     public function index()
     {
 
-        $product=$this->product->get_products();
+        $product = $this->product->get_products();
 
-        $data=array(
-            'product'=>$product
+        $data = array(
+            'product' => $product
         );
-        $this->get_view('products',$data);
+        $this->get_view('products', $data);
     }
 
     public function add_products()
@@ -28,37 +28,40 @@ class Bkproducts extends MY_Controller
         if ($post = $this->input->post(null, true)) {
 
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
-                $post['bgimage']=$this->upload('products', 850);
+                $post['bgimage'] = $this->upload('products', 850);
             endif;
             if (isset($_FILES['imageA']) && !$_FILES['imageA']['error']):
-                $post['pdimage']=$this->upload('products', 850,'A');
+                $post['pdimage'] = $this->upload('products', 850, 'A');
             endif;
             if (isset($_FILES['catalogFile']) && !$_FILES['catalogFile']['error']):
-                $file=$this->upload('products',false,'catalog');
-                $post['catalog_path']=$file['file_path'];
-                $post['catalog_name']=$file['file_name'];
+                $file = $this->upload('products', false, 'catalog');
+                $post['catalog_path'] = $file['file_path'];
+                $post['catalog_name'] = $file['file_name'];
             endif;
             if (isset($_FILES['imageB']) && !$_FILES['imageB']['error']):
-                $post['carouselA_image']=$this->upload('products', 850,'B');
+                $post['carouselA_image'] = $this->upload('products', 850, 'B');
             endif;
             if (isset($_FILES['imageC']) && !$_FILES['imageC']['error']):
-                $post['carouselB_image']=$this->upload('products', 850,'C');
+                $post['carouselB_image'] = $this->upload('products', 850, 'C');
             endif;
             if (isset($_FILES['imageD']) && !$_FILES['imageD']['error']):
-                $post['carouselC_image']=$this->upload('products', 850,'D');
+                $post['carouselC_image'] = $this->upload('products', 850, 'D');
             endif;
-            $post['features']=json_encode($post['features']);
+            $post['features'] = json_encode($post['features']);
             $post['create_time'] = date('Y-m-d H:i:s');
             $this->db->insert('tb_products', $post);
             redirect('bkproducts');
         }
         $data = array(
-            'order'=>$this->product->select_products_order()
+            'order' => $this->product->select_products_order(),
+            'is_home' => $this->product->product_show(true),
+            'is_product_page' => $this->product->product_show(false, true),
+            'plist' => $this->product->get_product_list()
         );
         $this->get_view('add_products', $data);
     }
 
-    public function edit_products($PID=false)
+    public function edit_products($PID = false)
     {
         $product = $this->product->get_products_by_pid($PID);
 
@@ -69,52 +72,105 @@ class Bkproducts extends MY_Controller
         if ($post = $this->input->post(null, true)) {
 
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
-                $post['bgimage']=$this->upload('products', 850);
-                if($product && file_exists($product->bgimage)){
+                $post['bgimage'] = $this->upload('products', 850);
+                if ($product && file_exists($product->bgimage)) {
                     unlink($product->bgimage);
                 }
             endif;
             if (isset($_FILES['imageA']) && !$_FILES['imageA']['error']):
-                $post['pdimage']=$this->upload('products', 850,'A');
-                if($product && file_exists($product->pdimage)){
+                $post['pdimage'] = $this->upload('products', 850, 'A');
+                if ($product && file_exists($product->pdimage)) {
                     unlink($product->pdimage);
                 }
             endif;
             if (isset($_FILES['catalogFile']) && !$_FILES['catalogFile']['error']):
-                $file=$this->upload('products',false,'catalog');
-                $post['catalog_path']=$file['file_path'];
-                $post['catalog_name']=$file['file_name'];
-              if($product && file_exists($product->catalog_path)){
+                $file = $this->upload('products', false, 'catalog');
+                $post['catalog_path'] = $file['file_path'];
+                $post['catalog_name'] = $file['file_name'];
+                if ($product && file_exists($product->catalog_path)) {
                     unlink($product->catalog_path);
                 }
             endif;
             if (isset($_FILES['imageB']) && !$_FILES['imageB']['error']):
-                $post['carouselA_image']=$this->upload('products', 850,'B');
-              if($product && file_exists($product->carouselA_image)){
+                $post['carouselA_image'] = $this->upload('products', 850, 'B');
+                if ($product && file_exists($product->carouselA_image)) {
                     unlink($product->carouselA_image);
                 }
             endif;
             if (isset($_FILES['imageC']) && !$_FILES['imageC']['error']):
-                $post['carouselB_image']=$this->upload('products', 850,'C');
-              if($product && file_exists($product->carouselB_image)){
+                $post['carouselB_image'] = $this->upload('products', 850, 'C');
+                if ($product && file_exists($product->carouselB_image)) {
                     unlink($product->carouselB_image);
                 }
             endif;
             if (isset($_FILES['imageD']) && !$_FILES['imageD']['error']):
-                $post['carouselC_image']=$this->upload('products', 850,'D');
-              if($product && file_exists($product->carouselC_image)){
+                $post['carouselC_image'] = $this->upload('products', 850, 'D');
+                if ($product && file_exists($product->carouselC_image)) {
                     unlink($product->carouselC_image);
                 }
             endif;
-            $post['features']=json_encode($post['features']);
+            $post['features'] = json_encode($post['features']);
             $post['update_time'] = date('Y-m-d H:i:s');
-            $this->db->update('tb_products', $post,array('PID'=>$PID));
+            $this->db->update('tb_products', $post, array('PID' => $PID));
             redirect('bkproducts');
         }
         $data = array(
-        'product'=>$product
+            'product' => $product,
+            'is_home' => $this->product->product_show(true),
+            'is_product_page' => $this->product->product_show(false, true),
+            'plist' => $this->product->get_product_list()
         );
         $this->get_view('edit_products', $data);
+    }
+
+    public function delete_products($PID = false)
+    {
+        $product = $this->product->get_products_by_pid($PID);
+        if ($product) {
+            if (file_exists($product->bgimage)) {
+                unlink($product->bgimage);
+            }
+            if (file_exists($product->pdimage)) {
+                unlink($product->pdimage);
+            }
+            if (file_exists($product->catalog_path)) {
+                unlink($product->catalog_path);
+            }
+            if (file_exists($product->carouselA_image)) {
+                unlink($product->carouselA_image);
+            }
+            if (file_exists($product->carouselB_image)) {
+                unlink($product->carouselB_image);
+            }
+            if (file_exists($product->carouselC_image)) {
+                unlink($product->carouselC_image);
+            }
+            $this->db->delete('tb_products', array('PID' => $PID));
+        }
+        redirect('bkproducts');
+    }
+
+    public function add_spec($PID = false)
+    {
+        $product = $this->product->get_products_by_pid($PID);
+        $column = $this->product->get_spec_column($product->PLID);
+        if (!$product) {
+            redirect('bkproducts');
+        }
+        if ($post = $this->input->post(null, true)) {
+            $post['spec']=json_encode($post['spec']);
+            $post['update_time'] = date('Y-m-d H:i:s');
+            $this->db->update('tb_products', $post, array('PID' => $PID));
+            redirect('bkproducts');
+        }
+
+        $data = array(
+            'column' => $column,
+            'PID' => $PID,
+            'product'=>$product
+        );
+
+        $this->get_view('add_spec', $data);
     }
 
     private function get_view($page, $data = '')

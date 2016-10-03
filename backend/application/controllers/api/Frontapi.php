@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Gethome extends MY_Controller
+class Frontapi extends MY_Controller
 {
     public function __construct()
     {
@@ -8,7 +8,7 @@ class Gethome extends MY_Controller
         $this->load->model('tb_home_model', 'home');
     }
 
-    public function index()
+    public function get_home()
     {
         header("Content-Type: application/json; charset=UTF-8");
         $home = $this->home->home_get();
@@ -18,7 +18,9 @@ class Gethome extends MY_Controller
             'contentheader' => $home->content_title,
             'content' => $home->content
         );
-        $data['introproduct'] = array();
+        $data['introproduct'] = array(
+
+        );
         $data['intronews'] = array();
         echo json_encode($data);
     }

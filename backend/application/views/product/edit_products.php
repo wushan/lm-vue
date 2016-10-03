@@ -50,11 +50,14 @@
                                                     <label class="col-md-2 control-label">顯示首頁</label>
 
                                                     <div class="col-md-10">
-                                                        <div class="checkbox">
-                                                            <label class="col-md-2">
-                                                                <input type="checkbox" name="is_home" value="1" <?= ($product->is_home == 1) ? 'checked' : '' ?>>
-                                                            </label>
-                                                        </div>
+                                                        <label class="radio radio-inline">
+                                                            <input type="radio" name="is_home" value="0" <?= ($product->is_home == 0) ? 'checked' : '' ?>>
+                                                            不顯示
+                                                        </label>
+                                                        <label class="radio radio-inline">
+                                                            <input type="radio" name="is_home" value="1" <?= ($product->is_home == 1) ? 'checked' : '' ?> <?= ($is_home->is_home == 1 && $product->is_home!=1) ? 'disabled' : '' ?>>
+                                                            顯示
+                                                        </label>
                                                     </div>
                                                 </div>
 
@@ -62,11 +65,29 @@
                                                     <label class="col-md-2 control-label">顯示產品列表首頁</label>
 
                                                     <div class="col-md-10">
-                                                        <div class="checkbox">
-                                                            <label class="col-md-2">
-                                                                <input type="checkbox" name="is_product_page" value="1" <?= ($product->is_product_page == 1) ? 'checked' : '' ?>>
-                                                            </label>
-                                                        </div>
+                                                        <label class="radio radio-inline">
+                                                            <input type="radio" name="is_product_page" value="0" <?= ($product->is_product_page == 0) ? 'checked' : '' ?>>
+                                                            不顯示
+                                                        </label>
+                                                        <label class="radio radio-inline">
+                                                            <input type="radio" name="is_product_page" value="1" <?= ($product->is_product_page == 1) ? 'checked' : '' ?> <?= ($is_product_page->is_product_page == 3) ? 'disabled' : '' ?>>
+                                                            顯示
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">產品系列</label>
+
+                                                    <div class="col-sm-2">
+                                                        <select class="form-control" name="PLID" required>
+                                                            <option value="0">請選擇</option>
+                                                            <? if ($plist) { ?>
+                                                                <? foreach ($plist as $row) { ?>
+                                                                    <option value="<?=$row->PLID?>" <?=($product->PLID==$row->PLID)?'selected':''?>><?=$row->name?></option>
+                                                                <? } ?>
+                                                            <? } ?>
+                                                        </select>
                                                     </div>
                                                 </div>
 

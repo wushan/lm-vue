@@ -17,26 +17,18 @@
 
                     <header>
                         <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-                        <h2>編輯產品系列</h2>
+                        <h2>編輯</h2>
                     </header>
 
                     <div>
                         <div class="widget-body no-padding">
-                            <form class="form-horizontal" method="post" action="<?=site_url('backend/bkproduct/edit_product_list/'.$plist->PLID)?>" enctype="multipart/form-data">
+                            <form class="form-horizontal" method="post" action="<?=site_url('bkerror/edit_error/'.$errorCodeID.'/'.$error->EID.'/'.$parentID)?>" enctype="multipart/form-data">
                                 <div id="content">
                                     <fieldset>
-                                        <legend>編輯產品系列</legend>
+                                        <legend>編輯</legend>
 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label" >排序</label>
-
-                                            <div class="col-sm-1">
-                                                <input class="form-control" min="1" type="number" name="order" value="<?=$plist->order?>">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">產品系列圖</label>
+                                            <label class="col-sm-2 control-label">圖片</label>
 
                                             <div class="col-sm-9">
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="image">
@@ -46,24 +38,36 @@
                                                 </p>
 
                                                 <p class="help-block">
-                                                    <img id="preview" src="<?=($plist && file_exists($plist->image))?base_url($plist->image):''?>">
+                                                    <img id="preview" src="<?=($error && file_exists($error->image))?base_url($error->image):''?>">
                                                 </p>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">名稱</label>
+                                            <label class="col-sm-2 control-label">PDF</label>
 
-                                            <div class="col-sm-6">
-                                                <input class="form-control" maxlength="150" type="text" name="name" value="<?=$plist->name?>" required>
+                                            <div class="col-sm-9">
+                                                <input type="file" class="btn btn-default" name="errorFile">
+
+                                                <p class="help-block">
+                                                    <?=($error && file_exists($error->file_path))?'檔名:'.$error->file_name:''?>
+                                                </p>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">介紹</label>
+                                            <label class="col-sm-2 control-label">標題</label>
 
                                             <div class="col-sm-6">
-                                                <textarea class="form-control" rows="5" name="intro" required><?=$plist->intro?></textarea>
+                                                <input class="form-control" maxlength="150" type="text" name="title" value="<?=$error->title?>" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">內文</label>
+
+                                            <div class="col-sm-6">
+                                                <textarea class="form-control" rows="10" name="content" required><?=$error->content?></textarea>
                                             </div>
                                         </div>
 
@@ -72,7 +76,7 @@
 
                                 <div class="widget-footer">
                                     <button type="submit" class="btn btn-primary" id="submit">確定</button>
-                                    <button type="button" class="btn btn-default" onclick="location.href='<?= site_url("backend/bkproduct") ?>';">返回</button>
+                                    <button type="button" class="btn btn-default" onclick="location.href='<?= site_url("bkerror/error_solution/".$errorCodeID.'/'.$parentID) ?>';">返回</button>
                                 </div>
                             </form>
                         </div>
@@ -82,6 +86,7 @@
         </div>
     </section>
 </div>
+
 
 <script>
     $(document).ready(function () {

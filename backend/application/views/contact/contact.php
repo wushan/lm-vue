@@ -17,53 +17,29 @@
 
                     <header>
                         <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-                        <h2>新增產品系列</h2>
+                        <h2>內文管理</h2>
                     </header>
 
                     <div>
                         <div class="widget-body no-padding">
-                            <form class="form-horizontal" method="post" action="<?=site_url('backend/bkproduct/add_product_list')?>" enctype="multipart/form-data">
+                            <form class="form-horizontal" method="post" action="<?=site_url('bkcontact')?>" enctype="multipart/form-data">
                                 <div id="content">
                                     <fieldset>
-                                        <legend>新增產品系列</legend>
+                                        <legend>內文管理</legend>
 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label" >排序</label>
-
-                                            <div class="col-sm-1">
-                                                <input class="form-control" min="1" type="number" name="order" value="<?=(!$order->order)?1:$order->order+1?>">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">產品系列圖</label>
-
-                                            <div class="col-sm-9">
-                                                <input type="file" class="btn btn-default" id="UploadImg" name="image">
-
-                                                <p class="help-block">
-                                                    圖片最佳大小為850*175
-                                                </p>
-
-                                                <p class="help-block">
-                                                    <img id="preview" src="">
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">名稱</label>
+                                            <label class="col-sm-2 control-label">內文區塊</label>
 
                                             <div class="col-sm-6">
-                                                <input class="form-control" maxlength="150" type="text" name="name" required>
+                                                <textarea class="form-control" rows="15" name="content_area"><?=$contact->content_area?></textarea>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">介紹</label>
+                                            <label class="col-sm-2 control-label">聯絡資訊區塊</label>
 
                                             <div class="col-sm-6">
-                                                <textarea class="form-control" rows="5" name="intro" required></textarea>
+                                                <textarea class="form-control" rows="15" name="contact_area"><?=$contact->contact_area?></textarea>
                                             </div>
                                         </div>
 
@@ -72,7 +48,6 @@
 
                                 <div class="widget-footer">
                                     <button type="submit" class="btn btn-primary" id="submit">確定</button>
-                                    <button type="button" class="btn btn-default" onclick="location.href='<?= site_url("backend/bkproduct/product_list") ?>';">返回</button>
                                 </div>
                             </form>
                         </div>

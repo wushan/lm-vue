@@ -3,20 +3,6 @@
 
         text-align: center;
     }
-
-    #preview {
-        width: 100%;
-        height: 30px;
-        overflow: hidden;
-        position: relative;
-    }
-
-    #preview img {
-        width: 100%;
-        padding: 3px;
-        margin: -50% 0;
-        background-color: white;
-    }
 </style>
 
 <section id="widget-grid" class="">
@@ -29,48 +15,38 @@
                 <header>
                     <span class="widget-icon"><i class="fa fa-table"></i></span>
 
-                    <h2>產品系列</h2>
+                    <h2>規格欄位</h2>
                 </header>
 
                 <div>
                     <div class="widget-body no-padding">
-
                         <div class="widget-body-toolbar">
                             <div class="row">
                                 <div class="col-xs-6 text-left">
-                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkproductlist/add_product_list") ?>';"><i class="fa fa-plus"></i> <span>新增產品系列</span></a>
+                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkproductlist/add_column/".$PLID) ?>';"><i class="fa fa-plus"></i> <span>新增欄位</span></a>
+                                    <a class="btn btn-warning" onclick="location.href='<?= site_url("bkproductlist") ?>';"><i class="fa fa-level-up"></i> <span>返回</span></a>
                                 </div>
 
                             </div>
                         </div>
-
                         <div class="table-responsive">
                             <table class="table table-bordered" id="table">
                                 <thead>
                                 <tr>
                                     <th>排序</th>
-                                    <th width="50%">圖片預覽</th>
-                                    <th width="30%">名稱</th>
+                                    <th>欄位名稱</th>
                                     <th>編輯</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <? if ($plist) { ?>
-                                    <? foreach ($plist as $row) { ?>
+                                <? if ($column) { ?>
+                                    <? foreach ($column as $row) { ?>
                                         <tr>
                                             <td><?= $row->order ?></td>
+                                            <td><?= $row->title ?></td>
                                             <td>
-                                                <? if (isset($row->image)) { ?>
-                                                    <div id="preview">
-                                                        <img src="<?= base_url($row->image) ?>">
-                                                    </div>
-                                                <? } ?>
-                                            </td>
-                                            <td><?= $row->name ?></td>
-                                            <td>
-                                                <a href="<?= site_url('bkproductlist/edit_product_list/' . $row->PLID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
-                                                <a href="<?= site_url('bkproductlist/spec_column/' . $row->PLID) ?>" class="btn btn-success" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 新增規格欄位 </span></a>
-                                                <a href="<?= site_url('bkproductlist/delete_product_list/' . $row->PLID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
+                                                <a href="<?= site_url('bkproductlist/edit_column/' . $row->PLID.'/'.$row->SID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
+                                                <a href="<?= site_url('bkproductlist/delete_column/' . $row->PLID.'/'.$row->SID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
                                             </td>
                                         </tr>
                                     <? } ?>
@@ -92,17 +68,6 @@
 <script src="<?= base_url("assets/backend/js/plugin/datatable-responsive/datatables.responsive.min.js") ?>"></script>
 
 <script>
-    $(document).ready(function () {
-        $("div#preview").hover(
-            function () {
-                $(this).css("overflow", "visible").css("z-index", 99);
-            },
-            function () {
-                $(this).css("overflow", "hidden").css("z-index", 1);
-            }
-        );
-    });
-
     $(document).ready(function () {
         $('#table').dataTable({
             "pageLength": 10,

@@ -17,34 +17,40 @@
 
                     <header>
                         <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-                        <h2>新增輪播圖</h2>
+                        <h2>新增</h2>
                     </header>
 
                     <div>
                         <div class="widget-body no-padding">
-                            <form class="form-horizontal" method="post" action="<?=site_url('backend/bkabout/add_banner')?>" enctype="multipart/form-data">
+                            <form class="form-horizontal" method="post" action="<?=site_url('bkerror/add_error/'.$errorCodeID.'/'.$parentID)?>" enctype="multipart/form-data">
                                 <div id="content">
                                     <fieldset>
-                                        <legend>新增輪播圖</legend>
-
-<!--                                        <div class="form-group">-->
-<!--                                            <label class="col-sm-2 control-label" >排序</label>-->
-<!---->
-<!--                                            <div class="col-sm-1">-->
-<!--                                                <input class="form-control" min="1" type="number" name="order" value="--><?//=(!$order->order)?1:$order->order+1?><!--">-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                        <legend>新增</legend>
 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">輪播圖</label>
+                                            <label class="col-sm-2 control-label">圖片</label>
 
                                             <div class="col-sm-9">
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="image" required>
+
                                                 <p class="help-block">
                                                     圖片最佳大小為850*175
                                                 </p>
+
                                                 <p class="help-block">
                                                     <img id="preview" src="">
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">PDF</label>
+
+                                            <div class="col-sm-9">
+                                                <input type="file" class="btn btn-default" name="errorFile" required>
+
+                                                <p class="help-block">
+                                                    <!--                                                    圖片最佳大小為850*175-->
                                                 </p>
                                             </div>
                                         </div>
@@ -57,12 +63,20 @@
                                             </div>
                                         </div>
 
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">內文</label>
+
+                                            <div class="col-sm-6">
+                                                <textarea class="form-control" rows="10" name="content" required></textarea>
+                                            </div>
+                                        </div>
+
                                     </fieldset>
                                 </div>
 
                                 <div class="widget-footer">
                                     <button type="submit" class="btn btn-primary" id="submit">確定</button>
-                                    <button type="button" class="btn btn-default" onclick="location.href='<?= site_url("backend/bkabout#5") ?>';">返回</button>
+                                    <button type="button" class="btn btn-default" onclick="location.href='<?= site_url("bkerror/error_solution/".$errorCodeID.'/'.$parentID) ?>';">返回</button>
                                 </div>
                             </form>
                         </div>
@@ -70,10 +84,10 @@
                 </div>
             </article>
         </div>
-
-
     </section>
 </div>
+
+
 <script>
     $(document).ready(function () {
         $('input#UploadImg').change(function () {
@@ -85,4 +99,5 @@
             }
         });
     });
+
 </script>

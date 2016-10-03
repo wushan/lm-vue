@@ -29,7 +29,7 @@
                 <header>
                     <span class="widget-icon"><i class="fa fa-table"></i></span>
 
-                    <h2>產品列表</h2>
+                    <h2>錯誤處理</h2>
                 </header>
 
                 <div>
@@ -37,10 +37,16 @@
 
                         <div class="widget-body-toolbar">
                             <div class="row">
-                                <div class="col-xs-6 text-left">
-                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkproducts/add_products") ?>';"><i class="fa fa-plus"></i> <span>新增產品</span></a>
-                                </div>
 
+                                <div class="col-xs-6 text-left">
+                                    <?if($counterror<4){?>
+                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkerror/add_error/".$errorCodeID.'/'.$parentID) ?>';"><i class="fa fa-plus"></i> <span>新增錯誤處理</span></a>
+                                    <?}?>
+                                    <a class="btn btn-warning" onclick="location.href='<?= site_url("bkerror") ?>';"><i class="fa fa-mail-reply"></i> <span>返回錯誤代碼</span></a>
+                                    <?if($parentID!=0){?>
+                                    <a class="btn btn-success" onclick="location.href='<?= site_url("bkerror/error_solution/".$errorCodeID.'/'.$back) ?>';"><i class="fa fa-level-up"></i> <span>回上一層</span></a>
+                                    <?}?>
+                                </div>
                             </div>
                         </div>
 
@@ -48,35 +54,29 @@
                             <table class="table table-bordered" id="table">
                                 <thead>
                                 <tr>
-                                    <th width="4%">顯示首頁</th>
-                                    <th width="6%">顯示產品列表首頁</th>
-                                    <th width="4%">排序</th>
-                                    <th width="10%">產品系列</th>
-                                    <th width="25%">圖片預覽</th>
-                                    <th width="15%">名稱</th>
-                                    <th width="12%">編輯</th>
+                                    <th width="15%">錯誤代碼</th>
+                                    <th width="30%">圖片預覽</th>
+                                    <th width="30%">標題</th>
+                                    <th>編輯</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <? if ($product) { ?>
-                                    <? foreach ($product as $row) { ?>
+                                <? if ($error) { ?>
+                                    <? foreach ($error as $row) { ?>
                                         <tr>
-                                            <td><?=($row->is_home==1)?'<i class="fa txt-color-green fa-check"></i>':'<i class="fa txt-color-red fa-times"></i>' ?></td>
-                                            <td><?=($row->is_product_page==1)?'<i class="fa txt-color-green fa-check"></i>':'<i class="fa txt-color-red fa-times"></i>' ?></td>
-                                            <td><?= $row->order ?></td>
-                                            <td><?= $row->list_name ?></td>
+                                            <td><?= $row->errorCode ?></td>
                                             <td>
-                                                <? if (isset($row->pdimage)) { ?>
+                                                <? if (isset($row->image)) { ?>
                                                     <div id="preview">
-                                                        <img src="<?= base_url($row->pdimage) ?>">
+                                                        <img src="<?= base_url($row->image) ?>">
                                                     </div>
                                                 <? } ?>
                                             </td>
-                                            <td><?= $row->name ?></td>
+                                            <td><?= $row->title ?></td>
                                             <td>
-                                                <a href="<?= site_url('bkproducts/edit_products/' . $row->PID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
-                                                <a href="<?= site_url('bkproducts/add_spec/' . $row->PID) ?>" class="btn btn-success" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 產品規格 </span></a>
-                                                <a href="<?= site_url('bkproducts/delete_products/' . $row->PID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
+                                                <a href="<?= site_url('bkerror/edit_error/' .$errorCodeID.'/'. $row->EID.'/'.$parentID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
+                                                <a href="<?= site_url('bkerror/error_solution/' . $errorCodeID.'/'.$row->EID.'/'.$row->parentID) ?>" class="btn btn-success" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 錯誤處理 </span></a>
+                                                <a href="<?= site_url('bkerror/delete_error/' .$errorCodeID.'/'. $row->EID.'/'.$parentID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
                                             </td>
                                         </tr>
                                     <? } ?>

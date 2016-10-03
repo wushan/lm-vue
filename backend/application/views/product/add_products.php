@@ -9,7 +9,6 @@
     }
 </style>
 
-
 <div id="content">
     <section id="widget-grid" class="">
         <div class="row">
@@ -48,23 +47,31 @@
 
                                                 <div class="form-group">
                                                     <label class="col-md-2 control-label">顯示首頁</label>
+
                                                     <div class="col-md-10">
-                                                        <div class="checkbox">
-                                                            <label class="col-md-2">
-                                                                <input type="checkbox"  name="is_home" value="1">
-                                                            </label>
-                                                        </div>
+                                                        <label class="radio radio-inline">
+                                                            <input type="radio" name="is_home" value="0" checked>
+                                                            不顯示
+                                                        </label>
+                                                        <label class="radio radio-inline">
+                                                            <input type="radio" name="is_home" value="1" <?= ($is_home->is_home == 1) ? 'disabled' : '' ?>>
+                                                            顯示
+                                                        </label>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-md-2 control-label">顯示產品列表首頁</label>
+
                                                     <div class="col-md-10">
-                                                        <div class="checkbox">
-                                                            <label class="col-md-2">
-                                                                <input type="checkbox"  name="is_product_page" value="1">
-                                                            </label>
-                                                        </div>
+                                                        <label class="radio radio-inline">
+                                                            <input type="radio" name="is_product_page" value="0" checked>
+                                                            不顯示
+                                                        </label>
+                                                        <label class="radio radio-inline">
+                                                            <input type="radio" name="is_product_page" value="1" <?= ($is_product_page->is_product_page == 3) ? 'disabled' : '' ?>>
+                                                            顯示
+                                                        </label>
                                                     </div>
                                                 </div>
 
@@ -73,6 +80,21 @@
 
                                                     <div class="col-sm-1">
                                                         <input class="form-control" min="1" type="number" name="order" value="<?= (!$order->order) ? 1 : $order->order + 1 ?>">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">產品系列</label>
+
+                                                    <div class="col-sm-2">
+                                                        <select class="form-control" name="PLID" required>
+                                                            <option value="0">請選擇</option>
+                                                            <? if ($plist) { ?>
+                                                                <? foreach ($plist as $row) { ?>
+                                                                    <option value="<?=$row->PLID?>"><?=$row->name?></option>
+                                                                <? } ?>
+                                                            <? } ?>
+                                                        </select>
                                                     </div>
                                                 </div>
 
@@ -312,8 +334,8 @@
         });
     });
 
-    $(function(){
-        $('#add_features').click(function(){
+    $(function () {
+        $('#add_features').click(function () {
             $("#features").append('<div class="form-group"><label class="col-sm-2 control-label">名稱</label><div class="col-sm-4"><input class="form-control" maxlength="150" type="text" name="features[title][]" required></div></div><div class="form-group"><label class="col-sm-2 control-label">介紹</label><div class="col-sm-4"><textarea class="form-control" rows="8" name="features[intro][]" required></textarea></div></div>');
         });
     });
