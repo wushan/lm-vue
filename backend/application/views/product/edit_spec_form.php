@@ -13,7 +13,7 @@
 
                     <div>
                         <div class="widget-body no-padding">
-                            <form class="form-horizontal" method="post" action="<?= site_url('bkspec/edit_spec_form/' . $PLID.'/'.$spec->SPID) ?>" enctype="multipart/form-data">
+                            <form class="form-horizontal" method="post" action="<?= site_url('bkspec/edit_spec_form/' . $PID.'/'.$spec->SPID) ?>" enctype="multipart/form-data">
                                 <div id="content">
                                     <fieldset>
                                         <legend>編輯產品規格表</legend>
@@ -22,7 +22,7 @@
                                             <label class="col-sm-2 control-label">產品系列</label>
 
                                             <div class="col-sm-1">
-                                                <input class="form-control" type="text" value="<?= $plist->name ?>" disabled>
+                                                <input class="form-control" type="text" value="<?= $product->name ?>" disabled>
                                             </div>
                                         </div>
 
@@ -39,19 +39,19 @@
                                         <a class="btn btn-primary" id="add_product" href="javascript:;"><i class="fa fa-plus"></i> <span>加入</span></a>
 
                                         <div id="products">
-                                            <? if ($PID = json_decode($spec->PID)) { ?>
-                                                <? foreach ($PID as $srow) { ?>
+                                            <? if ($PDID = json_decode($spec->PDID)) { ?>
+                                                <? foreach ($PDID as $srow) { ?>
                                                     <? if ($srow != 0) { ?>
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label">產品名稱</label>
 
                                                             <div class="col-sm-2">
-                                                                <select class="form-control" name="PID[]"
+                                                                <select class="form-control" name="PDID[]"
                                                                         required>
                                                                     <option value="0">請選擇</option>
-                                                                    <? if ($product) { ?>
-                                                                        <? foreach ($product as $row) { ?>
-                                                                            <option value="<?= $row->PID ?>" <?= ($PID) ? ($row->PID == $srow) ? 'selected' : '' : '' ?>><?= $row->name ?></option>
+                                                                    <? if ($pd) { ?>
+                                                                        <? foreach ($pd as $row) { ?>
+                                                                            <option value="<?= $row->PDID ?>" <?= ($PDID) ? ($row->PDID == $srow) ? 'selected' : '' : '' ?>><?= $row->model ?></option>
                                                                         <? } ?>
                                                                     <? } ?>
                                                                 </select>
@@ -69,7 +69,7 @@
 
                                 <div class="widget-footer">
                                     <button type="submit" class="btn btn-primary" id="submit">確定</button>
-                                    <button type="button" class="btn btn-default" onclick="location.href='<?= site_url("bkspec/spec_form/" . $PLID) ?>';">返回</button>
+                                    <button type="button" class="btn btn-default" onclick="location.href='<?= site_url("bkspec/spec_form/" . $PID) ?>';">返回</button>
                                 </div>
                             </form>
                         </div>
@@ -83,7 +83,7 @@
 
     $(function () {
         $('#add_product').click(function () {
-            $("#products").append('<div class="form-group"><label class="col-sm-2 control-label">產品名稱</label><div class="col-sm-2"><select class="form-control" name="PID[]"  required><option value="0">請選擇</option> <? if ($product) { ?> <? foreach ($product as $row) { ?>  <option  value="<?= $row->PID ?>" ><?= $row->name ?></option>   <? } ?>  <? } ?>  </select> </div>  </div>');
+            $("#products").append('<div class="form-group"><label class="col-sm-2 control-label">產品名稱</label><div class="col-sm-2"><select class="form-control" name="PDID[]"  required><option value="0">請選擇</option> <? if ($pd) { ?> <? foreach ($pd as $row) { ?>  <option  value="<?= $row->PDID ?>" ><?= $row->model ?></option>   <? } ?>  <? } ?>  </select> </div>  </div>');
         });
     });
 </script>

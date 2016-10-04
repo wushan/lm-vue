@@ -23,8 +23,8 @@
                         <div class="widget-body-toolbar">
                             <div class="row">
                                 <div class="col-xs-6 text-left">
-                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkproductlist/add_column/".$PLID) ?>';"><i class="fa fa-plus"></i> <span>新增欄位</span></a>
-                                    <a class="btn btn-warning" onclick="location.href='<?= site_url("bkproductlist") ?>';"><i class="fa fa-level-up"></i> <span>返回</span></a>
+                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkproducts/add_column/".$PID) ?>';"><i class="fa fa-plus"></i> <span>新增欄位</span></a>
+                                    <a class="btn btn-warning" onclick="location.href='<?= site_url("bkproducts") ?>';"><i class="fa fa-level-up"></i> <span>返回</span></a>
                                 </div>
 
                             </div>
@@ -45,8 +45,8 @@
                                             <td><?= $row->order ?></td>
                                             <td><?= $row->title ?></td>
                                             <td>
-                                                <a href="<?= site_url('bkproductlist/edit_column/' . $row->PLID.'/'.$row->SID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
-                                                <a href="<?= site_url('bkproductlist/delete_column/' . $row->PLID.'/'.$row->SID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
+                                                <a href="<?= site_url('bkproducts/edit_column/' . $row->PID.'/'.$row->SID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
+                                                <a href="<?= site_url('bkproducts/delete_column/' . $row->PID.'/'.$row->SID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
                                             </td>
                                         </tr>
                                     <? } ?>

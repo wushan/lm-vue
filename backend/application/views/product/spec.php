@@ -44,12 +44,12 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <? if ($plist) { ?>
-                                    <? foreach ($plist as $row) { ?>
+                                <? if ($product) { ?>
+                                    <? foreach ($product as $row) { ?>
                                         <tr>
                                             <td><?= $row->name ?></td>
                                             <td>
-                                                <a href="<?= site_url('bkspec/spec_form/' . $row->PLID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 新增產品規格表 </span></a>
+                                                <a href="<?= site_url('bkspec/spec_form/' . $row->PID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 新增產品規格表 </span></a>
                                             </td>
                                         </tr>
                                     <? } ?>

@@ -16,7 +16,7 @@ class Bkhome extends MY_Controller
         $home=$this->home->home_get();
         if($post=$this->input->post(null,true)){
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
-                $post['image']=$this->upload('homepage', 850);
+                $post['image']=$this->upload('homepage', 965);
                 if($home && file_exists($home->image)){
                     unlink($home->image);
                 }

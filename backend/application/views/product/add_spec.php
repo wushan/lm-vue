@@ -22,11 +22,11 @@
 
                 <div>
                     <div class="widget-body no-padding">
-                        <form method="post" action="<?= site_url('bkproducts/add_spec/'.$PID) ?>">
+                        <form method="post" action="<?= site_url('bkpd/add_spec/'.$PDID) ?>">
                             <div class="widget-body-toolbar">
                                 <div class="row">
                                     <div class="col-xs-6 text-left">
-                                        <a class="btn btn-warning" onclick="location.href='<?= site_url("bkproducts") ?>';"><i class="fa fa-level-up"></i> <span>返回</span></a>
+                                        <a class="btn btn-warning" onclick="location.href='<?= site_url("bkpd") ?>';"><i class="fa fa-level-up"></i> <span>返回</span></a>
                                         <button class="btn btn-primary" type="submit"> <span>送出</span></button>
                                     </div>
 
@@ -46,7 +46,7 @@
                                             <tr>
                                                 <td><?= $row->title ?></td>
                                                 <td>
-                                                    <input class="form-control" maxlength="150" type="text" name="spec[<?=$i?>][]" value="<?=($spec=json_decode($product->spec))?$spec[$i][0]:''?>">
+                                                    <input class="form-control" maxlength="150" type="text" name="spec[<?=$i?>][]" value="<?=($spec=json_decode($pd->spec))?$spec[$i][0]:''?>">
                                                 </td>
                                             </tr>
                                         <? } ?>

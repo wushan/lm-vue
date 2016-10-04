@@ -63,6 +63,14 @@
                                                 <legend>區塊A</legend>
 
                                                 <div class="form-group">
+                                                    <label class="col-sm-2 control-label">標題</label>
+
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" maxlength="150" type="text" name="contentA_title" value="<?=($about)?$about->contentA_title:''?>" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
                                                     <label class="col-sm-2 control-label">內文</label>
 
                                                     <div class="col-sm-6">
@@ -143,6 +151,14 @@
                                                         <p class="help-block">
                                                             <img id="preview" src="<?=($about && file_exists($about->imageD))?base_url($about->imageD):''?>">
                                                         </p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">標題</label>
+
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" maxlength="150" type="text" name="contentD_title" value="<?=($about)?$about->contentD_title:''?>" required>
                                                     </div>
                                                 </div>
 

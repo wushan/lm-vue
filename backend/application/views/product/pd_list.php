@@ -3,20 +3,6 @@
 
         text-align: center;
     }
-
-    #preview {
-        width: 100%;
-        height: 30px;
-        overflow: hidden;
-        position: relative;
-    }
-
-    #preview img {
-        width: 100%;
-        padding: 3px;
-        margin: -50% 0;
-        background-color: white;
-    }
 </style>
 
 <section id="widget-grid" class="">
@@ -29,7 +15,7 @@
                 <header>
                     <span class="widget-icon"><i class="fa fa-table"></i></span>
 
-                    <h2>新聞管理</h2>
+                    <h2>產品列表</h2>
                 </header>
 
                 <div>
@@ -38,7 +24,7 @@
                         <div class="widget-body-toolbar">
                             <div class="row">
                                 <div class="col-xs-6 text-left">
-                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bknews/add_news") ?>';"><i class="fa fa-plus"></i> <span>新增新聞</span></a>
+                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkpd/add_pd") ?>';"><i class="fa fa-plus"></i> <span>新增</span></a>
                                 </div>
 
                             </div>
@@ -48,26 +34,23 @@
                             <table class="table table-bordered" id="table">
                                 <thead>
                                 <tr>
-                                    <th width="50%">圖片預覽</th>
-                                    <th width="30%">名稱</th>
+                                    <th>排序</th>
+                                    <th>分類</th>
+                                    <th>名稱</th>
                                     <th>編輯</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <? if ($news) { ?>
-                                    <? foreach ($news as $row) { ?>
+                                <? if ($pd) { ?>
+                                    <? foreach ($pd as $row) { ?>
                                         <tr>
+                                            <td><?= $row->order ?></td>
+                                            <td><?= $row->cate_name ?></td>
+                                            <td><?= $row->model ?></td>
                                             <td>
-                                                <? if (isset($row->bgimage)) { ?>
-                                                    <div id="preview">
-                                                        <img src="<?= base_url($row->thumbnail) ?>">
-                                                    </div>
-                                                <? } ?>
-                                            </td>
-                                            <td><?= $row->title ?></td>
-                                            <td>
-                                                <a href="<?= site_url('bknews/edit_news/' . $row->NID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
-                                                <a href="<?= site_url('bknews/delete_news/' . $row->NID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
+                                                <a href="<?= site_url('bkpd/edit_pd/' . $row->PDID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
+                                                <a href="<?= site_url('bkpd/add_spec/' . $row->PDID) ?>" class="btn btn-success" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 產品規格 </span></a>
+                                                <a href="<?= site_url('bkpd/delete_pd/' . $row->PDID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
                                             </td>
                                         </tr>
                                     <? } ?>
@@ -89,16 +72,6 @@
 <script src="<?= base_url("assets/backend/js/plugin/datatable-responsive/datatables.responsive.min.js") ?>"></script>
 
 <script>
-    $(document).ready(function () {
-        $("div#preview").hover(
-            function () {
-                $(this).css("overflow", "visible").css("z-index", 99);
-            },
-            function () {
-                $(this).css("overflow", "hidden").css("z-index", 1);
-            }
-        );
-    });
 
     $(document).ready(function () {
         $('#table').dataTable({

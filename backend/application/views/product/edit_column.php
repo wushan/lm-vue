@@ -13,7 +13,7 @@
 
                     <div>
                         <div class="widget-body no-padding">
-                            <form class="form-horizontal" method="post" action="<?=site_url('bkproductlist/edit_column/'.$column->PLID.'/'.$column->SID)?>" enctype="multipart/form-data">
+                            <form class="form-horizontal" method="post" action="<?=site_url('bkproducts/edit_column/'.$column->PID.'/'.$column->SID)?>" enctype="multipart/form-data">
                                 <div id="content">
                                     <fieldset>
                                         <legend>編輯欄位</legend>
@@ -40,7 +40,7 @@
 
                                 <div class="widget-footer">
                                     <button type="submit" class="btn btn-primary" id="submit">確定</button>
-                                    <button type="button" class="btn btn-default" onclick="location.href='<?= site_url("bkproductlist/spec_column/".$column->  PLID) ?>';">返回</button>
+                                    <button type="button" class="btn btn-default" onclick="location.href='<?= site_url("bkproducts/spec_column/".$column->  PID) ?>';">返回</button>
                                 </div>
                             </form>
                         </div>

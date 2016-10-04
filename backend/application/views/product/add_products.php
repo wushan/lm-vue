@@ -19,17 +19,17 @@
                     <header>
                         <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
 
-                        <h2>新增產品</h2>
+                        <h2>新增分類</h2>
 
                         <ul class="nav nav-tabs pull-right in">
                             <li class="active">
-                                <a data-toggle="tab" href="#tab"><span class="hidden-mobile hidden-tablet">產品資料</span></a>
+                                <a data-toggle="tab" href="#tab"><span class="hidden-mobile hidden-tablet">分類資料</span></a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#tab1"><span class="hidden-mobile hidden-tablet">產品圖片&影片輪播</span></a>
+                                <a data-toggle="tab" href="#tab1"><span class="hidden-mobile hidden-tablet">分類圖片&影片輪播</span></a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#tab2"><span class="hidden-mobile hidden-tablet">產品特色</span></a>
+                                <a data-toggle="tab" href="#tab2"><span class="hidden-mobile hidden-tablet">特色</span></a>
                             </li>
                         </ul>
 
@@ -76,6 +76,21 @@
                                                 </div>
 
                                                 <div class="form-group">
+                                                    <label class="col-md-2 control-label">背景圖</label>
+
+                                                    <div class="col-md-10">
+                                                        <label class="radio radio-inline">
+                                                            <input type="radio" name="which_bg" value="0">
+                                                            產品系列圖
+                                                        </label>
+                                                        <label class="radio radio-inline">
+                                                            <input type="radio" name="which_bg" value="1" >
+                                                            產品背景圖
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
                                                     <label class="col-sm-2 control-label">排序</label>
 
                                                     <div class="col-sm-1">
@@ -99,7 +114,7 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">產品背景圖</label>
+                                                    <label class="col-sm-2 control-label">分類背景圖</label>
 
                                                     <div class="col-sm-9">
                                                         <input type="file" class="btn btn-default" id="UploadImg" name="image" required>
@@ -115,13 +130,13 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">產品圖</label>
+                                                    <label class="col-sm-2 control-label">分類圖</label>
 
                                                     <div class="col-sm-9">
                                                         <input type="file" class="btn btn-default" id="UploadImg" name="imageA" required>
 
                                                         <p class="help-block">
-                                                            圖片最佳大小為850*175
+                                                            圖片最佳大小為600*600
                                                         </p>
 
                                                         <p class="help-block">
@@ -131,7 +146,7 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">產品型錄</label>
+                                                    <label class="col-sm-2 control-label">型錄</label>
 
                                                     <div class="col-sm-9">
                                                         <input type="file" class="btn btn-default" name="catalogFile">
@@ -143,12 +158,20 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">名稱</label>
+                                                    <label class="col-sm-2 control-label">分類名稱</label>
 
                                                     <div class="col-sm-6">
-                                                        <input class="form-control" maxlength="150" type="text" name="name" required>
+                                                        <input class="form-control" maxlength="150" type="text" name="name">
                                                     </div>
                                                 </div>
+
+<!--                                                <div class="form-group">-->
+<!--                                                    <label class="col-sm-2 control-label">產品型號</label>-->
+<!---->
+<!--                                                    <div class="col-sm-6">-->
+<!--                                                        <input class="form-control" maxlength="150" type="text" name="model" required>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
 
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">介紹</label>
@@ -284,7 +307,7 @@
                                     <div class="tab-pane fade" id="tab2">
                                         <div id="content">
                                             <fieldset>
-                                                <legend>產品特色</legend>
+                                                <legend>特色</legend>
                                                 <a class="btn btn-primary" id="add_features" href="javascript:;"><i class="fa fa-plus"></i> <span>新增特色</span></a>
 
                                                 <div id="features">

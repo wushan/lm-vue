@@ -25,6 +25,11 @@ class Bknews extends MY_Controller
     public function add_news()
     {
         if ($post = $this->input->post(null, true)) {
+
+            if (isset($_FILES['imageF']) && !$_FILES['imageF']['error']):
+                $post['thumbnail']=$this->upload('news', 850,'F');
+
+            endif;
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
                 $post['bgimage']=$this->upload('news', 850);
             endif;
@@ -55,6 +60,14 @@ class Bknews extends MY_Controller
         $news = $this->news->get_news_by_nid($NID);
 
         if ($post = $this->input->post(null, true)) {
+
+            if (isset($_FILES['imageF']) && !$_FILES['imageF']['error']):
+                $post['thumbnail']=$this->upload('news', 850,'F');
+                if($news && file_exists($news->thumbnail)){
+                    unlink($news->thumbnail);
+                }
+            endif;
+
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
                 $post['bgimage']=$this->upload('news', 850);
                 if($news && file_exists($news->bgimage)){

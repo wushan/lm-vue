@@ -53,7 +53,7 @@
                                             <label class="col-sm-2 control-label">標題</label>
 
                                             <div class="col-sm-6">
-                                                <input class="form-control" maxlength="150" type="text" name="title" required>
+                                                <textarea class="form-control" rows="8" name="title" required></textarea>
                                             </div>
                                         </div>
 

@@ -69,7 +69,7 @@
                                             <td><?= $row->name ?></td>
                                             <td>
                                                 <a href="<?= site_url('bkproductlist/edit_product_list/' . $row->PLID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
-                                                <a href="<?= site_url('bkproductlist/spec_column/' . $row->PLID) ?>" class="btn btn-success" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 新增規格欄位 </span></a>
+<!--                                                <a href="--><?//= site_url('bkproductlist/spec_column/' . $row->PLID) ?><!--" class="btn btn-success" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 新增規格欄位 </span></a>-->
                                                 <a href="<?= site_url('bkproductlist/delete_product_list/' . $row->PLID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
                                             </td>
                                         </tr>

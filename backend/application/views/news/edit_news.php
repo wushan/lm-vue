@@ -37,6 +37,22 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label">代表圖</label>
+
+                                            <div class="col-sm-9">
+                                                <input type="file" class="btn btn-default" id="UploadImg" name="imageF" >
+
+                                                <p class="help-block">
+                                                    圖片最佳大小為850*175
+                                                </p>
+
+                                                <p class="help-block">
+                                                    <img id="preview" src="<?=($news && file_exists($news->thumbnail))?base_url($news->thumbnail):''?>">
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label class="col-sm-2 control-label">新聞背景圖</label>
 
                                             <div class="col-sm-9">
@@ -53,7 +69,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">新聞輪播圖</label>
+                                            <label class="col-sm-2 control-label">新聞輪播圖A</label>
 
                                             <div class="col-sm-9">
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="imageA">
@@ -66,7 +82,7 @@
                                                     <img id="preview" src="<?=($news && file_exists($news->newsimageA))?base_url($news->newsimageA):''?>">
                                                 </p>
                                             </div>
-                                            <label class="col-sm-2 control-label"></label>
+                                            <label class="col-sm-2 control-label">新聞輪播圖B</label>
 
                                             <div class="col-sm-9">
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="imageB" >
@@ -79,7 +95,7 @@
                                                     <img id="preview" src="<?=($news && file_exists($news->newsimageB))?base_url($news->newsimageB):''?>">
                                                 </p>
                                             </div>
-                                            <label class="col-sm-2 control-label"></label>
+                                            <label class="col-sm-2 control-label">新聞輪播圖C</label>
 
                                             <div class="col-sm-9">
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="imageC" >
@@ -92,7 +108,7 @@
                                                     <img id="preview" src="<?=($news && file_exists($news->newsimageC))?base_url($news->newsimageC):''?>">
                                                 </p>
                                             </div>
-                                            <label class="col-sm-2 control-label"></label>
+                                            <label class="col-sm-2 control-label">新聞輪播圖D</label>
 
                                             <div class="col-sm-9">
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="imageD" >
@@ -112,6 +128,14 @@
 
                                             <div class="col-sm-6">
                                                 <input class="form-control" maxlength="150" type="text" name="title" value="<?=$news->title?>" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">簡介</label>
+
+                                            <div class="col-sm-6">
+                                                <textarea class="form-control" rows="3" name="excerpt" required><?=$news->excerpt?></textarea>
                                             </div>
                                         </div>
 

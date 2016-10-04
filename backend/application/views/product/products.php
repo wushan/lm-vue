@@ -29,7 +29,7 @@
                 <header>
                     <span class="widget-icon"><i class="fa fa-table"></i></span>
 
-                    <h2>產品列表</h2>
+                    <h2>產品分類</h2>
                 </header>
 
                 <div>
@@ -38,7 +38,7 @@
                         <div class="widget-body-toolbar">
                             <div class="row">
                                 <div class="col-xs-6 text-left">
-                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkproducts/add_products") ?>';"><i class="fa fa-plus"></i> <span>新增產品</span></a>
+                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkproducts/add_products") ?>';"><i class="fa fa-plus"></i> <span>新增分類</span></a>
                                 </div>
 
                             </div>
@@ -48,12 +48,12 @@
                             <table class="table table-bordered" id="table">
                                 <thead>
                                 <tr>
-                                    <th width="4%">顯示首頁</th>
-                                    <th width="6%">顯示產品列表首頁</th>
+                                    <th width="3%">顯示首頁</th>
+                                    <th width="5%">顯示產品首頁</th>
                                     <th width="4%">排序</th>
-                                    <th width="10%">產品系列</th>
-                                    <th width="25%">圖片預覽</th>
-                                    <th width="15%">名稱</th>
+                                    <th width="6%">產品系列</th>
+                                    <th width="10%">圖片預覽</th>
+                                    <th width="10%">分類名稱</th>
                                     <th width="12%">編輯</th>
                                 </tr>
                                 </thead>
@@ -75,7 +75,8 @@
                                             <td><?= $row->name ?></td>
                                             <td>
                                                 <a href="<?= site_url('bkproducts/edit_products/' . $row->PID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
-                                                <a href="<?= site_url('bkproducts/add_spec/' . $row->PID) ?>" class="btn btn-success" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 產品規格 </span></a>
+                                                <a href="<?= site_url('bkproducts/spec_column/' . $row->PID) ?>" class="btn btn-success" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 新增規格欄位 </span></a>
+<!--                                                <a href="--><?//= site_url('bkproducts/add_spec/' . $row->PID) ?><!--" class="btn btn-success" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 產品規格 </span></a>-->
                                                 <a href="<?= site_url('bkproducts/delete_products/' . $row->PID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
                                             </td>
                                         </tr>

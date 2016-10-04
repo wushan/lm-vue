@@ -8,15 +8,15 @@
 
                     <header>
                         <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-                        <h2>新增欄位</h2>
+                        <h2>新增</h2>
                     </header>
 
                     <div>
                         <div class="widget-body no-padding">
-                            <form class="form-horizontal" method="post" action="<?=site_url('bkproducts/add_column/'.$PID)?>" enctype="multipart/form-data">
+                            <form class="form-horizontal" method="post" action="<?=site_url('bkpd/add_pd')?>" enctype="multipart/form-data">
                                 <div id="content">
                                     <fieldset>
-                                        <legend>新增欄位</legend>
+                                        <legend>新增</legend>
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" >排序</label>
@@ -27,20 +27,34 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">名稱</label>
+                                            <label class="col-sm-2 control-label">產品分類</label>
 
-                                            <div class="col-sm-3">
-                                                <input class="form-control" maxlength="150" type="text" name="title" required>
+                                            <div class="col-sm-2">
+                                                <select class="form-control" name="PID" required>
+                                                    <option value="0">請選擇</option>
+                                                    <? if ($category) { ?>
+                                                        <? foreach ($category as $row) { ?>
+                                                            <option value="<?=$row->PID?>"><?=$row->name?></option>
+                                                        <? } ?>
+                                                    <? } ?>
+                                                </select>
                                             </div>
                                         </div>
 
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">型號</label>
+
+                                            <div class="col-sm-3">
+                                                <input class="form-control" maxlength="150" type="text" name="model" required>
+                                            </div>
+                                        </div>
 
                                     </fieldset>
                                 </div>
 
                                 <div class="widget-footer">
                                     <button type="submit" class="btn btn-primary" id="submit">確定</button>
-                                    <button type="button" class="btn btn-default" onclick="location.href='<?= site_url("bkproducts/spec_column/".$PID) ?>';">返回</button>
+                                    <button type="button" class="btn btn-default" onclick="location.href='<?= site_url("bkpd") ?>';">返回</button>
                                 </div>
                             </form>
                         </div>

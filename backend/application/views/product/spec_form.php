@@ -23,7 +23,7 @@
                         <div class="widget-body-toolbar">
                             <div class="row">
                                 <div class="col-xs-6 text-left">
-                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkspec/add_spec_form/".$PLID) ?>';"><i class="fa fa-plus"></i> <span>新增產品規格表</span></a>
+                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkspec/add_spec_form/".$PID) ?>';"><i class="fa fa-plus"></i> <span>新增產品規格表</span></a>
                                     <a class="btn btn-warning" onclick="location.href='<?= site_url("bkspec") ?>';"><i class="fa fa-level-up"></i> <span>返回</span></a>
                                 </div>
 
@@ -45,8 +45,8 @@
 
                                             <td><?= $row->order ?></td>
                                             <td>
-                                                <a href="<?= site_url('bkspec/edit_spec_form/' . $row->PLID.'/'.$row->SPID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
-                                                <a href="<?= site_url('bkspec/delete_spec_form/' . $row->PLID.'/'.$row->SPID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
+                                                <a href="<?= site_url('bkspec/edit_spec_form/' . $row->PID.'/'.$row->SPID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
+                                                <a href="<?= site_url('bkspec/delete_spec_form/' . $row->PID.'/'.$row->SPID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
                                             </td>
                                         </tr>
                                     <? } ?>

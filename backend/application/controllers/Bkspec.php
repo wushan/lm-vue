@@ -14,75 +14,74 @@ class Bkspec extends MY_Controller
     public function index()
     {
 
-        $plist=$this->product->get_product_list();
+        $product=$this->product->get_products();
 
         $data=array(
-            'plist'=>$plist
+            'product'=>$product
         );
         $this->get_view('spec',$data);
     }
 
-    public function spec_form($PLID=false)
+    public function spec_form($PID=false)
     {
 
-        $spec=$this->product->get_spec($PLID);
+        $spec=$this->product->get_spec($PID);
 
         $data=array(
             'spec'=>$spec,
-            'PLID'=>$PLID,
+            'PID'=>$PID,
         );
         $this->get_view('spec_form',$data);
     }
 
-    public function add_spec_form($PLID=false)
+    public function add_spec_form($PID=false)
     {
 
-        $plist=$this->product->get_product_list_by_plid($PLID);
+        $product=$this->product->get_products_by_pid($PID);
         if ($post = $this->input->post(null, true)) {
-            $post['PLID'] = $PLID;
-            $post['PID'] = json_encode($post['PID']);
+            $post['PID'] = $PID;
+            $post['PDID'] = json_encode($post['PDID']);
             $post['create_time'] = date('Y-m-d H:i:s');
             $this->db->insert('tb_spec', $post);
-            redirect('bkspec/spec_form/'.$PLID);
+            redirect('bkspec/spec_form/'.$PID);
         }
         $data = array(
-            'order'=>$this->product->select_spec_order($PLID),
-            'PLID'=>$PLID,
-            'plist'=>$plist,
-            'product'=>  $this->product->get_products($PLID)
+            'order'=>$this->product->select_spec_order($PID),
+            'PID'=>$PID,
+            'product'=>$product,
+            'pd'=>  $this->product->get_pd($PID)
         );
         $this->get_view('add_spec_form', $data);
     }
 
-    public function edit_spec_form($PLID=false,$SPID=false)
+    public function edit_spec_form($PID=false,$SPID=false)
     {
 
-        $plist=$this->product->get_product_list_by_plid($PLID);
-        $spec=$this->product->get_spec_by_spid($PLID,$SPID);
+        $product=$this->product->get_products_by_pid($PID);
+        $spec=$this->product->get_spec_by_spid($PID,$SPID);
         if ($post = $this->input->post(null, true)) {
-            $post['PLID'] = $PLID;
-            $post['PID'] = json_encode($post['PID']);
+            $post['PID'] = $PID;
+            $post['PDID'] = json_encode($post['PDID']);
             $post['update_time'] = date('Y-m-d H:i:s');
             $this->db->update('tb_spec', $post,array('SPID'=>$SPID));
-            redirect('bkspec/spec_form/'.$PLID);
+            redirect('bkspec/spec_form/'.$PID);
         }
         $data = array(
-            'order'=>$this->product->select_spec_order($PLID),
-            'PLID'=>$PLID,
-            'plist'=>$plist,
+            'PID'=>$PID,
+            'product'=>$product,
             'spec'=>$spec,
-            'product'=>  $this->product->get_products($PLID)
+            'pd'=>  $this->product->get_pd($PID)
         );
         $this->get_view('edit_spec_form', $data);
     }
 
-    public function delete_spec_form($PLID = false,$SPID=false)
+    public function delete_spec_form($PID = false,$SPID=false)
     {
-        $spec=$this->product->get_spec_by_spid($PLID,$SPID);
+        $spec=$this->product->get_spec_by_spid($PID,$SPID);
         if ($spec) {
             $this->db->delete('tb_spec', array('SPID' => $SPID));
         }
-        redirect('bkspec/spec_form/'.$PLID);
+        redirect('bkspec/spec_form/'.$PID);
     }
 
     private function get_view($page, $data = '')

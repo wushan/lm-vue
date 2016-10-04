@@ -79,64 +79,6 @@ class Bkproductlist extends MY_Controller
         redirect('bkproductlist');
     }
 
-    public function spec_column($PLID=false)
-    {
-
-        $column=$this->product->get_spec_column($PLID);
-
-        $data=array(
-            'column'=>$column,
-            'PLID'=>$PLID
-        );
-        $this->get_view('spec_column',$data);
-    }
-
-    public function add_column($PLID=false)
-    {
-
-        if ($post = $this->input->post(null, true)) {
-            $post['PLID'] = $PLID;
-            $post['create_time'] = date('Y-m-d H:i:s');
-            $this->db->insert('tb_spec_column', $post);
-            redirect('bkproductlist/spec_column/'.$PLID);
-        }
-        $data = array(
-            'order'=>$this->product->select_column_order($PLID),
-            'PLID'=>$PLID
-        );
-        $this->get_view('add_column', $data);
-    }
-
-    public function edit_column($PLID = false,$SID=false)
-    {
-
-        $column = $this->product->get_spec_column_by_sid($PLID,$SID);
-
-        if (!$column) {
-            redirect('bkproductlist/spec_column/'.$PLID);
-        }
-
-        if ($post = $this->input->post(null, true)) {
-            $post['update_time'] = date('Y-m-d H:i:s');
-            $this->db->update('tb_spec_column', $post, array('SID' => $SID));
-            redirect('bkproductlist/spec_column/'.$PLID);
-        }
-
-        $data = array(
-            'column' => $column
-        );
-        $this->get_view('edit_column', $data);
-    }
-
-    public function delete_column($PLID = false,$SID=false)
-    {
-        $column = $this->product->get_spec_column_by_sid($PLID,$SID);
-        if ($column) {
-            $this->db->delete('tb_spec_column', array('SID' => $SID));
-        }
-        redirect('bkproductlist/spec_column/'.$PLID);
-    }
-
 
     private function get_view($page, $data = '')
     {
