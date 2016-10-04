@@ -78,7 +78,7 @@ class Bkproducts extends MY_Controller
                 }
             endif;
             if (isset($_FILES['imageA']) && !$_FILES['imageA']['error']):
-                $post['pdimage'] = $this->upload('products', 850, 'A');
+                $post['pdimage'] = $this->upload('products', 600, 'A');
                 if ($product && file_exists($product->pdimage)) {
                     unlink($product->pdimage);
                 }
@@ -92,19 +92,19 @@ class Bkproducts extends MY_Controller
                 }
             endif;
             if (isset($_FILES['imageB']) && !$_FILES['imageB']['error']):
-                $post['carouselA_image'] = $this->upload('products', 850, 'B');
+                $post['carouselA_image'] = $this->upload('products', 800, 'B');
                 if ($product && file_exists($product->carouselA_image)) {
                     unlink($product->carouselA_image);
                 }
             endif;
             if (isset($_FILES['imageC']) && !$_FILES['imageC']['error']):
-                $post['carouselB_image'] = $this->upload('products', 850, 'C');
+                $post['carouselB_image'] = $this->upload('products', 800, 'C');
                 if ($product && file_exists($product->carouselB_image)) {
                     unlink($product->carouselB_image);
                 }
             endif;
             if (isset($_FILES['imageD']) && !$_FILES['imageD']['error']):
-                $post['carouselC_image'] = $this->upload('products', 850, 'D');
+                $post['carouselC_image'] = $this->upload('products', 800, 'D');
                 if ($product && file_exists($product->carouselC_image)) {
                     unlink($product->carouselC_image);
                 }

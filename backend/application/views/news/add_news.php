@@ -42,7 +42,7 @@
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="imageF" required>
 
                                                 <p class="help-block">
-                                                    圖片最佳大小為850*175
+                                                    圖片最佳大小為400*250
                                                 </p>
 
                                                 <p class="help-block">
@@ -58,7 +58,7 @@
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="image" required>
 
                                                 <p class="help-block">
-                                                    圖片最佳大小為850*175
+                                                    圖片最佳大小為1440*500
                                                 </p>
 
                                                 <p class="help-block">
@@ -74,7 +74,7 @@
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="imageA" required>
 
                                                 <p class="help-block">
-                                                    圖片最佳大小為850*175
+                                                    圖片最佳大小為900*500
                                                 </p>
 
                                                 <p class="help-block">
@@ -87,7 +87,7 @@
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="imageB" >
 
                                                 <p class="help-block">
-                                                    圖片最佳大小為850*175
+                                                     圖片最佳大小為900*500
                                                 </p>
 
                                                 <p class="help-block">
@@ -100,7 +100,7 @@
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="imageC" >
 
                                                 <p class="help-block">
-                                                    圖片最佳大小為850*175
+                                                      圖片最佳大小為900*500
                                                 </p>
 
                                                 <p class="help-block">
@@ -113,7 +113,7 @@
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="imageD" >
 
                                                 <p class="help-block">
-                                                    圖片最佳大小為850*175
+                                                     圖片最佳大小為900*500
                                                 </p>
 
                                                 <p class="help-block">

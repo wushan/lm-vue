@@ -27,7 +27,7 @@ class Bkproductlist extends MY_Controller
 
         if ($post = $this->input->post(null, true)) {
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
-                $post['image']=$this->upload('product_list', 850);
+                $post['image']=$this->upload('product_list', 1000);
             endif;
             $post['create_time'] = date('Y-m-d H:i:s');
             $this->db->insert('tb_product_list', $post);
@@ -50,7 +50,7 @@ class Bkproductlist extends MY_Controller
 
         if ($post = $this->input->post(null, true)) {
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
-                $post['image']=$this->upload('product_list', 850);
+                $post['image']=$this->upload('product_list', 1000);
                 if($plist && file_exists($plist->image)){
                     unlink($plist->image);
                 }

@@ -27,23 +27,23 @@ class Bknews extends MY_Controller
         if ($post = $this->input->post(null, true)) {
 
             if (isset($_FILES['imageF']) && !$_FILES['imageF']['error']):
-                $post['thumbnail']=$this->upload('news', 850,'F');
+                $post['thumbnail']=$this->upload('news', 400,'F');
 
             endif;
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
-                $post['bgimage']=$this->upload('news', 850);
+                $post['bgimage']=$this->upload('news', 1440);
             endif;
             if (isset($_FILES['imageA']) && !$_FILES['imageA']['error']):
-                $post['newsimageA']=$this->upload('news', 850,'A');
+                $post['newsimageA']=$this->upload('news', 950,'A');
             endif;
             if (isset($_FILES['imageB']) && !$_FILES['imageB']['error']):
-                $post['newsimageB']=$this->upload('news', 850,'B');
+                $post['newsimageB']=$this->upload('news', 950,'B');
             endif;
             if (isset($_FILES['imageC']) && !$_FILES['imageC']['error']):
-                $post['newsimageC']=$this->upload('news', 850,'C');
+                $post['newsimageC']=$this->upload('news', 950,'C');
             endif;
             if (isset($_FILES['imageD']) && !$_FILES['imageD']['error']):
-                $post['newsimageD']=$this->upload('news', 850,'D');
+                $post['newsimageD']=$this->upload('news', 950,'D');
             endif;
             $post['create_time'] = date('Y-m-d H:i:s');
             $post['date'] .= date(' H:i:s');
@@ -62,38 +62,38 @@ class Bknews extends MY_Controller
         if ($post = $this->input->post(null, true)) {
 
             if (isset($_FILES['imageF']) && !$_FILES['imageF']['error']):
-                $post['thumbnail']=$this->upload('news', 850,'F');
+                $post['thumbnail']=$this->upload('news', 400,'F');
                 if($news && file_exists($news->thumbnail)){
                     unlink($news->thumbnail);
                 }
             endif;
 
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
-                $post['bgimage']=$this->upload('news', 850);
+                $post['bgimage']=$this->upload('news', 1440);
                 if($news && file_exists($news->bgimage)){
                     unlink($news->bgimage);
                 }
             endif;
             if (isset($_FILES['imageA']) && !$_FILES['imageA']['error']):
-                $post['newsimageA']=$this->upload('news', 850,'A');
+                $post['newsimageA']=$this->upload('news', 950,'A');
                 if($news && file_exists($news->newsimageA)){
                     unlink($news->newsimageA);
                 }
             endif;
             if (isset($_FILES['imageB']) && !$_FILES['imageB']['error']):
-                $post['newsimageB']=$this->upload('news', 850,'B');
+                $post['newsimageB']=$this->upload('news', 950,'B');
                 if($news && file_exists($news->newsimageB)){
                     unlink($news->newsimageB);
                 }
             endif;
             if (isset($_FILES['imageC']) && !$_FILES['imageC']['error']):
-                $post['newsimageC']=$this->upload('news', 850,'C');
+                $post['newsimageC']=$this->upload('news', 950,'C');
                 if($news && file_exists($news->newsimageC)){
                     unlink($news->newsimageC);
                 }
             endif;
             if (isset($_FILES['imageD']) && !$_FILES['imageD']['error']):
-                $post['newsimageD']=$this->upload('news', 850,'D');
+                $post['newsimageD']=$this->upload('news', 950,'D');
                 if($news && file_exists($news->newsimageD)){
                     unlink($news->newsimageD);
                 }

@@ -31,7 +31,7 @@
                                             <div class="col-sm-9">
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="image">
                                                 <p class="help-block">
-                                                    圖片最佳大小為850*175
+                                                    圖片最佳大小為1920*700
                                                 </p>
                                                 <p class="help-block">
                                                     <img id="preview" src="<?=($banner && file_exists($banner->image))?base_url($banner->image):''?>">

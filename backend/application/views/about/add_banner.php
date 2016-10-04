@@ -41,7 +41,7 @@
                                             <div class="col-sm-9">
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="image" required>
                                                 <p class="help-block">
-                                                    圖片最佳大小為850*175
+                                                    圖片最佳大小為1920*700
                                                 </p>
                                                 <p class="help-block">
                                                     <img id="preview" src="">

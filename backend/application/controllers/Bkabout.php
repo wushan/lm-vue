@@ -16,13 +16,13 @@ class Bkabout extends MY_Controller
         $about=$this->about->about_get();
         if($post=$this->input->post(null,true)){
             if (isset($_FILES['imageC']) && !$_FILES['imageC']['error']):
-                $post['imageC']=$this->upload('about', 850,'C');
+                $post['imageC']=$this->upload('about', 1920,'C');
                 if($about && file_exists($about->imageC)){
                     unlink($about->imageC);
                 }
             endif;
             if (isset($_FILES['imageD']) && !$_FILES['imageD']['error']):
-                $post['imageD']=$this->upload('about', 850,'D');
+                $post['imageD']=$this->upload('about', 1040,'D');
                 if($about && file_exists($about->imageD)){
                     unlink($about->imageD);
                 }
@@ -43,7 +43,7 @@ class Bkabout extends MY_Controller
 
         if($post=$this->input->post(null,true)){
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
-                $post['image']=$this->upload('about_banner', 850);
+                $post['image']=$this->upload('about_banner', 1920);
             endif;
             $post['create_time']=date('Y-m-d H:i:s');
             $this->db->insert('tb_about_banner',$post);
@@ -62,7 +62,7 @@ class Bkabout extends MY_Controller
         }
         if($post=$this->input->post(null,true)){
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
-                $post['image']=$this->upload('about_banner', 850);
+                $post['image']=$this->upload('about_banner', 1920);
                 if($banner && file_exists($banner->image)){
                     unlink($banner->image);
                 }

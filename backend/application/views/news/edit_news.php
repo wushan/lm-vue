@@ -8,7 +8,7 @@
         /*display: none;*/
     }
 </style>
-<?date_default_timezone_set("Asia/Shanghai");?>
+<? date_default_timezone_set("Asia/Shanghai"); ?>
 <div id="content">
     <section id="widget-grid" class="">
         <div class="row">
@@ -18,12 +18,13 @@
 
                     <header>
                         <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+
                         <h2>編輯新聞</h2>
                     </header>
 
                     <div>
                         <div class="widget-body no-padding">
-                            <form class="form-horizontal" method="post" action="<?=site_url('bknews/edit_news/'.$news->NID)?>" enctype="multipart/form-data">
+                            <form class="form-horizontal" method="post" action="<?= site_url('bknews/edit_news/' . $news->NID) ?>" enctype="multipart/form-data">
                                 <div id="content">
                                     <fieldset>
                                         <legend>編輯新聞</legend>
@@ -32,7 +33,7 @@
                                             <label class="col-sm-2 control-label">日期</label>
 
                                             <div class="col-sm-3">
-                                                <input class="form-control"  type="date" name="date" value="<?=date('Y-m-d',strtotime($news->date))?>">
+                                                <input class="form-control" type="date" name="date" value="<?= date('Y-m-d', strtotime($news->date)) ?>">
                                             </div>
                                         </div>
 
@@ -40,14 +41,14 @@
                                             <label class="col-sm-2 control-label">代表圖</label>
 
                                             <div class="col-sm-9">
-                                                <input type="file" class="btn btn-default" id="UploadImg" name="imageF" >
+                                                <input type="file" class="btn btn-default" id="UploadImg" name="imageF">
 
                                                 <p class="help-block">
-                                                    圖片最佳大小為850*175
+                                                    圖片最佳大小為400*250
                                                 </p>
 
                                                 <p class="help-block">
-                                                    <img id="preview" src="<?=($news && file_exists($news->thumbnail))?base_url($news->thumbnail):''?>">
+                                                    <img id="preview" src="<?= ($news && file_exists($news->thumbnail)) ? base_url($news->thumbnail) : '' ?>">
                                                 </p>
                                             </div>
                                         </div>
@@ -59,11 +60,11 @@
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="image">
 
                                                 <p class="help-block">
-                                                    圖片最佳大小為850*175
+                                                    圖片最佳大小為1440*500
                                                 </p>
 
                                                 <p class="help-block">
-                                                    <img id="preview" src="<?=($news && file_exists($news->bgimage))?base_url($news->bgimage):''?>">
+                                                    <img id="preview" src="<?= ($news && file_exists($news->bgimage)) ? base_url($news->bgimage) : '' ?>">
                                                 </p>
                                             </div>
                                         </div>
@@ -75,50 +76,50 @@
                                                 <input type="file" class="btn btn-default" id="UploadImg" name="imageA">
 
                                                 <p class="help-block">
-                                                    圖片最佳大小為850*175
+                                                    圖片最佳大小為900*500
                                                 </p>
 
                                                 <p class="help-block">
-                                                    <img id="preview" src="<?=($news && file_exists($news->newsimageA))?base_url($news->newsimageA):''?>">
+                                                    <img id="preview" src="<?= ($news && file_exists($news->newsimageA)) ? base_url($news->newsimageA) : '' ?>">
                                                 </p>
                                             </div>
                                             <label class="col-sm-2 control-label">新聞輪播圖B</label>
 
                                             <div class="col-sm-9">
-                                                <input type="file" class="btn btn-default" id="UploadImg" name="imageB" >
+                                                <input type="file" class="btn btn-default" id="UploadImg" name="imageB">
 
                                                 <p class="help-block">
-                                                    圖片最佳大小為850*175
+                                                    圖片最佳大小為900*500
                                                 </p>
 
                                                 <p class="help-block">
-                                                    <img id="preview" src="<?=($news && file_exists($news->newsimageB))?base_url($news->newsimageB):''?>">
+                                                    <img id="preview" src="<?= ($news && file_exists($news->newsimageB)) ? base_url($news->newsimageB) : '' ?>">
                                                 </p>
                                             </div>
                                             <label class="col-sm-2 control-label">新聞輪播圖C</label>
 
                                             <div class="col-sm-9">
-                                                <input type="file" class="btn btn-default" id="UploadImg" name="imageC" >
+                                                <input type="file" class="btn btn-default" id="UploadImg" name="imageC">
 
                                                 <p class="help-block">
-                                                    圖片最佳大小為850*175
+                                                    圖片最佳大小為900*500
                                                 </p>
 
                                                 <p class="help-block">
-                                                    <img id="preview" src="<?=($news && file_exists($news->newsimageC))?base_url($news->newsimageC):''?>">
+                                                    <img id="preview" src="<?= ($news && file_exists($news->newsimageC)) ? base_url($news->newsimageC) : '' ?>">
                                                 </p>
                                             </div>
                                             <label class="col-sm-2 control-label">新聞輪播圖D</label>
 
                                             <div class="col-sm-9">
-                                                <input type="file" class="btn btn-default" id="UploadImg" name="imageD" >
+                                                <input type="file" class="btn btn-default" id="UploadImg" name="imageD">
 
                                                 <p class="help-block">
-                                                    圖片最佳大小為850*175
+                                                    圖片最佳大小為900*500
                                                 </p>
 
                                                 <p class="help-block">
-                                                    <img id="preview" src="<?=($news && file_exists($news->newsimageD))?base_url($news->newsimageD):''?>">
+                                                    <img id="preview" src="<?= ($news && file_exists($news->newsimageD)) ? base_url($news->newsimageD) : '' ?>">
                                                 </p>
                                             </div>
                                         </div>
@@ -127,7 +128,7 @@
                                             <label class="col-sm-2 control-label">標題</label>
 
                                             <div class="col-sm-6">
-                                                <input class="form-control" maxlength="150" type="text" name="title" value="<?=$news->title?>" required>
+                                                <input class="form-control" maxlength="150" type="text" name="title" value="<?= $news->title ?>" required>
                                             </div>
                                         </div>
 
@@ -135,7 +136,7 @@
                                             <label class="col-sm-2 control-label">簡介</label>
 
                                             <div class="col-sm-6">
-                                                <textarea class="form-control" rows="3" name="excerpt" required><?=$news->excerpt?></textarea>
+                                                <textarea class="form-control" rows="3" name="excerpt" required><?= $news->excerpt ?></textarea>
                                             </div>
                                         </div>
 
@@ -143,7 +144,7 @@
                                             <label class="col-sm-2 control-label">內文</label>
 
                                             <div class="col-sm-6">
-                                                <textarea class="form-control" rows="20" name="content" required><?=$news->content?></textarea>
+                                                <textarea class="form-control" rows="20" name="content" required><?= $news->content ?></textarea>
                                             </div>
                                         </div>
 
