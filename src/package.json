@@ -22,10 +22,12 @@
     "onscreen": "^1.2.0",
     "pug": "^2.0.0-beta6",
     "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
     "vue": "^2.0.0-rc.6",
     "vue-paginate": "^2.1.2",
     "vue-resource": "^1.0.2",
     "vue-router": "^2.0.0-rc.5",
+    "vue-style-loader": "^1.0.0",
     "vuejs-paginator": "^1.0.15"
   },
   "devDependencies": {

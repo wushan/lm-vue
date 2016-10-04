@@ -1,4 +1,10 @@
 //Layout Restrictions
+.restrict-xl {
+	max-width: 1680px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	padding: 1rem;
+}
 .restrict-large {
 	max-width: 1440px;
 	margin: 0 auto;

@@ -26,8 +26,7 @@
                 input.rounded(type="text", placeholder="Captcha")
             .grid.g-3-12
               button.btn.rounded.green.full(type="submit") Send
-    .call-action.centered
-      a#close.btn.basic(@click="leaveSubscription") CLOSE
+      a#close.btn.basic(@click="leaveSubscription") X
 </template>
 
 <script>
@@ -89,14 +88,19 @@ export default {
     h3 {
       color: $white;
     }
-    .call-action {
-      padding-bottom: 0;
-      a {
-        cursor: pointer;
-      }
-    }
 	}
   .subscription-wrapper {
-
+    position: relative;
+    #close {
+      display: block;
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      top: 0;
+      right: 0;
+      padding: 0;
+      text-align: center;
+      line-height: 40px;
+    }
   }
 </style>

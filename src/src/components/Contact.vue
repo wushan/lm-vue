@@ -9,6 +9,7 @@
                             h1
                                 |   CONTACT
                                 span.bold INFO
+                            hr
 
                     .container.restrict-large.contact-wrapper
                         .row
@@ -127,6 +128,11 @@ export default {
                     display: block;
                 }
             }
+            hr {
+                height: 1px;
+                border: none;
+                background-color: $white;
+            }
         }
     }
     .contact-wrapper {
@@ -193,6 +199,7 @@ export default {
             vertical-align: middle;
             width: auto;
             margin-right: .5em;
+            margin-top: .35em;
             float: left;
             & + label {
                 display: block;

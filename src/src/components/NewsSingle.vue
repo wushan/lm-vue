@@ -9,7 +9,7 @@
               h1
                 | LATEST
                 span.bold NEWS
-
+              hr
               .article-title.centered
                 .restrict
                   time.green {{ article.updated_time }}
@@ -251,12 +251,17 @@ export default {
       h2 {
         margin: 0;
       }
+      hr {
+        height: 1px;
+        border: none;
+        background-color: $main;
+      }
       .container {
         position: relative;
         z-index: 1;
       }
       .article-title {
-        margin-top: 10em;
+        margin-top: 8em;
       }
     }
   }

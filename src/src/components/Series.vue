@@ -145,8 +145,10 @@ export default {
       console.log(this.$route)
       if (this.$route.name === 'inventory') {
         this.inventory = true
+        $('body').css('overflow', 'hidden')
       } else {
         this.inventory = false
+        $('body').css('overflow', 'auto')
       }
     }
   }
@@ -178,6 +180,14 @@ export default {
         padding: 2em;
         box-sizing: border-box;
         text-align: center;
+        .title {
+            h1 {
+                margin-top: 0;
+            }
+        }
+        .call-action {
+            padding: 0;
+        }
         @include breakpoint(1280px) {
             background-color: transparent;
             text-align: right;
@@ -200,10 +210,12 @@ export default {
         #highlight-slider {
             border-top: 1px solid $white;
             padding-top: 2em;
+            margin-bottom: 4em;
             .slick-list, .slick-track {
                 height: 100%;
             }
             .slick-dots {
+                bottom: -2.4em;
                 li {
                     width: 40px;
                     height: 6px;
@@ -243,6 +255,7 @@ export default {
             }
         }
         .call-action {
+            padding-bottom: 0;
             a {
                 margin: 0;
             }
@@ -277,13 +290,6 @@ export default {
                     background-repeat: no-repeat;
                     background-size: auto 95%;
                     background-position: left top;
-                }
-            }
-        }
-        @include breakpoint(1900px) {
-            .block {
-                &:last-child {
-                    background-position: right top;
                 }
             }
         }

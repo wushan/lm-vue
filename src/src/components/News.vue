@@ -275,19 +275,19 @@ export default {
   #discover {
     text-align: center;
     padding: 4em 0;
-    background-color: $darkestgray;
-    background-image: url('../assets/images/components/footer-gray-bg.png');
+    background-color: $main;
+    background-image: url('../assets/images/components/footer-green-bg.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     a {
       display: inline-block;
       vertical-align: middle;
-      color: $white;
+      color: $black;
       position: relative;
       &:after {
         content: '';
         display: block;
-        border-bottom: 2px solid $main;
+        border-bottom: 2px solid $white;
         position: absolute;
         bottom: -1em;
         left: 0;

@@ -1,6 +1,6 @@
 <template lang="pug">
 	nav.navigation.sticker
-		.container.restrict-large
+		.container.restrict-xl
 			ul.menu
 				li
 					router-link(to='/about', activeClass="active") ABOUT US

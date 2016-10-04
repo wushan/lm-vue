@@ -299,7 +299,7 @@
                                                           option(value="ZW") Zimbabwe
                                         .row
                                             .controlgroup
-                                                input(v-model.number="inquiryForm.phone", type="number", placeholder="PHONE(MOBILE)")
+                                                input(v-model.number="inquiryForm.phone", type="text", placeholder="PHONE(MOBILE)")
                                         .row
                                             .controlgroup
                                                 input(v-model="inquiryForm.subject", type="text", placeholder="SUBJECT")
@@ -408,6 +408,7 @@ export default {
         background-color: $darkestgray;
         background-image: url('../assets/images/components/inquiry-bg-1.png');
         background-position: center top;
+        background-repeat: no-repeat;
         color: $white;
     }
     .inquiry-wrapper {
@@ -422,6 +423,12 @@ export default {
             }
         }
     }
+    .inquiry-list {
+      overflow-x: auto;
+      .btn.rounded.green {
+        padding: .3em 2em;
+      }
+    }
     table {
       width: 100%;
       text-align: center;
@@ -432,7 +439,7 @@ export default {
         tr {
             color: $main;
             th {
-                background-color: rgba($white,.1);
+                background-color: rgba($white,.2);
                 &:first-child {
                     border-top-left-radius: 2em;
                     border-bottom-left-radius: 2em;

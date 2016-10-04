@@ -125,10 +125,21 @@ export default {
                     @include breakpoint(768px) {
                         padding: 12em 0;
                     }
+                    @include breakpoint(1024px) {
+                        .content {
+                            max-width: 960px;
+                            padding: 0 1rem;
+                            margin: 0 auto;
+                            box-sizing: border-box;
+                        }
+                    }
                     @include breakpoint(1200px) {
                         background-position: -560px center;
                         .content {
+                            max-width: none;
                             @include span(7 of 12);
+                            margin-left: 6%;
+                            padding: 0;
                         }
                     }
                     @include breakpoint(1300px) {
@@ -137,6 +148,9 @@ export default {
                     }
                     @include breakpoint(1680px) {
                         background-position: right center;
+                        .content {
+                            margin-left: 0;
+                        }
                     }
                 }
                 .container {
@@ -168,9 +182,23 @@ export default {
                 .container {
                     padding-bottom: 0;
                     @extend .clr;
+                    .block {
+                        &:first-child {
+                            h1 {
+                                line-height: 1;
+                            }
+                        }
+                    }
                 }
                 @include breakpoint(1024px) {
-                    
+                    .block {
+                        &:first-child {
+                            max-width: 960px;
+                            padding: 0 1rem;
+                            margin: 0 auto;
+                            box-sizing: border-box;
+                        }
+                    }
                 } 
                 @include breakpoint(1280px) {
                     background-position: right top;
@@ -180,11 +208,21 @@ export default {
                         display: table-cell;
                         vertical-align: middle;
                         &:first-child {
+                            max-width: none;
+                            padding-left: 3em;
                             padding-bottom: 4em;
+                            margin: 0;
                         }
                         &:last-child {
                             width: 60%;
                             vertical-align: bottom;
+                        }
+                    }
+                }
+                @include breakpoint(1680px) {
+                    .block {
+                        &:first-child {
+                            padding-left: 0;
                         }
                     }
                 }

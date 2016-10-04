@@ -2,7 +2,6 @@
 	#intro {
 		height: calc( 100vh - 80px );
 	}
-
 	#intro-brand {
 		height: 100vh;
 		.table {
@@ -13,7 +12,8 @@
 		}
 		.title {
 			h1 {
-				padding-top: 5em;
+				padding-top: 2.5em;
+				font-size: 4em;
 			}
 		}
 	}

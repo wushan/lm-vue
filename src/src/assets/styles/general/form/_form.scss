@@ -85,45 +85,34 @@ input[type="text"], input[type=search], input[type="email"], input[type="passwor
     vertical-align: middle;
     overflow: hidden;
     border-bottom: 1px solid $white;
-    &:focus {
-
-    }
   }
   select {
     width: 100%;
     -webkit-appearance: none;
-    -moz-appearance: window;
+    -moz-appearance: none;
+    appearance: none;
     border: 0;
     color: $white;
     border-radius: 0;
+    option {
+      color: $black;
+      background-color: $white;
+    }
   }
   select {
     background-color: transparent;
     background-image: url("assets/images/components/select-arrow.png");
-    background-position: 94% center;
+    background-position: calc(100% - 1em) center;
     background-repeat: no-repeat;
     box-sizing: border-box;
     height: 36px;
-    padding: .3em 1.6em;
+    padding: .3em 1em;
     &:focus {
       outline: none;
     }
   }
   select::-ms-expand {
     display: none;
-  }
-  @-moz-document url-prefix() {
-    .select-wrapper {
-      background-image: url("assets/images/components/select-arrow.png");
-      background-position: 94% center;
-      background-repeat: no-repeat;
-      select {
-        // width: 110%;
-        background-image: url("assets/images/components/select-arrow.png");
-        background-position: 88% center;
-        background-repeat: no-repeat;
-      }
-    }
   }
 }
 //Placehoder

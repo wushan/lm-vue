@@ -21,22 +21,22 @@
           li
             router-link(to='/about', activeClass="active") ABOUT US
           li
-            router-link(to='javascript:;', activeClass="active") PRODUCTS
+            router-link(to='/product/series', activeClass="active") PRODUCTS
           li
-            router-link(to='javascript:;', activeClass="active") NEWS
+            router-link(to='/news', activeClass="active") NEWS
           li
-            router-link(to='javascript:;', activeClass="active") CONTACTS
+            router-link(to='/contact', activeClass="active") CONTACTS
           li
             router-link(to='/', activeClass="active")
               img(src="./assets/images/components/lymco-brand.png")
           li
-            router-link(to='javascript:;', activeClass="active") DEALER'S PORTAL
+            router-link(to='/dealers', activeClass="active") DEALER'S PORTAL
           li
-            router-link(to='javascript:;', activeClass="active") ERROR SHOOTING
+            router-link(to='/errorshooting', activeClass="active") ERROR SHOOTING
           li
-            router-link(to='javascript:;', activeClass="active") INQUIRY(3)
+            router-link(to='/inquiry', activeClass="active") INQUIRY(3)
           li
-            router-link(to='javascript:;', activeClass="active") SUBSCRIPTION
+            a(v-on:click.stop.prevent="emitSubscription", href="javascript:;", activeClass="active") SUBSCRIPTION
 </template>
 
 <script>

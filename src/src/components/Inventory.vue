@@ -88,7 +88,7 @@ export default {
 		right: 0;
 		left: 0;
 		z-index: 999;
-		background-color: rgba($black, .8);
+		background-color: rgba($black, .9);
 		color: $white;
 	}
 	.inventory-wrapper {

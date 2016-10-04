@@ -252,6 +252,11 @@ export default {
                 }
             }
         }
+        .call-action {
+            .btn {
+                margin-bottom: .5rem;
+            }
+        }
     }
     .product-single-specs {
         .spec-selectors {
@@ -312,6 +317,7 @@ export default {
                 }
             }
             .data-group {
+                overflow-x: auto;
                 margin-bottom: 2em;
                 padding: 2em;
                 box-sizing: border-box;
