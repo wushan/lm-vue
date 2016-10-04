@@ -28,6 +28,12 @@
 <script>
 import Inquiry from '../cart/inquiry'
 import Api from '../api'
+// Expose Jquery Globally.
+import $ from 'jquery'
+window.jQuery = window.$ = $
+require('imports?$=jquery!../assets/vendor/jquery.sticky.js')
+require('imports?$=jquery!../assets/vendor/jquery.mousewheel.js')
+require('imports?$=jquery!../assets/vendor/jquery.mCustomScrollbar.js')
 export default {
   data () {
     return {
@@ -37,13 +43,12 @@ export default {
     }
   },
   created () {
-    console.log(this)
-    // if (this.$route.name === 'inventory') {
-    //   this.inventory = true
-    // }
   },
   mounted () {
     this.fetchData()
+    $('.inventory-wrapper').mCustomScrollbar({
+      theme: 'light'
+    })
   },
   updated () {
   },
@@ -93,7 +98,7 @@ export default {
 	}
 	.inventory-wrapper {
 		height: 100%;
-		overflow: scroll;
+		// overflow: scroll;
 		.title {
 			h1 {
 				font-size: 3.6em;

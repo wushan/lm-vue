@@ -68,9 +68,6 @@ export default {
       topSpacing: 0,
       zIndex: 999
     })
-    // $('#slider').slick({
-    //   dots: true
-    // })
   },
   methods: {
     fetchData () {
@@ -82,7 +79,16 @@ export default {
           this.error = err.toString()
         } else {
           this.data = data
+          this.initSlick()
         }
+      })
+    },
+    initSlick () {
+      console.log('init')
+      this.$nextTick(function () {
+        $('#slider').slick({
+          dots: true
+        })
       })
     }
   }
@@ -246,7 +252,7 @@ export default {
                 #slider {
                     margin: 2em 0;
                     height: 100%;
-                    overflow: hidden; 
+                    // overflow: hidden; 
                     .item {
                         height: 100%; 
                         position: relative;
