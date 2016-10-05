@@ -106,7 +106,7 @@ class Frontapi extends MY_Controller
             'model' => $product->model,
             'category' => array('name' => $product->list_name, 'id' => $product->PLID),
             'image' => base_url($product->pdimage),
-            'backgroundimage' => $product->bgimage,
+            'backgroundimage' => base_url($product->bgimage),
             'description' => $product->intro,
             'brochure' => base_url($product->catalog_path),
             'media' => array(array('url' => $urlA, 'type' => $typeA), array('url' => $urlB, 'type' => $typeB), array('url' => $urlC, 'type' => $typeC)),
@@ -239,7 +239,7 @@ class Frontapi extends MY_Controller
                     'name' => $row->name,
                     'model' => $row->model,
                     'category' => array('name' => $row->list_name, 'id' => $row->PLID),
-                    'image' => $row->bgimage,
+                    'image' => base_url($row->bgimage),
                     'description' => $row->intro
                 );
             }
