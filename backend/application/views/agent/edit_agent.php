@@ -83,7 +83,7 @@
                                                                             <? if ($product) { ?>
                                                                                 <? foreach ($product as $row) { ?>
                                                                                     <option
-                                                                                        value="<?= $row->PID ?>" <?= ($buy) ? ($row->PID == $brow) ? 'selected' : '' : '' ?>><?= $row->name ?></option>
+                                                                                        value="<?= $row->PDID ?>" <?= ($buy) ? ($row->PDID == $brow) ? 'selected' : '' : '' ?>><?= $row->model ?></option>
                                                                                 <? } ?>
                                                                             <? } ?>
                                                                         </select>
@@ -197,7 +197,7 @@
 
     $(function () {
         $('#add_machine').click(function () {
-            $("#machines").append(' <div class="form-group"><label class="col-sm-2 control-label">機台名稱</label><div class="col-sm-2"><select class="form-control" name="buy[]" required><option value="0">請選擇</option><? if ($product) { ?><? foreach ($product as $row) { ?><option value="<?=$row->PID?>"><?=$row->name?><? } ?><? } ?></select></div></div>');
+            $("#machines").append(' <div class="form-group"><label class="col-sm-2 control-label">機台名稱</label><div class="col-sm-2"><select class="form-control" name="buy[]" required><option value="0">請選擇</option><? if ($product) { ?><? foreach ($product as $row) { ?><option value="<?=$row->PDID?>"><?=$row->model?><? } ?><? } ?></select></div></div>');
         });
     });
 </script>

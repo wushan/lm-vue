@@ -23,12 +23,23 @@ class Tb_error_model extends CI_Model
         return false;
     }
 
-    public function get_error($errorCodeID=false,$parentID=false){
+    public function get_error($errorCodeID=false,$parentID=false,$get_search_error=false){
+        if($get_search_error){
+            $this->db->select('tb_error.EID as id,tb_error.title as name,tb_error.content as description,tb_error.image,tb_error.file_path as downloads,tb_error.errorCodeID');
+        }
         $this->db->join('tb_error_code','tb_error_code.ECID=tb_error.errorCodeID');
         $this->db->where('errorCodeID',$errorCodeID);
         $this->db->where('parentID',$parentID);
         $query = $this->db->order_by('EID','desc')->get('tb_error');
-        if ($query->num_rows() > 0) return $query->result();
+        if ($query->num_rows() > 0){
+            if($error=$query->result()){
+                foreach($query->result() as $row){
+                    $this->db->select('tb_error.EID as id,tb_error.title as name,tb_error.content as description,tb_error.image,tb_error.file_path as downloads,tb_error.errorCodeID');
+                    $row->steps=$this->get_error($row->errorCodeID,$row->id);
+                }
+            }
+            return $error;
+        }
         return false;
     }
 
@@ -44,5 +55,12 @@ class Tb_error_model extends CI_Model
         $this->db->where('parentID', $parentID);
         $this->db->from('tb_error');
         return $this->db->count_all_results();
+    }
+
+    public function get_search_error_code($errorCode=false){
+        $this->db->where('errorCode', $errorCode);
+        $query = $this->db->order_by('ECID','desc')->get('tb_error_code');
+        if ($query->num_rows() > 0) return $query->row();
+        return false;
     }
 }

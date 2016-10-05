@@ -10,7 +10,8 @@ class Frontapi extends MY_Controller
         $this->load->model('tb_news_model', 'news');
         $this->load->model('tb_about_model', 'about');
         $this->load->model('tb_agent_model', 'agt');
-        $this->load->model('tb_inventory_model','inventory');
+        $this->load->model('tb_inventory_model', 'inventory');
+        $this->load->model('tb_error_model', 'error');
     }
 
     public function get_homepage()
@@ -24,14 +25,14 @@ class Frontapi extends MY_Controller
             'title' => $home->title,
             'background' => base_url($home->image),
             'contentheader' => $home->content_title,
-            'content' => str_replace("\n", "</p>\n<p>",  $home->content . '</p>')
+            'content' => str_replace("\n", "</p>\n<p>", $home->content . '</p>')
         );
         $data['introproduct'] = array(
             "id" => $product[0]->PID,
             "name" => $product[0]->list_name,
             "model" => $product[0]->model,
             "image" => base_url($product[0]->pdimage),
-            "description" => str_replace("\n", "</p>\n<p>",  $product[0]->intro . '</p>'),
+            "description" => str_replace("\n", "</p>\n<p>", $product[0]->intro . '</p>'),
         );
         $data['intronews'] = $this->process_news($news);
         echo json_encode($data);
@@ -44,15 +45,15 @@ class Frontapi extends MY_Controller
         $about_banner = $this->about->about_banner_get();
         $data = array(
             'titleA' => $about->contentA_title,
-            'contentA' => str_replace("\n", "</p>\n<p>",  $about->contentA . '</p>'),
+            'contentA' => str_replace("\n", "</p>\n<p>", $about->contentA . '</p>'),
             'titleB' => $about->contentB,
-            'contentB' => str_replace("\n", "</p>\n<p>",  $about->contentC . '</p>'),
+            'contentB' => str_replace("\n", "</p>\n<p>", $about->contentC . '</p>'),
             'imageB' => base_url($about->imageC),
             'titleC' => $about->contentD_title,
-            'contentC' => str_replace("\n", "</p>\n<p>",  $about->contentD . '</p>'),
+            'contentC' => str_replace("\n", "</p>\n<p>", $about->contentD . '</p>'),
             'imageC' => base_url($about->imageD),
             'slides' => $this->process_about_banner($about_banner),
-            'contentD' => str_replace("\n", "</p>\n<p>",  $about->contentE . '</p>')
+            'contentD' => str_replace("\n", "</p>\n<p>", $about->contentE . '</p>')
         );
         echo json_encode($data);
     }
@@ -73,7 +74,7 @@ class Frontapi extends MY_Controller
     public function get_product_single()
     {
         header("Content-Type: application/json; charset=UTF-8");
-        $id=$this->input->post('id');
+        $id = $this->input->post('id');
         $product = $this->product->get_products_by_pid(6);
         $spec = $this->product->get_spec($product->PID);
 
@@ -108,11 +109,11 @@ class Frontapi extends MY_Controller
             'category' => array('name' => $product->list_name, 'id' => $product->PLID),
             'image' => base_url($product->pdimage),
             'backgroundimage' => base_url($product->bgimage),
-            'description' => str_replace("\n", "</p>\n<p>",  $product->intro . '</p>'),
+            'description' => str_replace("\n", "</p>\n<p>", $product->intro . '</p>'),
             'brochure' => base_url($product->catalog_path),
             'media' => array(array('url' => $urlA, 'type' => $typeA), array('url' => $urlB, 'type' => $typeB), array('url' => $urlC, 'type' => $typeC)),
             'features' => $this->process_product_features(json_decode($product->features)),
-            'specification' => array('columns'=>$this->process_product_column($product->columns), 'models'=>$this->process_spec_column($spec)),
+            'specification' => array('columns' => $this->process_product_column($product->columns), 'models' => $this->process_spec_column($spec)),
         );
         echo json_encode($data);
     }
@@ -128,7 +129,7 @@ class Frontapi extends MY_Controller
     public function get_news_single()
     {
         header("Content-Type: application/json; charset=UTF-8");
-        $id=$this->input->post('id');
+        $id = $this->input->post('id');
         $news = $this->news->get_news_by_nid($id);
         $prev = $this->news->get_news_prev($news->date);
         $next = $this->news->get_news_next($news->date);
@@ -144,8 +145,8 @@ class Frontapi extends MY_Controller
             'created_time' => date('m/d/Y', strtotime($news->date)),
             'updated_time' => date('m/d/Y', strtotime($news->update_time)),
             'title' => $news->title,
-            'content' => str_replace("\n", "</p>\n<p>",  $news->content . '</p>'),
-            'excerpt' => str_replace("\n", "</p>\n<p>",  $news->excerpt . '</p>'),
+            'content' => str_replace("\n", "</p>\n<p>", $news->content . '</p>'),
+            'excerpt' => str_replace("\n", "</p>\n<p>", $news->excerpt . '</p>'),
             'thumbnail' => base_url($news->thumbnail),
             'pagination' => array('prev' => $prev, 'next' => $next),
             'media' => array(array('url' => base_url($news->newsimageA)), array('url' => base_url($news->newsimageB)), array('url' => base_url($news->newsimageC)), array('url' => base_url($news->newsimageD)))
@@ -157,9 +158,9 @@ class Frontapi extends MY_Controller
     {
         header("Content-Type: application/json; charset=UTF-8");
 
-        $id=$this->input->post('id');
+        $id = $this->input->post('id');
         $agent = $this->agt->get_agent_by_aid($id);
-        if(!$agent){
+        if (!$agent) {
             return false;
         }
         $orders = $this->agt->get_order($agent->AID);
@@ -176,17 +177,36 @@ class Frontapi extends MY_Controller
     {
         header("Content-Type: application/json; charset=UTF-8");
 
-        $inventory=$this->inventory->get_inventory();
+        $inventory = $this->inventory->get_inventory();
         $data = $this->process_inventory($inventory);
         echo json_encode($data);
     }
 
+
+    public function get_machine()
+    {
+        header("Content-Type: application/json; charset=UTF-8");
+        $id = $this->input->post('id');
+        $agent = $this->agt->get_agent_by_aid($id);
+        $buy = $this->process_agent_buy($agent->buy);
+        $data = $buy;
+        echo json_encode($data);
+    }
+
+
     public function get_errorshooting()
     {
         header("Content-Type: application/json; charset=UTF-8");
+        $id = $this->input->post('id');
+        $errorcode = $this->input->post('errorcode');
 
-        $inventory=$this->inventory->get_inventory();
-        $data = $this->process_inventory($inventory);
+        $agent = $this->agt->get_agent_by_aid(1);
+        $buy = $this->process_agent_buy($agent->buy);
+        $error_code = $this->error->get_search_error_code('yeahmayday-022');
+        $get_agent_model = $this->process_model($buy, $error_code);
+
+
+        $data = $get_agent_model;
         echo json_encode($data);
     }
 
@@ -354,6 +374,50 @@ class Frontapi extends MY_Controller
                     'description' => str_replace("\n", "</p>\n<p>", $row->content . '</p>'),
                     'image' => base_url($row->image)
                 );
+            }
+            return $data;
+        }
+        return false;
+    }
+
+    private function process_agent_buy($buy)
+    {
+        if ($buy = json_decode($buy)) {
+            foreach ($buy as $row) {
+                $pd = $this->product->get_pd_by_pdid($row);
+
+                if ($pd != null) {
+                    $list = $this->product->get_products_by_pid($pd->PID);
+                    $data[] = array(
+                        'id' => $pd->PDID,
+                        'name' => $pd->model,
+                        'category' => $list->name,
+                    );
+                }
+            };
+            return $data;
+        }
+        return false;
+    }
+
+    private function process_model($buy, $error_code)
+    {
+        $modelID = json_decode($error_code->modelID);
+        $error = $this->error->get_error($error_code->ECID, '0',true);
+        if ($buy) {
+            foreach ($buy as $row) {
+
+                if (in_array($row['id'], $modelID)) {
+                    $data[] = array(
+                        'id' => $row['id'],
+                        'name' => $row['name'],
+                        'error' => array(
+                            'code' => $error_code->errorCode,
+                            'steps'=>$error
+
+                        )
+                    );
+                }
             }
             return $data;
         }

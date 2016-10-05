@@ -47,13 +47,15 @@ class Bkerror extends MY_Controller
         }
 
         if ($post = $this->input->post(null, true)) {
+            $post['modelID'] = json_encode($post['modelID']);
             $post['update_time'] = date('Y-m-d H:i:s');
             $this->db->update('tb_error_code', $post,array('ECID'=>$ECID));
             redirect('bkerror');
         }
 
         $data = array(
-            'error_code' => $error_code
+            'error_code' => $error_code,
+            'pd'=>$this->product->get_pd()
         );
         $this->get_view('edit_error_code', $data);
     }
