@@ -155,7 +155,7 @@ class Frontapi extends MY_Controller
     public function get_dealer()
     {
         header("Content-Type: application/json; charset=UTF-8");
-        
+
         $id=$this->input->post('id');
         $agent = $this->agt->get_agent_by_aid($id);
         $orders = $this->agt->get_order($agent->AID);
