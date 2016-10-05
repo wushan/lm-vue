@@ -10,6 +10,7 @@ class Bkerror extends MY_Controller
             redirect("admin");
         }
         $this->load->model('tb_error_model','error');
+        $this->load->model('tb_product_model','product');
     }
 
     public function index()
@@ -26,12 +27,14 @@ class Bkerror extends MY_Controller
     public function add_error_code()
     {
         if ($post = $this->input->post(null, true)) {
-
+            $post['modelID'] = json_encode($post['modelID']);
             $post['create_time'] = date('Y-m-d H:i:s');
             $this->db->insert('tb_error_code', $post);
             redirect('bkerror');
         }
-        $data = array();
+        $data = array(
+            'pd'=>$this->product->get_pd()
+        );
         $this->get_view('add_error_code', $data);
     }
 

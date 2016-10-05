@@ -18,6 +18,28 @@
                                     <fieldset>
                                         <legend>新增錯誤代碼</legend>
 
+                                        <a class="btn btn-primary" id="add_product" href="javascript:;"><i class="fa fa-plus"></i> <span>加入</span></a>
+
+                                        <div id="products">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">產品名稱</label>
+
+                                                <div class="col-sm-2">
+                                                    <select class="form-control" name="modelID"
+                                                            required>
+                                                        <option value="0">請選擇</option>
+                                                        <? if ($pd) { ?>
+                                                            <? foreach ($pd as $row) { ?>
+                                                                <option
+                                                                    value="<?= $row->PDID ?>"><?= $row->model ?></option>
+                                                            <? } ?>
+                                                        <? } ?>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">錯誤代碼</label>
 
@@ -42,3 +64,11 @@
         </div>
     </section>
 </div>
+<script>
+
+    $(function () {
+        $('#add_product').click(function () {
+            $("#products").append('<div class="form-group"><label class="col-sm-2 control-label">產品名稱</label><div class="col-sm-2"><select class="form-control" name="modelID[]"  required><option value="0">請選擇</option> <? if ($pd) { ?> <? foreach ($pd as $row) { ?>  <option  value="<?= $row->PDID ?>" ><?= $row->model ?></option>   <? } ?>  <? } ?>  </select> </div>  </div>');
+        });
+    });
+</script>

@@ -181,6 +181,15 @@ class Frontapi extends MY_Controller
         echo json_encode($data);
     }
 
+    public function get_errorshooting()
+    {
+        header("Content-Type: application/json; charset=UTF-8");
+
+        $inventory=$this->inventory->get_inventory();
+        $data = $this->process_inventory($inventory);
+        echo json_encode($data);
+    }
+
     /******************************private****************************************/
     private function process_news($news)
     {
@@ -264,7 +273,7 @@ class Frontapi extends MY_Controller
             for ($i = 0; $i < count($features->title); $i++) {
                 $data[] = array(
                     'title' => $features->title[$i],
-                    'description' => str_replace("\n", "</p>\n<p>", $features->intro . '</p>')
+                    'description' => str_replace("\n", "</p>\n<p>", $features->intro[$i] . '</p>')
                 );
             }
             return $data;
