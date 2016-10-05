@@ -28,12 +28,12 @@
               .content(v-html="article.content")
           
             .news-navigation.restrict.right
-              router-link.btn.rounded(:to="'/news/' + article.pagination.prev.id")
+              router-link.btn.rounded(:to="'/news/single/' + article.pagination.prev.id", v-if="article.pagination.prev")
                 .fa.fa-angle-left.fa-3x
                 span PREV
                 span.bold {{ article.pagination.prev.title }}
                 
-              router-link.btn.rounded(:to="'/news/' + article.pagination.next.id")
+              router-link.btn.rounded(:to="'/news/single/' + article.pagination.next.id", v-if="article.pagination.next")
                 span NEXT
                 span.bold {{ article.pagination.next.title }}
                 .fa.fa-angle-right.fa-3x
@@ -75,6 +75,9 @@ export default {
   },
   updated () {
   },
+  watch: {
+    '$route': 'fetchData'
+  },
   methods: {
     fetchData () {
       this.error = this.data = null
@@ -84,6 +87,7 @@ export default {
         if (err) {
           this.error = err.toString()
         } else {
+          console.log(data)
           this.article = data
           this.initSlick()
         }

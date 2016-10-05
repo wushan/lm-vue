@@ -16,7 +16,7 @@
 
                     .product-single-inner.restrict-large
                         .container.restrict-small
-                            .content.track-animate {{ product.description }}
+                            .content.track-animate(v-html="product.description")
                             .call-action.right.track-animate
                                 a.btn.btn-with-icon(v-bind:href="product.brochure")
                                     span DOWNLOAD BROCHURE
@@ -58,7 +58,7 @@
 
                 section#discover
                     a(href="javascript:;") BACK TO TOP
-                            
+            #error.centered(v-if="error") {{error}}                
 </template>
 
 <script>
@@ -159,6 +159,10 @@ export default {
     @import "bower_components/breakpoint-sass/stylesheets/breakpoint";
     @import "src/assets/styles/general/variable/variable";
     @import "src/assets/styles/general/helper/helper";
+    #error {
+        color: $white;
+        padding: 6em 0;
+    }
     #product {
         background-color: $white;
     }

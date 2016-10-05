@@ -62,6 +62,7 @@ export default {
       if (err || !res.ok) {
         console.log(err)
       } else {
+        console.log(res.body)
         cb(null, res.body)
       }
     })
@@ -74,7 +75,6 @@ export default {
       if (err || !res.ok) {
         console.log(err)
       } else {
-        // alert('yay got ' + JSON.stringify(res.body))
         cb(null, res.body)
       }
     })
@@ -96,7 +96,7 @@ export default {
     .send({id: id})
     .end(function (err, res) {
       if (err || !res.ok) {
-        console.log(err)
+        cb(err)
       } else {
         console.log(res.body)
         cb(null, res.body)

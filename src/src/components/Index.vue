@@ -55,8 +55,8 @@
 										router-link.overlay(:to="'/news/single/' + news.id")
 											.title
 												time {{news.updated_time}}
-												h4 {{news.title}}
-								.content {{news.excerpt}}
+												h4(v-html="news.title")
+								.content(v-html="news.excerpt")
 								footer.footer.right
 									router-link(:to="'/news/single/' + news.id")
 										span read more &#9656;

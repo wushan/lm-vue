@@ -12,35 +12,35 @@
               #slider
                 .item(v-for="news in latestNews")
                   .block
-                    img(src="../assets/images/components/news-slide-1.png")
+                    img(v-bind:src="news.thumbnail")
                   .block
                     .content
-                      time June, 2008
-                      h2 Lymco at EMO 2016
+                      time {{news.updated_time}}
+                      h2(v-html="news.title")
                       .context
-                        p The stock list has been updated in the dealer's portal. Our latest stock includes the DV-3000MT vertical platform lathe, the RAL seies vertical lathe, and the MH-500 horizontal machining center with auto pallet changer.
+                        p(v-html="news.excerpt")
                       .call-action.right
-                        a.btn.bordered(href="javascript:;") READ MORE &#9656;
+                        router-link.btn.bordered(:to="'/news/single/' + news.id") READ MORE &#9656;
 
-        section#news-list
+        section#news-list(v-if="data")
           .cover
           .container.restrict-large.middler-wrapper
             .middler
               .news-list
-                article.news-item(v-for="news in data")
+                article.news-item(v-for="news in fetchPage")
                   header
                     .thumbnail
                       //- a(v-bind:href="'/news/' + news.id")
-                      router-link(:to="'/news/single/' + news.id")
+                      router-link.aspect(:to="'/news/single/' + news.id")
                         img(v-bind:src="news.thumbnail")
                       //- a.overlay(v-bind:href="'/news/' + news.id")
                       router-link.overlay(:to="'/news/single/' + news.id")
                         .title
                           time {{news.updated_time}}
-                          h4 {{news.title}}
-                  .content {{news.excerpt}}
+                          h4(v-html="news.title")
+                  .content(v-html="news.excerpt")
                   footer.footer.right
-                    a(v-bind:href="'/news/single/' + news.id")
+                    router-link(:to="'/news/single/' + news.id")
                       span read more &#9656;
               .pagination
                 router-link(:to="'/news/' + prevPage")
@@ -77,16 +77,41 @@ export default {
       data: null,
       error: null,
       pagination: {
-        perPage: 8,
         totalPage: 5
       }
     }
   },
   computed: {
+    pagination () {
+      var createGroupedArray = function (arr, chunkSize) {
+        var groups = []
+        var i
+        for (i = 0; i < arr.length; i += chunkSize) {
+          groups.push(arr.slice(i, i + chunkSize))
+        }
+        return groups
+      }
+      var groupArr = createGroupedArray(this.data, 8)
+      return {totalPage: groupArr.length}
+    },
     latestNews () {
       if (this.data) {
+        console.log(this.data.slice(0, 3))
         return this.data.slice(0, 3)
       }
+    },
+    fetchPage () {
+      var page = parseInt(this.$route.params.page) - 1
+      var createGroupedArray = function (arr, chunkSize) {
+        var groups = []
+        var i
+        for (i = 0; i < arr.length; i += chunkSize) {
+          groups.push(arr.slice(i, i + chunkSize))
+        }
+        return groups
+      }
+      var groupArr = createGroupedArray(this.data, 8)
+      return groupArr[page]
     },
     currentPage () {
       return this.$route.params.page
@@ -199,6 +224,9 @@ export default {
           @include span(6 of 12 2);
           &:last-child {
             @include last;
+          }
+          .call-action {
+            padding: 2em;
           }
         }
       }
