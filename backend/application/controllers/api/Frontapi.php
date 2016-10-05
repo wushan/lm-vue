@@ -213,7 +213,7 @@ class Frontapi extends MY_Controller
                         $row->products[$i] = array(
                             'id' => $prow->PID,
                             'name' => $prow->name,
-                            'thumbnail' => $prow->pdimage
+                            'thumbnail' => base_url($prow->pdimage)
                         );
                     }
                 }
@@ -221,7 +221,7 @@ class Frontapi extends MY_Controller
                     'id' => $row->PLID,
                     'name' => $row->name,
                     'description' => $row->intro,
-                    'image' => $row->image,
+                    'image' => base_url($row->image),
                     'products' => $row->products
                 );
             }
