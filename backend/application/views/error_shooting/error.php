@@ -44,7 +44,7 @@
                                     <?}?>
                                     <a class="btn btn-warning" onclick="location.href='<?= site_url("bkerror") ?>';"><i class="fa fa-mail-reply"></i> <span>返回錯誤代碼</span></a>
                                     <?if($parentID!=0){?>
-                                    <a class="btn btn-success" onclick="location.href='<?= site_url("bkerror/error_solution/".$errorCodeID.'/'.$back) ?>';"><i class="fa fa-level-up"></i> <span>回上一層</span></a>
+                                    <a class="btn btn-success" onclick="location.href='<?= site_url("bkerror/error_solution/".$errorCodeID.'/'.$prev->parentID) ?>';"><i class="fa fa-level-up"></i> <span>回上一層</span></a>
                                     <?}?>
                                 </div>
                             </div>

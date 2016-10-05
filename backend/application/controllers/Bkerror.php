@@ -74,6 +74,8 @@ class Bkerror extends MY_Controller
     public function error_solution($errorCodeID=false,$parentID=false,$back=false){
 
         $error=$this->error->get_error($errorCodeID,$parentID);
+        $prev=$this->error->get_error_by_eid($parentID);
+        print_r($prev);
         if(!$parentID){
             $parentID=0;
         }
@@ -83,7 +85,8 @@ class Bkerror extends MY_Controller
             'errorCodeID'=>$errorCodeID,
             'counterror'=>$counterror,
             'parentID'=>$parentID,
-            'back'=>$back
+            'back'=>$back,
+            'prev'=>$prev
         );
         $this->get_view('error',$data);
     }
