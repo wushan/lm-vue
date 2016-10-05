@@ -24,14 +24,14 @@ class Frontapi extends MY_Controller
             'title' => $home->title,
             'background' => base_url($home->image),
             'contentheader' => $home->content_title,
-            'content' => str_replace("\n", "</p>\n<p>", '<p>' . $home->content . '</p>')
+            'content' => str_replace("\n", "</p>\n<p>",  $home->content . '</p>')
         );
         $data['introproduct'] = array(
             "id" => $product[0]->PID,
             "name" => $product[0]->list_name,
             "model" => $product[0]->model,
             "image" => base_url($product[0]->pdimage),
-            "description" => str_replace("\n", "</p>\n<p>", '<p>' . $product[0]->intro . '</p>'),
+            "description" => str_replace("\n", "</p>\n<p>",  $product[0]->intro . '</p>'),
         );
         $data['intronews'] = $this->process_news($news);
         echo json_encode($data);
@@ -44,15 +44,15 @@ class Frontapi extends MY_Controller
         $about_banner = $this->about->about_banner_get();
         $data = array(
             'titleA' => $about->contentA_title,
-            'contentA' => str_replace("\n", "</p>\n<p>", '<p>' . $about->contentA . '</p>'),
+            'contentA' => str_replace("\n", "</p>\n<p>",  $about->contentA . '</p>'),
             'titleB' => $about->contentB,
-            'contentB' => str_replace("\n", "</p>\n<p>", '<p>' . $about->contentC . '</p>'),
+            'contentB' => str_replace("\n", "</p>\n<p>",  $about->contentC . '</p>'),
             'imageB' => base_url($about->imageC),
             'titleC' => $about->contentD_title,
-            'contentC' => str_replace("\n", "</p>\n<p>", '<p>' . $about->contentD . '</p>'),
+            'contentC' => str_replace("\n", "</p>\n<p>",  $about->contentD . '</p>'),
             'imageC' => base_url($about->imageD),
             'slides' => $this->process_about_banner($about_banner),
-            'contentD' => str_replace("\n", "</p>\n<p>", '<p>' . $about->contentE . '</p>')
+            'contentD' => str_replace("\n", "</p>\n<p>",  $about->contentE . '</p>')
         );
         echo json_encode($data);
     }
@@ -108,7 +108,7 @@ class Frontapi extends MY_Controller
             'category' => array('name' => $product->list_name, 'id' => $product->PLID),
             'image' => base_url($product->pdimage),
             'backgroundimage' => base_url($product->bgimage),
-            'description' => str_replace("\n", "</p>\n<p>", '<p>' . $product->intro . '</p>'),
+            'description' => str_replace("\n", "</p>\n<p>",  $product->intro . '</p>'),
             'brochure' => base_url($product->catalog_path),
             'media' => array(array('url' => $urlA, 'type' => $typeA), array('url' => $urlB, 'type' => $typeB), array('url' => $urlC, 'type' => $typeC)),
             'features' => $this->process_product_features(json_decode($product->features)),
@@ -144,8 +144,8 @@ class Frontapi extends MY_Controller
             'created_time' => date('m/d/Y', strtotime($news->date)),
             'updated_time' => date('m/d/Y', strtotime($news->update_time)),
             'title' => $news->title,
-            'content' => str_replace("\n", "</p>\n<p>", '<p>' . $news->content . '</p>'),
-            'excerpt' => str_replace("\n", "</p>\n<p>", '<p>' . $news->excerpt . '</p>'),
+            'content' => str_replace("\n", "</p>\n<p>",  $news->content . '</p>'),
+            'excerpt' => str_replace("\n", "</p>\n<p>",  $news->excerpt . '</p>'),
             'thumbnail' => base_url($news->thumbnail),
             'pagination' => array('prev' => $prev, 'next' => $next),
             'media' => array(array('url' => base_url($news->newsimageA)), array('url' => base_url($news->newsimageB)), array('url' => base_url($news->newsimageC)), array('url' => base_url($news->newsimageD)))
@@ -191,7 +191,7 @@ class Frontapi extends MY_Controller
                     'created_time' => date('m/d/Y', strtotime($row->date)),
                     'updated_time' => date('m/d/Y', strtotime($row->update_time)),
                     'title' => $row->title,
-                    'excerpt' => str_replace("\n", "</p>\n<p>", '<p>' .$row->excerpt . '</p>'),
+                    'excerpt' => str_replace("\n", "</p>\n<p>", $row->excerpt . '</p>'),
                     'thumbnail' => base_url($row->thumbnail)
                 );
             }
@@ -230,7 +230,7 @@ class Frontapi extends MY_Controller
                 $data[] = array(
                     'id' => $row->PLID,
                     'name' => $row->name,
-                    'description' => str_replace("\n", "</p>\n<p>", '<p>' .$row->intro . '</p>'),
+                    'description' => str_replace("\n", "</p>\n<p>", $row->intro . '</p>'),
                     'image' => base_url($row->image),
                     'products' => $row->products
                 );
@@ -250,7 +250,7 @@ class Frontapi extends MY_Controller
                     'model' => $row->model,
                     'category' => array('name' => $row->list_name, 'id' => $row->PLID),
                     'image' => base_url($row->bgimage),
-                    'description' => str_replace("\n", "</p>\n<p>", '<p>' .$row->intro . '</p>')
+                    'description' => str_replace("\n", "</p>\n<p>", $row->intro . '</p>')
                 );
             }
             return $data;
@@ -264,7 +264,7 @@ class Frontapi extends MY_Controller
             for ($i = 0; $i < count($features->title); $i++) {
                 $data[] = array(
                     'title' => $features->title[$i],
-                    'description' => str_replace("\n", "</p>\n<p>", '<p>' .$features->intro . '</p>')
+                    'description' => str_replace("\n", "</p>\n<p>", $features->intro . '</p>')
                 );
             }
             return $data;
@@ -316,7 +316,7 @@ class Frontapi extends MY_Controller
                             "contact" => $drow->contact_name,
                             "part" => $drow->machine_part,
                             "subject" => $drow->subject,
-                            "description" => str_replace("\n", "</p>\n<p>", '<p>' .$drow->decription . '</p>'),
+                            "description" => str_replace("\n", "</p>\n<p>", $drow->decription . '</p>'),
                             "filepath" => base_url($drow->file_path)
                         );
                     }
@@ -342,7 +342,7 @@ class Frontapi extends MY_Controller
                 $data[] = array(
                     'id' => $row->INID,
                     'name' => $row->name,
-                    'description' => str_replace("\n", "</p>\n<p>", '<p>' .$row->content . '</p>'),
+                    'description' => str_replace("\n", "</p>\n<p>", $row->content . '</p>'),
                     'image' => base_url($row->image)
                 );
             }
