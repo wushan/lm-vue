@@ -72,7 +72,8 @@ class Frontapi extends MY_Controller
     public function get_product_single()
     {
         header("Content-Type: application/json; charset=UTF-8");
-        $product = $this->product->get_products_by_pid(6);
+        $id=$this->input->post('id');
+        $product = $this->product->get_products_by_pid($id);
         $spec = $this->product->get_spec($product->PID);
 
         if ($product->which_bg == 0) {
@@ -128,7 +129,8 @@ class Frontapi extends MY_Controller
     public function get_news_single()
     {
         header("Content-Type: application/json; charset=UTF-8");
-        $news = $this->news->get_news_by_nid(4);
+        $id=$this->input->post('id');
+        $news = $this->news->get_news_by_nid($id);
         $prev = $this->news->get_news_prev($news->date);
         $next = $this->news->get_news_next($news->date);
         if ($prev) {
@@ -155,8 +157,9 @@ class Frontapi extends MY_Controller
     public function get_dealer()
     {
         header("Content-Type: application/json; charset=UTF-8");
-
-        $agent = $this->agt->get_agent_by_aid(1);
+        
+        $id=$this->input->post('id');
+        $agent = $this->agt->get_agent_by_aid($id);
         $orders = $this->agt->get_order($agent->AID);
 
         $data = array(
