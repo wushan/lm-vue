@@ -158,6 +158,9 @@ class Frontapi extends MY_Controller
 
         $id=$this->input->post('id');
         $agent = $this->agt->get_agent_by_aid($id);
+        if(!$agent){
+           return false;
+        }
         $orders = $this->agt->get_order($agent->AID);
 
         $data = array(
