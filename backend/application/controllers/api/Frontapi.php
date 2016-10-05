@@ -74,7 +74,7 @@ class Frontapi extends MY_Controller
     {
         header("Content-Type: application/json; charset=UTF-8");
         $id=$this->input->post('id');
-        $product = $this->product->get_products_by_pid($id);
+        $product = $this->product->get_products_by_pid(6);
         $spec = $this->product->get_spec($product->PID);
 
         if ($product->which_bg == 0) {
@@ -112,7 +112,7 @@ class Frontapi extends MY_Controller
             'brochure' => base_url($product->catalog_path),
             'media' => array(array('url' => $urlA, 'type' => $typeA), array('url' => $urlB, 'type' => $typeB), array('url' => $urlC, 'type' => $typeC)),
             'features' => $this->process_product_features(json_decode($product->features)),
-            'specification' => array($this->process_product_column($product->columns), $this->process_spec_column($spec)),
+            'specification' => array('columns'=>$this->process_product_column($product->columns), 'models'=>$this->process_spec_column($spec)),
         );
         echo json_encode($data);
     }
