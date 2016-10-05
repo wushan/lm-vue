@@ -30,7 +30,7 @@ class Frontapi extends MY_Controller
             "id" => $product[0]->PID,
             "name" => $product[0]->list_name,
             "model" => $product[0]->model,
-            "image" => $product[0]->pdimage,
+            "image" => base_url($product[0]->pdimage),
             "description" => str_replace("\n", "</p>\n<p>", '<p>' . $product[0]->intro . '</p>'),
         );
         $data['intronews'] = $this->process_news($news);
@@ -81,21 +81,21 @@ class Frontapi extends MY_Controller
             $product->bgimage = $product->list_image;
         }
         if ($product->carouselA_option == 0) {
-            $urlA = $product->carouselA_image;
+            $urlA = base_url($product->carouselA_image);
             $typeA = 'image';
         } else {
             $urlA = $product->carouselA;
             $typeA = 'video';
         }
         if ($product->carouselB_option == 0) {
-            $urlB = $product->carouselB_image;
+            $urlB = base_url($product->carouselB_image);
             $typeB = 'image';
         } else {
             $urlB = $product->carouselB;
             $typeB = 'video';
         }
         if ($product->carouselC_option == 0) {
-            $urlC = $product->carouselC_image;
+            $urlC = base_url($product->carouselC_image);
             $typeC = 'image';
         } else {
             $urlC = $product->carouselC;
@@ -107,7 +107,7 @@ class Frontapi extends MY_Controller
             'model' => $product->model,
             'category' => array('name' => $product->list_name, 'id' => $product->PLID),
             'image' => base_url($product->pdimage),
-            'backgroundimage' => $product->bgimage,
+            'backgroundimage' => base_url($product->bgimage),
             'description' => str_replace("\n", "</p>\n<p>", '<p>' . $product->intro . '</p>'),
             'brochure' => base_url($product->catalog_path),
             'media' => array(array('url' => $urlA, 'type' => $typeA), array('url' => $urlB, 'type' => $typeB), array('url' => $urlC, 'type' => $typeC)),
@@ -148,7 +148,7 @@ class Frontapi extends MY_Controller
             'excerpt' => str_replace("\n", "</p>\n<p>", '<p>' . $news->excerpt . '</p>'),
             'thumbnail' => base_url($news->thumbnail),
             'pagination' => array('prev' => $prev, 'next' => $next),
-            'media' => array(array('url' => $news->newsimageA), array('url' => $news->newsimageB), array('url' => $news->newsimageC), array('url' => $news->newsimageD))
+            'media' => array(array('url' => base_url($news->newsimageA)), array('url' => base_url($news->newsimageB)), array('url' => base_url($news->newsimageC)), array('url' => base_url($news->newsimageD)))
         );
         echo json_encode($data);
     }
@@ -223,7 +223,7 @@ class Frontapi extends MY_Controller
                         $row->products[$i] = array(
                             'id' => $prow->PID,
                             'name' => $prow->name,
-                            'thumbnail' => $prow->pdimage
+                            'thumbnail' => base_url($prow->pdimage)
                         );
                     }
                 }
@@ -231,7 +231,7 @@ class Frontapi extends MY_Controller
                     'id' => $row->PLID,
                     'name' => $row->name,
                     'description' => str_replace("\n", "</p>\n<p>", '<p>' .$row->intro . '</p>'),
-                    'image' => $row->image,
+                    'image' => base_url($row->image),
                     'products' => $row->products
                 );
             }
@@ -249,7 +249,7 @@ class Frontapi extends MY_Controller
                     'name' => $row->name,
                     'model' => $row->model,
                     'category' => array('name' => $row->list_name, 'id' => $row->PLID),
-                    'image' => $row->bgimage,
+                    'image' => base_url($row->bgimage),
                     'description' => str_replace("\n", "</p>\n<p>", '<p>' .$row->intro . '</p>')
                 );
             }
