@@ -120,9 +120,7 @@ class Frontapi extends MY_Controller
     {
         header("Content-Type: application/json; charset=UTF-8");
         $news = $this->news->get_news();
-        $data = array(
-            $this->process_news($news)
-        );
+        $data = $this->process_news($news);
         echo json_encode($data);
     }
 
