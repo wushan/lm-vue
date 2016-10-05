@@ -10,6 +10,7 @@ class Frontapi extends MY_Controller
         $this->load->model('tb_news_model', 'news');
         $this->load->model('tb_about_model', 'about');
         $this->load->model('tb_agent_model', 'agt');
+        $this->load->model('tb_inventory_model','inventory');
     }
 
     public function get_homepage()
@@ -30,7 +31,7 @@ class Frontapi extends MY_Controller
             "name" => $product[0]->list_name,
             "model" => $product[0]->model,
             "image" => $product[0]->pdimage,
-            "description" => $product[0]->intro,
+            "description" => str_replace("\n", "</p>\n<p>", '<p>' . $product[0]->intro . '</p>'),
         );
         $data['intronews'] = $this->process_news($news);
         echo json_encode($data);
@@ -43,15 +44,15 @@ class Frontapi extends MY_Controller
         $about_banner = $this->about->about_banner_get();
         $data = array(
             'titleA' => $about->contentA_title,
-            'contentA' => $about->contentA,
+            'contentA' => str_replace("\n", "</p>\n<p>", '<p>' . $about->contentA . '</p>'),
             'titleB' => $about->contentB,
-            'contentB' => $about->contentC,
+            'contentB' => str_replace("\n", "</p>\n<p>", '<p>' . $about->contentC . '</p>'),
             'imageB' => base_url($about->imageC),
             'titleC' => $about->contentD_title,
-            'contentC' => $about->contentD,
+            'contentC' => str_replace("\n", "</p>\n<p>", '<p>' . $about->contentD . '</p>'),
             'imageC' => base_url($about->imageD),
             'slides' => $this->process_about_banner($about_banner),
-            'contentD' => $about->contentE
+            'contentD' => str_replace("\n", "</p>\n<p>", '<p>' . $about->contentE . '</p>')
         );
         echo json_encode($data);
     }
@@ -107,7 +108,7 @@ class Frontapi extends MY_Controller
             'category' => array('name' => $product->list_name, 'id' => $product->PLID),
             'image' => base_url($product->pdimage),
             'backgroundimage' => $product->bgimage,
-            'description' => $product->intro,
+            'description' => str_replace("\n", "</p>\n<p>", '<p>' . $product->intro . '</p>'),
             'brochure' => base_url($product->catalog_path),
             'media' => array(array('url' => $urlA, 'type' => $typeA), array('url' => $urlB, 'type' => $typeB), array('url' => $urlC, 'type' => $typeC)),
             'features' => $this->process_product_features(json_decode($product->features)),
@@ -143,8 +144,8 @@ class Frontapi extends MY_Controller
             'created_time' => date('m/d/Y', strtotime($news->date)),
             'updated_time' => date('m/d/Y', strtotime($news->update_time)),
             'title' => $news->title,
-            'content' => $news->content,
-            'excerpt' => $news->excerpt,
+            'content' => str_replace("\n", "</p>\n<p>", '<p>' . $news->content . '</p>'),
+            'excerpt' => str_replace("\n", "</p>\n<p>", '<p>' . $news->excerpt . '</p>'),
             'thumbnail' => base_url($news->thumbnail),
             'pagination' => array('prev' => $prev, 'next' => $next),
             'media' => array(array('url' => $news->newsimageA), array('url' => $news->newsimageB), array('url' => $news->newsimageC), array('url' => $news->newsimageD))
@@ -159,7 +160,7 @@ class Frontapi extends MY_Controller
         $id=$this->input->post('id');
         $agent = $this->agt->get_agent_by_aid($id);
         if(!$agent){
-           return false;
+            return false;
         }
         $orders = $this->agt->get_order($agent->AID);
 
@@ -168,6 +169,15 @@ class Frontapi extends MY_Controller
             'dealerid' => $agent->AID,
             'orders' => $this->process_orders($orders)
         );
+        echo json_encode($data);
+    }
+
+    public function get_inventory()
+    {
+        header("Content-Type: application/json; charset=UTF-8");
+
+        $inventory=$this->inventory->get_inventory();
+        $data = $this->process_inventory($inventory);
         echo json_encode($data);
     }
 
@@ -181,7 +191,7 @@ class Frontapi extends MY_Controller
                     'created_time' => date('m/d/Y', strtotime($row->date)),
                     'updated_time' => date('m/d/Y', strtotime($row->update_time)),
                     'title' => $row->title,
-                    'excerpt' => $row->excerpt,
+                    'excerpt' => str_replace("\n", "</p>\n<p>", '<p>' .$row->excerpt . '</p>'),
                     'thumbnail' => base_url($row->thumbnail)
                 );
             }
@@ -220,7 +230,7 @@ class Frontapi extends MY_Controller
                 $data[] = array(
                     'id' => $row->PLID,
                     'name' => $row->name,
-                    'description' => $row->intro,
+                    'description' => str_replace("\n", "</p>\n<p>", '<p>' .$row->intro . '</p>'),
                     'image' => $row->image,
                     'products' => $row->products
                 );
@@ -240,7 +250,7 @@ class Frontapi extends MY_Controller
                     'model' => $row->model,
                     'category' => array('name' => $row->list_name, 'id' => $row->PLID),
                     'image' => $row->bgimage,
-                    'description' => $row->intro
+                    'description' => str_replace("\n", "</p>\n<p>", '<p>' .$row->intro . '</p>')
                 );
             }
             return $data;
@@ -254,7 +264,7 @@ class Frontapi extends MY_Controller
             for ($i = 0; $i < count($features->title); $i++) {
                 $data[] = array(
                     'title' => $features->title[$i],
-                    'description' => $features->intro[$i]
+                    'description' => str_replace("\n", "</p>\n<p>", '<p>' .$features->intro . '</p>')
                 );
             }
             return $data;
@@ -306,7 +316,7 @@ class Frontapi extends MY_Controller
                             "contact" => $drow->contact_name,
                             "part" => $drow->machine_part,
                             "subject" => $drow->subject,
-                            "description" => $drow->decription,
+                            "description" => str_replace("\n", "</p>\n<p>", '<p>' .$drow->decription . '</p>'),
                             "filepath" => base_url($drow->file_path)
                         );
                     }
@@ -318,6 +328,22 @@ class Frontapi extends MY_Controller
                     "expire" => date('m/d/Y', strtotime($row->warranty_date)),
                     "name" => $row->machine_model,
                     "detail" => $darray
+                );
+            }
+            return $data;
+        }
+        return false;
+    }
+
+    private function process_inventory($inventory)
+    {
+        if ($inventory) {
+            foreach ($inventory as $row) {
+                $data[] = array(
+                    'id' => $row->INID,
+                    'name' => $row->name,
+                    'description' => str_replace("\n", "</p>\n<p>", '<p>' .$row->content . '</p>'),
+                    'image' => base_url($row->image)
                 );
             }
             return $data;
