@@ -105,7 +105,7 @@ export default {
         }
         return groups
       }
-      var groupArr = createGroupedArray(this.product.specification.models, 6)
+      var groupArr = createGroupedArray(this.product.specification, 6)
       return groupArr
     }
   },

@@ -93,12 +93,13 @@
                         //- td {{ word }}
                         td
                           a.btn.rounded.green(href="javascript:;") Download PDF
-        .dealers-wrapper(v-else)
+        .dealers-wrapper(v-if="error")
           .container.restrict-large
-            .title
+            .title.centered
               h1 Dealers PORTAL
           .dealers-inner
-            .container.restrict-large
+            .container.restrict-large.centered
+              p {{ error }}
               p You don't have permission to view this section.
     transition(name="fade", mode="out-in")
       #loader(v-if="loading")
@@ -161,12 +162,14 @@ export default {
     fetchData () {
       this.error = this.dealer = null
       this.loading = true
-      Api.getDealer((err, data) => {
+      Api.getDealer(1, (err, data) => {
         this.loading = false
         if (err) {
           this.error = err.toString()
+          console.log(err)
         } else {
           this.dealer = data
+          console.log(data)
         }
       })
     },

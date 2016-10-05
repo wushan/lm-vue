@@ -29,7 +29,7 @@
                 <header>
                     <span class="widget-icon"><i class="fa fa-table"></i></span>
 
-                    <h2>新聞管理</h2>
+                    <h2>現貨產品</h2>
                 </header>
 
                 <div>
@@ -38,7 +38,7 @@
                         <div class="widget-body-toolbar">
                             <div class="row">
                                 <div class="col-xs-6 text-left">
-                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bknews/add_news") ?>';"><i class="fa fa-plus"></i> <span>新增新聞</span></a>
+                                    <a class="btn btn-primary" onclick="location.href='<?= site_url("bkinventory/add_inventory") ?>';"><i class="fa fa-plus"></i> <span>新增</span></a>
                                 </div>
 
                             </div>
@@ -48,26 +48,26 @@
                             <table class="table table-bordered" id="table">
                                 <thead>
                                 <tr>
-                                    <th width="50%">圖片預覽</th>
-                                    <th width="30%">名稱</th>
+                                    <th width="30%">圖片預覽</th>
+                                    <th width="35%">名稱</th>
                                     <th>編輯</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <? if ($news) { ?>
-                                    <? foreach ($news as $row) { ?>
+                                <? if ($inventory) { ?>
+                                    <? foreach ($inventory as $row) { ?>
                                         <tr>
                                             <td>
-                                                <? if (isset($row->thumbnail)) { ?>
+                                                <? if (isset($row->image)) { ?>
                                                     <div id="preview">
-                                                        <img src="<?= base_url($row->thumbnail) ?>">
+                                                        <img src="<?= base_url($row->image) ?>">
                                                     </div>
                                                 <? } ?>
                                             </td>
-                                            <td><?= $row->title ?></td>
+                                            <td><?= $row->name ?></td>
                                             <td>
-                                                <a href="<?= site_url('bknews/edit_news/' . $row->NID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
-                                                <a href="<?= site_url('bknews/delete_news/' . $row->NID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
+                                                <a href="<?= site_url('bkinventory/edit_inventory/' . $row->INID) ?>" class="btn btn-default" style=""><i class="fa fa-gear"></i><span class="hidden-tablet"> 編輯 </span></a>
+                                                <a href="<?= site_url('bkinventory/delete_inventory/' . $row->INID) ?>" class="btn btn-danger" onclick="return confirm('確定要刪除?');"><i class="glyphicon glyphicon-trash"></i><span class="hidden-tablet"> 刪除 </span></a>
                                             </td>
                                         </tr>
                                     <? } ?>

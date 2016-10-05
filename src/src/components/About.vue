@@ -22,7 +22,7 @@
                             h1.track-animate(v-html="data.titleC")
                             .content(v-html="data.contentC")
                         .block
-                            img(src="../assets/images/components/about-people.png")
+                            img(v-bind:src="data.imageC")
 
                 section
                     .title
