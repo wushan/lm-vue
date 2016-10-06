@@ -75,33 +75,40 @@ class Frontapi extends MY_Controller
     {
         header("Content-Type: application/json; charset=UTF-8");
         $id = $this->input->post('id');
-        $product = $this->product->get_products_by_pid(6);
+        $product = $this->product->get_products_by_pid($id);
         $spec = $this->product->get_spec($product->PID);
 
         if ($product->which_bg == 0) {
             $product->bgimage = $product->list_image;
         }
         if ($product->carouselA_option == 0) {
-            $urlA = base_url($product->carouselA_image);
-            $typeA = 'image';
+            if ($product->carouselA_image) {
+                $urlA = base_url($product->carouselA_image);
+                $typeA = 'image';
+            }
         } else {
             $urlA = $product->carouselA;
             $typeA = 'video';
         }
         if ($product->carouselB_option == 0) {
-            $urlB = base_url($product->carouselB_image);
-            $typeB = 'image';
+            if ($product->carouselB_image) {
+                $urlB = base_url($product->carouselB_image);
+                $typeB = 'image';
+            }
         } else {
             $urlB = $product->carouselB;
             $typeB = 'video';
         }
         if ($product->carouselC_option == 0) {
-            $urlC = base_url($product->carouselC_image);
-            $typeC = 'image';
+            if ($product->carouselC_image) {
+                $urlC = base_url($product->carouselC_image);
+                $typeC = 'image';
+            }
         } else {
             $urlC = $product->carouselC;
             $typeC = 'video';
         }
+
         $data = array(
             'id' => $product->PID,
             'name' => $product->name,
@@ -111,10 +118,19 @@ class Frontapi extends MY_Controller
             'backgroundimage' => base_url($product->bgimage),
             'description' => str_replace("\n", "</p>\n<p>", $product->intro . '</p>'),
             'brochure' => base_url($product->catalog_path),
-            'media' => array(array('url' => $urlA, 'type' => $typeA), array('url' => $urlB, 'type' => $typeB), array('url' => $urlC, 'type' => $typeC)),
+//            'media' => array(array('url' => $urlA, 'type' => $typeA), array('url' => $urlB, 'type' => $typeB), array('url' => $urlC, 'type' => $typeC)),
             'features' => $this->process_product_features(json_decode($product->features)),
-            'specification' => array('columns' => $this->process_product_column($product->columns), 'models' => $this->process_spec_column($spec)),
+            'specification' => array('columns' => $this->process_product_column($product->columns), 'models' => $this->process_spec_column($spec,$product->columns)),
         );
+        if (isset($urlA)) {
+            $data['media'][0] = array('url' => $urlA, 'type' => $typeA);
+        }
+        if (isset($urlB)) {
+            $data['media'][1] = array('url' => $urlB, 'type' => $typeB);
+        }
+        if (isset($urlC)) {
+            $data['media'][2] = array('url' => $urlC, 'type' => $typeC);
+        }
         echo json_encode($data);
     }
 
@@ -149,8 +165,20 @@ class Frontapi extends MY_Controller
             'excerpt' => str_replace("\n", "</p>\n<p>", $news->excerpt . '</p>'),
             'thumbnail' => base_url($news->thumbnail),
             'pagination' => array('prev' => $prev, 'next' => $next),
-            'media' => array(array('url' => base_url($news->newsimageA)), array('url' => base_url($news->newsimageB)), array('url' => base_url($news->newsimageC)), array('url' => base_url($news->newsimageD)))
+//            'media' => array(array('url' => base_url($news->newsimageA)), array('url' => base_url($news->newsimageB)), array('url' => base_url($news->newsimageC)), array('url' => base_url($news->newsimageD)))
         );
+        if (isset($news->newsimageA)) {
+            $data['media'][] = array('url' => base_url($news->newsimageA));
+        }
+        if (isset($news->newsimageB)) {
+            $data['media'][] = array('url' => base_url($news->newsimageB));
+        }
+        if (isset($news->newsimageC)) {
+            $data['media'][] = array('url' => base_url($news->newsimageC));
+        }
+        if (isset($news->newsimageD)) {
+            $data['media'][] = array('url' => base_url($news->newsimageD));
+        }
         echo json_encode($data);
     }
 
@@ -200,9 +228,9 @@ class Frontapi extends MY_Controller
         $id = $this->input->post('id');
         $errorcode = $this->input->post('errorcode');
 
-        $agent = $this->agt->get_agent_by_aid(1);
+        $agent = $this->agt->get_agent_by_aid($id);
         $buy = $this->process_agent_buy($agent->buy);
-        $error_code = $this->error->get_search_error_code('yeahmayday-022');
+        $error_code = $this->error->get_search_error_code($errorcode);
         $get_agent_model = $this->process_model($buy, $error_code);
 
 
@@ -314,17 +342,31 @@ class Frontapi extends MY_Controller
         return false;
     }
 
-    private function process_spec_column($spec)
+    private function process_spec_column($spec,$column)
     {
         if ($spec) {
             foreach ($spec as $i => $row) {
                 if ($row->PDID) {
-                    foreach (json_decode($row->PDID) as $drow) {
+                    foreach (json_decode($row->PDID) as $x => $drow) {
                         $data[$i][] = array(
                             'id' => $drow,
                             'name' => $this->product->get_pd_by_pdid($drow)->model,
-                            'spec' => json_decode($this->product->get_pd_by_pdid($drow)->spec)
+
                         );
+                        $spec = json_decode($this->product->get_pd_by_pdid($drow)->spec);
+                        if ($spec) {
+                            foreach ($spec as $sprow) {
+                                if ($sprow) {
+                                    foreach ($sprow as $models) {
+                                        $data[$i][$x]['models'][] = $models;
+                                    }
+                                }
+                            }
+                        }else{
+                          for($q=0;$q<count($column);$q++){
+                              $data[$i][$x]['models'][] ='';
+                          }
+                        }
                     }
                 }
             }
@@ -349,6 +391,8 @@ class Frontapi extends MY_Controller
                             "filepath" => base_url($drow->file_path)
                         );
                     }
+                } else {
+                    $darray = null;
                 }
                 $data[] = array(
                     "id" => $row->OID,
@@ -403,7 +447,7 @@ class Frontapi extends MY_Controller
     private function process_model($buy, $error_code)
     {
         $modelID = json_decode($error_code->modelID);
-        $error = $this->error->get_error($error_code->ECID, '0',true);
+        $error = $this->error->get_error($error_code->ECID, '0', true);
         if ($buy) {
             foreach ($buy as $row) {
 
@@ -413,7 +457,7 @@ class Frontapi extends MY_Controller
                         'name' => $row['name'],
                         'error' => array(
                             'code' => $error_code->errorCode,
-                            'steps'=>$error
+                            'steps' => $error
 
                         )
                     );
