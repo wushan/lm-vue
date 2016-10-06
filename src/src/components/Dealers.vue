@@ -46,7 +46,7 @@
                         //- td {{ word }}
                         td {{ order.no }}
                         //- td {{ word }}
-                        td
+                        td.centered
                           button.btn.rounded.green(@click="getDetails(order)")
                             .fa.fa-eye.fa-lg
                             span Details
@@ -289,7 +289,8 @@ export default {
     }
     .order-detail-header {
       h4 {
-        margin: 0; 
+        margin: 0;
+        font-weight: normal;
       }
       p {
         margin: 0;
@@ -314,13 +315,10 @@ export default {
       }
       tr {
         display: table-row;
-        &:hover {
-          background-color: $darkgray;
-        }
       }
       td,th {
         display: table-cell;
-        padding: .5em 1em;
+        padding: .5em;
       }
       /* Hide table headers (but not display: none;, for accessibility) */
       thead tr { 
@@ -328,7 +326,21 @@ export default {
         top: 0;
         left: 0;
       }
-      
+      tbody {
+        tr {
+          td,th {
+            border-bottom: 1px solid $darkgray;
+              &:last-child {
+                border-bottom: 0;
+              }
+          }
+          &:hover {
+            td,th {
+              background-color: $darkgray;
+            }
+          }
+        }
+      }
       tr {margin-bottom: 0;}
       
       td { 
