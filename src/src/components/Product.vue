@@ -45,7 +45,7 @@
                                         .description(v-html="feature.description")
                         .content(v-show="spec")
                             .container.restrict-large
-                                .data-group(v-for="table in splitTable")
+                                .data-group(v-for="table in product.specification.models")
                                     table
                                         thead
                                             tr
@@ -54,7 +54,7 @@
                                         tbody
                                             tr(v-for="(spec,index) in product.specification.columns")
                                                 th {{ spec.name }}
-                                                td(v-for="model in table") {{ model.spec[index] }}
+                                                td(v-for="model in table") {{ model.models[index] }}
 
                 section#discover
                     a(href="javascript:;") BACK TO TOP
