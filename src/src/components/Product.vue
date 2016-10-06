@@ -50,7 +50,7 @@
                                         thead
                                             tr
                                                 th(width="14%")
-                                                th(v-for="model in table", width="14%") {{ model.name }}
+                                                th(v-for="model in table") {{ model.name }}
                                         tbody
                                             tr(v-for="(spec,index) in product.specification.columns")
                                                 th {{ spec.name }}
