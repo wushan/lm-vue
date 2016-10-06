@@ -66,7 +66,7 @@ export default {
       })
     },
     sendToInquiry (id) {
-      Inquiry.add(id)
+      Inquiry.addInventory(id)
       this.$parent.$parent.$emit('updateInquiry', 1)
     },
     leaveInventory () {

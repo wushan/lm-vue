@@ -28,6 +28,27 @@ export default {
     // window.localStorage.setItem('product', id)
     return console.log(window.localStorage)
   },
+  addInventory (id) {
+    // If inquiry Exist
+    if (Store.get('inventory')) {
+      let newRecord = id
+      let newArray = Array.from(Store.get('inventory'))
+      if (newArray.includes(newRecord)) {
+        console.log('!Prevent Same Record')
+      } else {
+        newArray.push(newRecord)
+      }
+      Store.set('inventory', newArray)
+    } else {
+      // Set One record directly
+      let inquiryArr = Array.of()
+      let newRecord = id
+      inquiryArr.push(newRecord)
+      Store.set('inventory', inquiryArr)
+    }
+    // window.localStorage.setItem('product', id)
+    return console.log(window.localStorage)
+  },
   remove (id) {
     if (Store.get('inquiry')) {
       // Find Index
