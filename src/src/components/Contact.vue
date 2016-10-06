@@ -78,6 +78,7 @@ export default {
   components: {
     'page-navigation': Navigation
   },
+  name: 'Contact',
   props: ['inquiryLength', 'submenu'],
   data () {
     return {
@@ -351,6 +352,11 @@ export default {
       zIndex: 999
     })
     console.log(this.inquiryLength)
+  },
+  methods: {
+    submit () {
+      console.log('send')
+    }
   }
 }
 </script>
