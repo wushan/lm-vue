@@ -44,7 +44,7 @@ class Bkagent extends MY_Controller
         $data = array(
             'agent' => $agent,
             'order' => $this->agt->get_order($AID),
-            'product'=>  $this->product->get_products()
+            'product'=> $this->product->get_pd()
         );
         $this->get_view('edit_agent', $data);
     }

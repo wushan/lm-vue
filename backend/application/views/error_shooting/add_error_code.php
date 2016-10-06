@@ -25,7 +25,7 @@
                                                 <label class="col-sm-2 control-label">產品名稱</label>
 
                                                 <div class="col-sm-2">
-                                                    <select class="form-control" name="modelID"
+                                                    <select class="form-control" name="modelID[]"
                                                             required>
                                                         <option value="0">請選擇</option>
                                                         <? if ($pd) { ?>

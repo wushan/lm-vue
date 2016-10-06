@@ -47,13 +47,15 @@ class Bkerror extends MY_Controller
         }
 
         if ($post = $this->input->post(null, true)) {
+            $post['modelID'] = json_encode($post['modelID']);
             $post['update_time'] = date('Y-m-d H:i:s');
             $this->db->update('tb_error_code', $post,array('ECID'=>$ECID));
             redirect('bkerror');
         }
 
         $data = array(
-            'error_code' => $error_code
+            'error_code' => $error_code,
+            'pd'=>$this->product->get_pd()
         );
         $this->get_view('edit_error_code', $data);
     }
@@ -72,6 +74,8 @@ class Bkerror extends MY_Controller
     public function error_solution($errorCodeID=false,$parentID=false,$back=false){
 
         $error=$this->error->get_error($errorCodeID,$parentID);
+        $prev=$this->error->get_error_by_eid($parentID);
+        print_r($prev);
         if(!$parentID){
             $parentID=0;
         }
@@ -81,7 +85,8 @@ class Bkerror extends MY_Controller
             'errorCodeID'=>$errorCodeID,
             'counterror'=>$counterror,
             'parentID'=>$parentID,
-            'back'=>$back
+            'back'=>$back,
+            'prev'=>$prev
         );
         $this->get_view('error',$data);
     }
