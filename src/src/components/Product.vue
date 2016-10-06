@@ -53,7 +53,7 @@
                                                 th(v-for="model in table") {{ model.name }}
                                         tbody
                                             tr(v-for="(spec,index) in product.specification.columns")
-                                                th {{ spec.name }}
+                                                td {{ spec.name }} /xxx
                                                 td(v-for="model in table") {{ model.models[index] }}
 
                 section#discover
@@ -71,6 +71,8 @@ window.jQuery = window.$ = $
 require('imports?$=jquery!../assets/vendor/jquery.sticky.js')
 require('imports?$=jquery!../assets/vendor/slick.min.js')
 require('imports?$=jquery!../assets/vendor/jquery.fitvids.js')
+require('imports?$=jquery!../assets/vendor/jquery.mousewheel.js')
+require('imports?$=jquery!../assets/vendor/jquery.mCustomScrollbar.js')
 
 export default {
   components: {
@@ -130,6 +132,10 @@ export default {
     selectSpec () {
       console.log('selectSpec')
       this.spec = true
+      $('.data-group').mCustomScrollbar({
+        theme: 'light',
+        axis: 'x'
+      })
     },
     initSlick () {
       console.log('init')
@@ -324,7 +330,6 @@ export default {
                 }
             }
             .data-group {
-                overflow-x: auto;
                 margin-bottom: 2em;
                 padding: 2em;
                 box-sizing: border-box;
@@ -335,6 +340,7 @@ export default {
               text-align: center;
               th,td {
                 padding: .8em;
+                white-space: nowrap;
               }
               thead {
                 tr {
@@ -362,6 +368,7 @@ export default {
                 }
               }
             }
-        }
+            /* Force table to not be like tables anymore */
+      }
     }
 </style>
