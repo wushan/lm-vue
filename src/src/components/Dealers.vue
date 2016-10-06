@@ -200,7 +200,13 @@ export default {
 	@import "src/assets/styles/general/helper/helper";
 	#dealers {
     color: $white;
-    min-height: calc(100vh - 50px); 
+    min-height: calc(100vh - 50px);
+    background-color: $darkestgray;
+    background-image: url('../assets/images/components/dealer-bg.png');
+    background-size: cover;
+    @include breakpoint(1440px) {
+      background-size: 100% auto;
+    }
     .title {
       color: $main;
       h1 {
@@ -307,10 +313,14 @@ export default {
         display: table-row-group; 
       }
       tr {
-        display: table-row; 
+        display: table-row;
+        &:hover {
+          background-color: $darkgray;
+        }
       }
       td,th {
-        display: table-cell; 
+        display: table-cell;
+        padding: .5em 1em;
       }
       /* Hide table headers (but not display: none;, for accessibility) */
       thead tr { 
@@ -326,7 +336,6 @@ export default {
         border: none;
         border-bottom: 0; 
         position: relative;
-        padding-left: 0;
       }
       .order-detail-wrapper, .order-history-wrapper {
         .order-history-table {

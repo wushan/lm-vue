@@ -64,20 +64,22 @@ new Vue({
         console.log('gg')
       }
     })
+    // Onscreen
+    const os = new OnScreen({
+      tolerance: 100,
+      debounce: 100,
+      container: window
+    })
+
+    os.on('enter', '.track-animate', (element) => {
+      element.classList.add('os')
+    })
+
+    os.on('leave', '.track-animate', (element) => {
+      element.classList.remove('os')
+    })
+  },
+  mounted () {
+    console.log('root')
   }
 }).$mount('#app')
-
-// Onscreen
-const os = new OnScreen({
-  tolerance: 100,
-  debounce: 100,
-  container: window
-})
-
-os.on('enter', '.track-animate', (element) => {
-  element.classList.add('os')
-})
-
-os.on('leave', '.track-animate', (element) => {
-  element.classList.remove('os')
-})

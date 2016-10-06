@@ -18,11 +18,11 @@
                                     .item(v-for="slide in data.highlightproduct")
                                         .thumbnail
                                             img(v-bind:src="slide.image")
-                                        .content.track-animate
-                                            h1.track-animate
+                                        .content
+                                            h1
                                                 |   {{ slide.name }}
                                                 small.bold {{ slide.model }}
-                                            .context.track-animate(v-html="slide.description")
+                                            .context(v-html="slide.description")
                                             .call-action
                                                 router-link.btn.btn-with-icon.dark(:to="'/product/single/' + slide.id", href="javascript:;")
                                                     span DETAIL
@@ -41,7 +41,7 @@
                 section#gap
                     a(href="javascript:;")
                         span.bold SCROLL
-                        .fa.fa-long-arrow-down.fa-lg
+                        img(src="../assets/images/components/scrolljar.png")
                 #category-list
                     .category.track-animate(v-for="category in data.categories")
                         .coverage(v-bind:style="'background-image: url(' + category.image + ');'")
@@ -50,6 +50,9 @@
                             .container.restrict
                                 h1(v-html="category.name")
                                 .context(v-html="category.description")
+                                ul
+                                    li(v-for="product in category.products")
+                                        router-link(:to="'/product/single/' + product.id") {{ product.name }}
                                 .product-slider
                                     .item(v-for="product in category.products")
                                         router-link(:to="'/product/single/' + product.id")

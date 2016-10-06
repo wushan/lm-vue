@@ -11,7 +11,7 @@
                                 h1
                                     |   PRODUCTS
                                     span.bold {{ product.name }}
-                            .product-image.track-animate
+                            .product-image.track-animate.os
                                 img(v-bind:src="product.image")
 
                     .product-single-inner.restrict-large
@@ -174,12 +174,7 @@ export default {
             transition: 3s all ease;
         }
         .slick-slide {
-            &:hover {
-                img {
-                    transform: scale(1.5);
-                    transform-origin: center center;
-                }
-            }
+            
         }
         .slick-dots {
             bottom: -3em;
@@ -253,6 +248,14 @@ export default {
                 
                 @include breakpoint(1440px) {
                     background-position: top right;
+                }
+            }
+            .product-image {
+                img {
+                    transition: 3s transform ease;
+                    &:hover {
+                        transform: scale(1.2);
+                    }
                 }
             }
         }

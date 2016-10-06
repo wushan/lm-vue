@@ -134,6 +134,11 @@ export default {
                 background-color: $white;
             }
         }
+        .call-action {
+            .btn.basic {
+                background-color: darken($main, 15%);
+            }
+        }
     }
     .contact-wrapper {
         .address {

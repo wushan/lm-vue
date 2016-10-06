@@ -2,38 +2,38 @@
     main
         #main
             page-navigation(v-bind:inquiryLength="inquiryLength")
-            #about(v-if="data")
+            #about
                 section
                     .container.restrict-large
                         .title
                             img(src="../assets/images/components/about-heading.png")
-                    .container.restrict
-                        h2(v-html="data.titleA")
-                        .content(v-html="data.contentA")
+                    .container.restrict.track-animate.os
+                        h2(v-if="data", v-html="data.titleA")
+                        .content(v-if="data", v-html="data.contentA")
                 section
                     .inner
                         .container.restrict-large
                             .title
-                                h2.track-animate(v-html="data.titleB")
-                            .content.track-animate(v-html="data.contentB")
+                                h2.track-animate(v-if="data", v-html="data.titleB")
+                            .content.track-animate(v-if="data", v-html="data.contentB")
                 section
                     .container.restrict-large
                         .block.track-animate
-                            h1.track-animate(v-html="data.titleC")
-                            .content(v-html="data.contentC")
+                            h1.track-animate(v-if="data", v-html="data.titleC")
+                            .content(v-if="data", v-html="data.contentC")
                         .block
-                            img(v-bind:src="data.imageC")
+                            img(v-if="data", v-bind:src="data.imageC")
 
                 section
                     .title
                         img(src="../assets/images/components/about-csr-title.png")
                     .slider-wrapper
-                        #slider
+                        #slider(v-if="data")
                             .item(v-for="slide in data.slides", :style="'background-image: url(' + slide.image + ');'")
                                 .overlay
                                     .container.restrict-large(v-html="slide.paragraph")
 
-                    .container.restrict.track-animate(v-html="data.contentD")
+                    .container.restrict.track-animate(v-if="data", v-html="data.contentD")
                       
         transition(name="fade", mode="out-in")
             #loader(v-if="loading")
@@ -84,7 +84,6 @@ export default {
       })
     },
     initSlick () {
-      console.log('init')
       this.$nextTick(function () {
         $('#slider').slick({
           dots: true

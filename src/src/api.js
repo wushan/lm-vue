@@ -130,6 +130,7 @@ export default {
         cb(new Error('Data not found.'))
       } else {
         // alert('yay got ' + JSON.stringify(res.body))
+        console.log(res.body)
         cb(null, res.body)
       }
     })

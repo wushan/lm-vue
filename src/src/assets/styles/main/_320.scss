@@ -180,6 +180,7 @@
 			position: relative;
 			overflow: hidden;
 			@include aspect-ratio(16, 9);
+			transform: translateZ(0);
 			&:hover {
 				img {
 					transition: 3s all ease-out;
@@ -191,8 +192,8 @@
 			}
 			.overlay {
 				position: absolute;
-				top: 0;
-				bottom: 0;
+				top: -1px;
+				bottom: -1px;
 				right: 0;
 				left: 0;
 				text-align: center;
