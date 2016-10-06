@@ -75,7 +75,6 @@ class Bkerror extends MY_Controller
 
         $error=$this->error->get_error($errorCodeID,$parentID);
         $prev=$this->error->get_error_by_eid($parentID);
-        print_r($prev);
         if(!$parentID){
             $parentID=0;
         }

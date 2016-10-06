@@ -43,13 +43,12 @@
                                                 <label class="col-sm-2 control-label">產品名稱</label>
 
                                                 <div class="col-sm-2">
-                                                    <select class="form-control" name="PDID[]"
-                                                            required>
+                                                    <select class="form-control pd" id="pd" onchange="get_data()" name="PDID[]">
+                                                        required>
                                                         <option value="0">請選擇</option>
                                                         <? if ($pd) { ?>
                                                             <? foreach ($pd as $row) { ?>
-                                                                <option
-                                                                    value="<?= $row->PDID ?>"><?= $row->model ?></option>
+                                                                <option value="<?= $row->PDID ?>"><?= $row->model ?></option>
                                                             <? } ?>
                                                         <? } ?>
                                                     </select>
@@ -58,8 +57,44 @@
                                             </div>
                                         </div>
 
+                                        <legend>規格表預覽</legend>
+
+                                        <section id="spec_form" class="hidden">
+                                            <div id="content">
+                                                <fieldset>
+
+                                                    <div class="jarviswidget jarviswidget-color-darken" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false"
+                                                         data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+                                                        <div>
+                                                            <div class="widget-body no-padding">
+
+                                                                <div class="table-responsive">
+                                                                    <table id="dt_basic" class="table table-bordered table-striped text-center">
+
+                                                                        <tbody>
+                                                                        <? if ($column) { ?>
+                                                                            <tr id="add_th">
+                                                                                <td></td>
+                                                                            </tr>
+                                                                            <? foreach ($column as $i => $row) { ?>
+                                                                                <tr id="add_td<?= $i ?>">
+                                                                                    <td><?= $row->title ?></td>
+                                                                                </tr>
+                                                                            <? } ?>
+                                                                        <? } ?>
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </section>
 
                                     </fieldset>
+
                                 </div>
 
                                 <div class="widget-footer">
@@ -76,9 +111,43 @@
 </div>
 <script>
 
+    function get_data() {
+        var i;
+        $('.addth').remove();
+        $('.addtd').remove();
+        $('#spec_form').attr('class','');
+        var PDID = $('.pd').map(function () {
+            return $(this).val()
+        }).toArray();
+
+        $.ajax({
+            url: '<?= site_url('bkspec/get_spec_form_th') ?>',
+            type: 'post',
+            data: {PDID: jQuery.unique(PDID)},
+            dataType: 'html',
+            success: function (html) {
+                $("#add_th").append(html);
+            }
+        });
+
+        $.ajax({
+            url: '<?= site_url('bkspec/get_spec_form_td') ?>',
+            type: 'post',
+            data: {PDID: jQuery.unique(PDID),column:'<?=json_encode($column)?>'},
+            dataType: 'json',
+            success: function (html) {
+                if (html) {
+                    for (i = 0; i < html.length; i++) {
+                        $('#add_td' + i%<?=count($column)?>).append('<td class="addtd">'+html[i]+'</td>');
+                    }
+                }
+            }
+        });
+    }
+
     $(function () {
         $('#add_product').click(function () {
-            $("#products").append('<div class="form-group"><label class="col-sm-2 control-label">產品名稱</label><div class="col-sm-2"><select class="form-control" name="PDID[]"  required><option value="0">請選擇</option> <? if ($pd) { ?> <? foreach ($pd as $row) { ?>  <option  value="<?= $row->PDID ?>" ><?= $row->model ?></option>   <? } ?>  <? } ?>  </select> </div>  </div>');
+            $("#products").append('<div class="form-group"><label class="col-sm-2 control-label">產品名稱</label><div class="col-sm-2"><select onchange="get_data()"  class="form-control pd" name="PDID[]"  required><option value="0">請選擇</option> <? if ($pd) { ?> <? foreach ($pd as $row) { ?>  <option  value="<?= $row->PDID ?>" ><?= $row->model ?></option>   <? } ?>  <? } ?>  </select> </div>  </div>');
         });
     });
 </script>
