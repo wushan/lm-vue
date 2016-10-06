@@ -1,7 +1,7 @@
 <template lang="pug">
     main
         #main
-            page-navigation(v-bind:inquiryLength="inquiryLength")
+            page-navigation(v-bind:inquiryLength="inquiryLength", v-bind:submenu="submenu")
             transition(name="fade", mode="out-in")
                 my-inventory(v-if="inventory")
             #category(v-if="data")
@@ -80,7 +80,7 @@ export default {
     'page-navigation': Navigation,
     'my-inventory': Inventory
   },
-  props: ['inquiryLength'],
+  props: ['inquiryLength', 'submenu'],
   data () {
     return {
       loading: false,
