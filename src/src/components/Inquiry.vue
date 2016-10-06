@@ -48,255 +48,7 @@
                                                 .controlgroup
                                                     .select-wrapper
                                                         select(v-model="inquiryForm.country")
-                                                          option(value="AF") Afghanistan
-                                                          option(value="AX") Åland Islands
-                                                          option(value="AL") Albania
-                                                          option(value="DZ") Algeria
-                                                          option(value="AS") American Samoa
-                                                          option(value="AD") Andorra
-                                                          option(value="AO") Angola
-                                                          option(value="AI") Anguilla
-                                                          option(value="AQ") Antarctica
-                                                          option(value="AG") Antigua and Barbuda
-                                                          option(value="AR") Argentina
-                                                          option(value="AM") Armenia
-                                                          option(value="AW") Aruba
-                                                          option(value="AU") Australia
-                                                          option(value="AT") Austria
-                                                          option(value="AZ") Azerbaijan
-                                                          option(value="BS") Bahamas
-                                                          option(value="BH") Bahrain
-                                                          option(value="BD") Bangladesh
-                                                          option(value="BB") Barbados
-                                                          option(value="BY") Belarus
-                                                          option(value="BE") Belgium
-                                                          option(value="BZ") Belize
-                                                          option(value="BJ") Benin
-                                                          option(value="BM") Bermuda
-                                                          option(value="BT") Bhutan
-                                                          option(value="BO") Bolivia, Plurinational State of
-                                                          option(value="BQ") Bonaire, Sint Eustatius and Saba
-                                                          option(value="BA") Bosnia and Herzegovina
-                                                          option(value="BW") Botswana
-                                                          option(value="BV") Bouvet Island
-                                                          option(value="BR") Brazil
-                                                          option(value="IO") British Indian Ocean Territory
-                                                          option(value="BN") Brunei Darussalam
-                                                          option(value="BG") Bulgaria
-                                                          option(value="BF") Burkina Faso
-                                                          option(value="BI") Burundi
-                                                          option(value="KH") Cambodia
-                                                          option(value="CM") Cameroon
-                                                          option(value="CA") Canada
-                                                          option(value="CV") Cape Verde
-                                                          option(value="KY") Cayman Islands
-                                                          option(value="CF") Central African Republic
-                                                          option(value="TD") Chad
-                                                          option(value="CL") Chile
-                                                          option(value="CN") China
-                                                          option(value="CX") Christmas Island
-                                                          option(value="CC") Cocos (Keeling) Islands
-                                                          option(value="CO") Colombia
-                                                          option(value="KM") Comoros
-                                                          option(value="CG") Congo
-                                                          option(value="CD") Congo, the Democratic Republic of the
-                                                          option(value="CK") Cook Islands
-                                                          option(value="CR") Costa Rica
-                                                          option(value="CI") Côte d'Ivoire
-                                                          option(value="HR") Croatia
-                                                          option(value="CU") Cuba
-                                                          option(value="CW") Curaçao
-                                                          option(value="CY") Cyprus
-                                                          option(value="CZ") Czech Republic
-                                                          option(value="DK") Denmark
-                                                          option(value="DJ") Djibouti
-                                                          option(value="DM") Dominica
-                                                          option(value="DO") Dominican Republic
-                                                          option(value="EC") Ecuador
-                                                          option(value="EG") Egypt
-                                                          option(value="SV") El Salvador
-                                                          option(value="GQ") Equatorial Guinea
-                                                          option(value="ER") Eritrea
-                                                          option(value="EE") Estonia
-                                                          option(value="ET") Ethiopia
-                                                          option(value="FK") Falkland Islands (Malvinas)
-                                                          option(value="FO") Faroe Islands
-                                                          option(value="FJ") Fiji
-                                                          option(value="FI") Finland
-                                                          option(value="FR") France
-                                                          option(value="GF") French Guiana
-                                                          option(value="PF") French Polynesia
-                                                          option(value="TF") French Southern Territories
-                                                          option(value="GA") Gabon
-                                                          option(value="GM") Gambia
-                                                          option(value="GE") Georgia
-                                                          option(value="DE") Germany
-                                                          option(value="GH") Ghana
-                                                          option(value="GI") Gibraltar
-                                                          option(value="GR") Greece
-                                                          option(value="GL") Greenland
-                                                          option(value="GD") Grenada
-                                                          option(value="GP") Guadeloupe
-                                                          option(value="GU") Guam
-                                                          option(value="GT") Guatemala
-                                                          option(value="GG") Guernsey
-                                                          option(value="GN") Guinea
-                                                          option(value="GW") Guinea-Bissau
-                                                          option(value="GY") Guyana
-                                                          option(value="HT") Haiti
-                                                          option(value="HM") Heard Island and McDonald Islands
-                                                          option(value="VA") Holy See (Vatican City State)
-                                                          option(value="HN") Honduras
-                                                          option(value="HK") Hong Kong
-                                                          option(value="HU") Hungary
-                                                          option(value="IS") Iceland
-                                                          option(value="IN") India
-                                                          option(value="ID") Indonesia
-                                                          option(value="IR") Iran, Islamic Republic of
-                                                          option(value="IQ") Iraq
-                                                          option(value="IE") Ireland
-                                                          option(value="IM") Isle of Man
-                                                          option(value="IL") Israel
-                                                          option(value="IT") Italy
-                                                          option(value="JM") Jamaica
-                                                          option(value="JP") Japan
-                                                          option(value="JE") Jersey
-                                                          option(value="JO") Jordan
-                                                          option(value="KZ") Kazakhstan
-                                                          option(value="KE") Kenya
-                                                          option(value="KI") Kiribati
-                                                          option(value="KP") Korea, Democratic People's Republic of
-                                                          option(value="KR") Korea, Republic of
-                                                          option(value="KW") Kuwait
-                                                          option(value="KG") Kyrgyzstan
-                                                          option(value="LA") Lao People's Democratic Republic
-                                                          option(value="LV") Latvia
-                                                          option(value="LB") Lebanon
-                                                          option(value="LS") Lesotho
-                                                          option(value="LR") Liberia
-                                                          option(value="LY") Libya
-                                                          option(value="LI") Liechtenstein
-                                                          option(value="LT") Lithuania
-                                                          option(value="LU") Luxembourg
-                                                          option(value="MO") Macao
-                                                          option(value="MK") Macedonia, the former Yugoslav Republic of
-                                                          option(value="MG") Madagascar
-                                                          option(value="MW") Malawi
-                                                          option(value="MY") Malaysia
-                                                          option(value="MV") Maldives
-                                                          option(value="ML") Mali
-                                                          option(value="MT") Malta
-                                                          option(value="MH") Marshall Islands
-                                                          option(value="MQ") Martinique
-                                                          option(value="MR") Mauritania
-                                                          option(value="MU") Mauritius
-                                                          option(value="YT") Mayotte
-                                                          option(value="MX") Mexico
-                                                          option(value="FM") Micronesia, Federated States of
-                                                          option(value="MD") Moldova, Republic of
-                                                          option(value="MC") Monaco
-                                                          option(value="MN") Mongolia
-                                                          option(value="ME") Montenegro
-                                                          option(value="MS") Montserrat
-                                                          option(value="MA") Morocco
-                                                          option(value="MZ") Mozambique
-                                                          option(value="MM") Myanmar
-                                                          option(value="NA") Namibia
-                                                          option(value="NR") Nauru
-                                                          option(value="NP") Nepal
-                                                          option(value="NL") Netherlands
-                                                          option(value="NC") New Caledonia
-                                                          option(value="NZ") New Zealand
-                                                          option(value="NI") Nicaragua
-                                                          option(value="NE") Niger
-                                                          option(value="NG") Nigeria
-                                                          option(value="NU") Niue
-                                                          option(value="NF") Norfolk Island
-                                                          option(value="MP") Northern Mariana Islands
-                                                          option(value="NO") Norway
-                                                          option(value="OM") Oman
-                                                          option(value="PK") Pakistan
-                                                          option(value="PW") Palau
-                                                          option(value="PS") Palestinian Territory, Occupied
-                                                          option(value="PA") Panama
-                                                          option(value="PG") Papua New Guinea
-                                                          option(value="PY") Paraguay
-                                                          option(value="PE") Peru
-                                                          option(value="PH") Philippines
-                                                          option(value="PN") Pitcairn
-                                                          option(value="PL") Poland
-                                                          option(value="PT") Portugal
-                                                          option(value="PR") Puerto Rico
-                                                          option(value="QA") Qatar
-                                                          option(value="RE") Réunion
-                                                          option(value="RO") Romania
-                                                          option(value="RU") Russian Federation
-                                                          option(value="RW") Rwanda
-                                                          option(value="BL") Saint Barthélemy
-                                                          option(value="SH") Saint Helena, Ascension and Tristan da Cunha
-                                                          option(value="KN") Saint Kitts and Nevis
-                                                          option(value="LC") Saint Lucia
-                                                          option(value="MF") Saint Martin (French part)
-                                                          option(value="PM") Saint Pierre and Miquelon
-                                                          option(value="VC") Saint Vincent and the Grenadines
-                                                          option(value="WS") Samoa
-                                                          option(value="SM") San Marino
-                                                          option(value="ST") Sao Tome and Principe
-                                                          option(value="SA") Saudi Arabia
-                                                          option(value="SN") Senegal
-                                                          option(value="RS") Serbia
-                                                          option(value="SC") Seychelles
-                                                          option(value="SL") Sierra Leone
-                                                          option(value="SG") Singapore
-                                                          option(value="SX") Sint Maarten (Dutch part)
-                                                          option(value="SK") Slovakia
-                                                          option(value="SI") Slovenia
-                                                          option(value="SB") Solomon Islands
-                                                          option(value="SO") Somalia
-                                                          option(value="ZA") South Africa
-                                                          option(value="GS") South Georgia and the South Sandwich Islands
-                                                          option(value="SS") South Sudan
-                                                          option(value="ES") Spain
-                                                          option(value="LK") Sri Lanka
-                                                          option(value="SD") Sudan
-                                                          option(value="SR") Suriname
-                                                          option(value="SJ") Svalbard and Jan Mayen
-                                                          option(value="SZ") Swaziland
-                                                          option(value="SE") Sweden
-                                                          option(value="CH") Switzerland
-                                                          option(value="SY") Syrian Arab Republic
-                                                          option(value="TW") Taiwan, Province of China
-                                                          option(value="TJ") Tajikistan
-                                                          option(value="TZ") Tanzania, United Republic of
-                                                          option(value="TH") Thailand
-                                                          option(value="TL") Timor-Leste
-                                                          option(value="TG") Togo
-                                                          option(value="TK") Tokelau
-                                                          option(value="TO") Tonga
-                                                          option(value="TT") Trinidad and Tobago
-                                                          option(value="TN") Tunisia
-                                                          option(value="TR") Turkey
-                                                          option(value="TM") Turkmenistan
-                                                          option(value="TC") Turks and Caicos Islands
-                                                          option(value="TV") Tuvalu
-                                                          option(value="UG") Uganda
-                                                          option(value="UA") Ukraine
-                                                          option(value="AE") United Arab Emirates
-                                                          option(value="GB") United Kingdom
-                                                          option(value="US") United States
-                                                          option(value="UM") United States Minor Outlying Islands
-                                                          option(value="UY") Uruguay
-                                                          option(value="UZ") Uzbekistan
-                                                          option(value="VU") Vanuatu
-                                                          option(value="VE") Venezuela, Bolivarian Republic of
-                                                          option(value="VN") Viet Nam
-                                                          option(value="VG") Virgin Islands, British
-                                                          option(value="VI") Virgin Islands, U.S.
-                                                          option(value="WF") Wallis and Futuna
-                                                          option(value="EH") Western Sahara
-                                                          option(value="YE") Yemen
-                                                          option(value="ZM") Zambia
-                                                          option(value="ZW") Zimbabwe
+                                                          option(v-for="option in countries" v-bind:value="option.value") {{ option.text }}
                                         .row
                                             .controlgroup
                                                 input(v-model.number="inquiryForm.phone", type="text", placeholder="PHONE(MOBILE)")
@@ -336,11 +88,262 @@ export default {
   data () {
     return {
       products: [],
+      countries: [
+        { value: 'AF', text: 'Afghanistan' },
+        { value: 'AX', text: 'Åland Islands' },
+        { value: 'AL', text: 'Albania' },
+        { value: 'DZ', text: 'Algeria' },
+        { value: 'AS', text: 'American Samoa' },
+        { value: 'AD', text: 'Andorra' },
+        { value: 'AO', text: 'Angola' },
+        { value: 'AI', text: 'Anguilla' },
+        { value: 'AQ', text: 'Antarctica' },
+        { value: 'AG', text: 'Antigua and Barbuda' },
+        { value: 'AR', text: 'Argentina' },
+        { value: 'AM', text: 'Armenia' },
+        { value: 'AW', text: 'Aruba' },
+        { value: 'AU', text: 'Australia' },
+        { value: 'AT', text: 'Austria' },
+        { value: 'AZ', text: 'Azerbaijan' },
+        { value: 'BS', text: 'Bahamas' },
+        { value: 'BH', text: 'Bahrain' },
+        { value: 'BD', text: 'Bangladesh' },
+        { value: 'BB', text: 'Barbados' },
+        { value: 'BY', text: 'Belarus' },
+        { value: 'BE', text: 'Belgium' },
+        { value: 'BZ', text: 'Belize' },
+        { value: 'BJ', text: 'Benin' },
+        { value: 'BM', text: 'Bermuda' },
+        { value: 'BT', text: 'Bhutan' },
+        { value: 'BO', text: 'Bolivia, Plurinational State of' },
+        { value: 'BQ', text: 'Bonaire, Sint Eustatius and Saba' },
+        { value: 'BA', text: 'Bosnia and Herzegovina' },
+        { value: 'BW', text: 'Botswana' },
+        { value: 'BV', text: 'Bouvet Island' },
+        { value: 'BR', text: 'Brazil' },
+        { value: 'IO', text: 'British Indian Ocean Territory' },
+        { value: 'BN', text: 'Brunei Darussalam' },
+        { value: 'BG', text: 'Bulgaria' },
+        { value: 'BF', text: 'Burkina Faso' },
+        { value: 'BI', text: 'Burundi' },
+        { value: 'KH', text: 'Cambodia' },
+        { value: 'CM', text: 'Cameroon' },
+        { value: 'CA', text: 'Canada' },
+        { value: 'CV', text: 'Cape Verde' },
+        { value: 'KY', text: 'Cayman Islands' },
+        { value: 'CF', text: 'Central African Republic' },
+        { value: 'TD', text: 'Chad' },
+        { value: 'CL', text: 'Chile' },
+        { value: 'CN', text: 'China' },
+        { value: 'CX', text: 'Christmas Island' },
+        { value: 'CC', text: 'Cocos (Keeling) Islands' },
+        { value: 'CO', text: 'Colombia' },
+        { value: 'KM', text: 'Comoros' },
+        { value: 'CG', text: 'Congo' },
+        { value: 'CD', text: 'Congo, the Democratic Republic of the' },
+        { value: 'CK', text: 'Cook Islands' },
+        { value: 'CR', text: 'Costa Rica' },
+        { value: 'CI', text: 'Côte d\'Ivoire' },
+        { value: 'HR', text: 'Croatia' },
+        { value: 'CU', text: 'Cuba' },
+        { value: 'CW', text: 'Curaçao' },
+        { value: 'CY', text: 'Cyprus' },
+        { value: 'CZ', text: 'Czech Republic' },
+        { value: 'DK', text: 'Denmark' },
+        { value: 'DJ', text: 'Djibouti' },
+        { value: 'DM', text: 'Dominica' },
+        { value: 'DO', text: 'Dominican Republic' },
+        { value: 'EC', text: 'Ecuador' },
+        { value: 'EG', text: 'Egypt' },
+        { value: 'SV', text: 'El Salvador' },
+        { value: 'GQ', text: 'Equatorial Guinea' },
+        { value: 'ER', text: 'Eritrea' },
+        { value: 'EE', text: 'Estonia' },
+        { value: 'ET', text: 'Ethiopia' },
+        { value: 'FK', text: 'Falkland Islands (Malvinas)' },
+        { value: 'FO', text: 'Faroe Islands' },
+        { value: 'FJ', text: 'Fiji' },
+        { value: 'FI', text: 'Finland' },
+        { value: 'FR', text: 'France' },
+        { value: 'GF', text: 'French Guiana' },
+        { value: 'PF', text: 'French Polynesia' },
+        { value: 'TF', text: 'French Southern Territories' },
+        { value: 'GA', text: 'Gabon' },
+        { value: 'GM', text: 'Gambia' },
+        { value: 'GE', text: 'Georgia' },
+        { value: 'DE', text: 'Germany' },
+        { value: 'GH', text: 'Ghana' },
+        { value: 'GI', text: 'Gibraltar' },
+        { value: 'GR', text: 'Greece' },
+        { value: 'GL', text: 'Greenland' },
+        { value: 'GD', text: 'Grenada' },
+        { value: 'GP', text: 'Guadeloupe' },
+        { value: 'GU', text: 'Guam' },
+        { value: 'GT', text: 'Guatemala' },
+        { value: 'GG', text: 'Guernsey' },
+        { value: 'GN', text: 'Guinea' },
+        { value: 'GW', text: 'Guinea-Bissau' },
+        { value: 'GY', text: 'Guyana' },
+        { value: 'HT', text: 'Haiti' },
+        { value: 'HM', text: 'Heard Island and McDonald Islands' },
+        { value: 'VA', text: 'Holy See (Vatican City State)' },
+        { value: 'HN', text: 'Honduras' },
+        { value: 'HK', text: 'Hong Kong' },
+        { value: 'HU', text: 'Hungary' },
+        { value: 'IS', text: 'Iceland' },
+        { value: 'IN', text: 'India' },
+        { value: 'ID', text: 'Indonesia' },
+        { value: 'IR', text: 'Iran, Islamic Republic of' },
+        { value: 'IQ', text: 'Iraq' },
+        { value: 'IE', text: 'Ireland' },
+        { value: 'IM', text: 'Isle of Man' },
+        { value: 'IL', text: 'Israel' },
+        { value: 'IT', text: 'Italy' },
+        { value: 'JM', text: 'Jamaica' },
+        { value: 'JP', text: 'Japan' },
+        { value: 'JE', text: 'Jersey' },
+        { value: 'JO', text: 'Jordan' },
+        { value: 'KZ', text: 'Kazakhstan' },
+        { value: 'KE', text: 'Kenya' },
+        { value: 'KI', text: 'Kiribati' },
+        { value: 'KP', text: 'Korea, Democratic People\'s Republic of' },
+        { value: 'KR', text: 'Korea, Republic of' },
+        { value: 'KW', text: 'Kuwait' },
+        { value: 'KG', text: 'Kyrgyzstan' },
+        { value: 'LA', text: 'Lao People\'s Democratic Republic' },
+        { value: 'LV', text: 'Latvia' },
+        { value: 'LB', text: 'Lebanon' },
+        { value: 'LS', text: 'Lesotho' },
+        { value: 'LR', text: 'Liberia' },
+        { value: 'LY', text: 'Libya' },
+        { value: 'LI', text: 'Liechtenstein' },
+        { value: 'LT', text: 'Lithuania' },
+        { value: 'LU', text: 'Luxembourg' },
+        { value: 'MO', text: 'Macao' },
+        { value: 'MK', text: 'Macedonia, the former Yugoslav Republic of' },
+        { value: 'MG', text: 'Madagascar' },
+        { value: 'MW', text: 'Malawi' },
+        { value: 'MY', text: 'Malaysia' },
+        { value: 'MV', text: 'Maldives' },
+        { value: 'ML', text: 'Mali' },
+        { value: 'MT', text: 'Malta' },
+        { value: 'MH', text: 'Marshall Islands' },
+        { value: 'MQ', text: 'Martinique' },
+        { value: 'MR', text: 'Mauritania' },
+        { value: 'MU', text: 'Mauritius' },
+        { value: 'YT', text: 'Mayotte' },
+        { value: 'MX', text: 'Mexico' },
+        { value: 'FM', text: 'Micronesia, Federated States of' },
+        { value: 'MD', text: 'Moldova, Republic of' },
+        { value: 'MC', text: 'Monaco' },
+        { value: 'MN', text: 'Mongolia' },
+        { value: 'ME', text: 'Montenegro' },
+        { value: 'MS', text: 'Montserrat' },
+        { value: 'MA', text: 'Morocco' },
+        { value: 'MZ', text: 'Mozambique' },
+        { value: 'MM', text: 'Myanmar' },
+        { value: 'NA', text: 'Namibia' },
+        { value: 'NR', text: 'Nauru' },
+        { value: 'NP', text: 'Nepal' },
+        { value: 'NL', text: 'Netherlands' },
+        { value: 'NC', text: 'New Caledonia' },
+        { value: 'NZ', text: 'New Zealand' },
+        { value: 'NI', text: 'Nicaragua' },
+        { value: 'NE', text: 'Niger' },
+        { value: 'NG', text: 'Nigeria' },
+        { value: 'NU', text: 'Niue' },
+        { value: 'NF', text: 'Norfolk Island' },
+        { value: 'MP', text: 'Northern Mariana Islands' },
+        { value: 'NO', text: 'Norway' },
+        { value: 'OM', text: 'Oman' },
+        { value: 'PK', text: 'Pakistan' },
+        { value: 'PW', text: 'Palau' },
+        { value: 'PS', text: 'Palestinian Territory, Occupied' },
+        { value: 'PA', text: 'Panama' },
+        { value: 'PG', text: 'Papua New Guinea' },
+        { value: 'PY', text: 'Paraguay' },
+        { value: 'PE', text: 'Peru' },
+        { value: 'PH', text: 'Philippines' },
+        { value: 'PN', text: 'Pitcairn' },
+        { value: 'PL', text: 'Poland' },
+        { value: 'PT', text: 'Portugal' },
+        { value: 'PR', text: 'Puerto Rico' },
+        { value: 'QA', text: 'Qatar' },
+        { value: 'RE', text: 'Réunion' },
+        { value: 'RO', text: 'Romania' },
+        { value: 'RU', text: 'Russian Federation' },
+        { value: 'RW', text: 'Rwanda' },
+        { value: 'BL', text: 'Saint Barthélemy' },
+        { value: 'SH', text: 'Saint Helena, Ascension and Tristan da Cunha' },
+        { value: 'KN', text: 'Saint Kitts and Nevis' },
+        { value: 'LC', text: 'Saint Lucia' },
+        { value: 'MF', text: 'Saint Martin (French part)' },
+        { value: 'PM', text: 'Saint Pierre and Miquelon' },
+        { value: 'VC', text: 'Saint Vincent and the Grenadines' },
+        { value: 'WS', text: 'Samoa' },
+        { value: 'SM', text: 'San Marino' },
+        { value: 'ST', text: 'Sao Tome and Principe' },
+        { value: 'SA', text: 'Saudi Arabia' },
+        { value: 'SN', text: 'Senegal' },
+        { value: 'RS', text: 'Serbia' },
+        { value: 'SC', text: 'Seychelles' },
+        { value: 'SL', text: 'Sierra Leone' },
+        { value: 'SG', text: 'Singapore' },
+        { value: 'SX', text: 'Sint Maarten (Dutch part)' },
+        { value: 'SK', text: 'Slovakia' },
+        { value: 'SI', text: 'Slovenia' },
+        { value: 'SB', text: 'Solomon Islands' },
+        { value: 'SO', text: 'Somalia' },
+        { value: 'ZA', text: 'South Africa' },
+        { value: 'GS', text: 'South Georgia and the South Sandwich Islands' },
+        { value: 'SS', text: 'South Sudan' },
+        { value: 'ES', text: 'Spain' },
+        { value: 'LK', text: 'Sri Lanka' },
+        { value: 'SD', text: 'Sudan' },
+        { value: 'SR', text: 'Suriname' },
+        { value: 'SJ', text: 'Svalbard and Jan Mayen' },
+        { value: 'SZ', text: 'Swaziland' },
+        { value: 'SE', text: 'Sweden' },
+        { value: 'CH', text: 'Switzerland' },
+        { value: 'SY', text: 'Syrian Arab Republic' },
+        { value: 'TW', text: 'Taiwan, Province of China' },
+        { value: 'TJ', text: 'Tajikistan' },
+        { value: 'TZ', text: 'Tanzania, United Republic of' },
+        { value: 'TH', text: 'Thailand' },
+        { value: 'TL', text: 'Timor-Leste' },
+        { value: 'TG', text: 'Togo' },
+        { value: 'TK', text: 'Tokelau' },
+        { value: 'TO', text: 'Tonga' },
+        { value: 'TT', text: 'Trinidad and Tobago' },
+        { value: 'TN', text: 'Tunisia' },
+        { value: 'TR', text: 'Turkey' },
+        { value: 'TM', text: 'Turkmenistan' },
+        { value: 'TC', text: 'Turks and Caicos Islands' },
+        { value: 'TV', text: 'Tuvalu' },
+        { value: 'UG', text: 'Uganda' },
+        { value: 'UA', text: 'Ukraine' },
+        { value: 'AE', text: 'United Arab Emirates' },
+        { value: 'GB', text: 'United Kingdom' },
+        { value: 'US', text: 'United States' },
+        { value: 'UM', text: 'United States Minor Outlying Islands' },
+        { value: 'UY', text: 'Uruguay' },
+        { value: 'UZ', text: 'Uzbekistan' },
+        { value: 'VU', text: 'Vanuatu' },
+        { value: 'VE', text: 'Venezuela, Bolivarian Republic of' },
+        { value: 'VN', text: 'Viet Nam' },
+        { value: 'VG', text: 'Virgin Islands, British' },
+        { value: 'VI', text: 'Virgin Islands, U.S.' },
+        { value: 'WF', text: 'Wallis and Futuna' },
+        { value: 'EH', text: 'Western Sahara' },
+        { value: 'YE', text: 'Yemen' },
+        { value: 'ZM', text: 'Zambia' },
+        { value: 'ZW', text: 'Zimbabwe' }
+      ],
       inquiryForm: {
         name: null,
         email: null,
         company: null,
-        country: null,
+        country: 'TW',
         phone: null,
         subject: null,
         message: null,
