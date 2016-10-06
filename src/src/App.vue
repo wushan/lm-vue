@@ -36,7 +36,7 @@
           li
             router-link(to='/inquiry', activeClass="active") INQUIRY(3)
           li
-            a(v-on:click.stop.prevent="emitSubscription", href="javascript:;", activeClass="active") SUBSCRIPTION
+            a(v-on:click.stop.prevent="toggleSubscription", href="javascript:;", activeClass="active") SUBSCRIPTION
 </template>
 
 <script>
@@ -91,6 +91,13 @@ export default {
     toggleMenu () {
       if (this.$data.isActive) {
         this.$data.isActive = false
+      }
+    },
+    toggleSubscription () {
+      if (this.subscription) {
+        this.subscription = false
+      } else {
+        this.subscription = true
       }
     }
   }
