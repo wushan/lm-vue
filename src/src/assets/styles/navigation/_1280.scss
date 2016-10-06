@@ -1,10 +1,50 @@
 @include susy-breakpoint(1280px, 12) {
+	#home {
+		.navigation {
+			.menu {
+				ul {
+					top: inherit;
+					bottom: 4.6em;
+				}
+			}
+		}
+		.is-sticky {
+			.menu {
+				ul {
+					top: 4.6em;
+					bottom: inherit;
+				}
+			}
+		}
+	}
 	.navigation {
 		.menu {
-			li {
+			&>li {
 				@include gallery(1 of 9 0);
 				display: inline-block;
 				vertical-align: middle;
+				position: relative;
+			}
+			ul {
+				transform-origin: right center;
+				transform: translateY( -20% ) rotateX( -90deg );
+				position: absolute;
+				background-color: $black;
+				margin: 0;
+				padding: 0;
+				text-align: left;
+				width: 250px;
+				line-height: 1.6;
+				top: 4.6em;
+				left: 1em;
+				border-radius: 6px;
+				li {
+					display: block;
+					a {
+						display: block;
+						padding: .8em 2em;
+					}
+				}
 			}
 		}
 	}

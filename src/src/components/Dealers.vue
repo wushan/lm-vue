@@ -2,7 +2,7 @@
   main
     #main
       #dealers
-        page-navigation(v-bind:inquiryLength="inquiryLength")
+        page-navigation(v-bind:inquiryLength="inquiryLength", v-bind:submenu="submenu")
         .dealers-wrapper(v-if="dealer")
           .container.restrict-large
             .title
@@ -121,7 +121,7 @@ export default {
   components: {
     'page-navigation': Navigation
   },
-  props: ['inquiryLength', 'isAuth'],
+  props: ['inquiryLength', 'isAuth', 'submenu'],
   data () {
     return {
       loading: false,

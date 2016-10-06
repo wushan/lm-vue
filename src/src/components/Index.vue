@@ -1,5 +1,5 @@
 <template lang="pug">
-  main
+  main#home
     .loading(v-if="loading") Loading...
     #main(v-if="data")
       section#intro
@@ -10,7 +10,7 @@
           li.layer(data-depth="0.40")
             .people
               img(src="../assets/images/parallax/object.png")
-      page-navigation(v-bind:inquiryLength="inquiryLength")
+      page-navigation(v-bind:inquiryLength="inquiryLength", v-bind:submenu="submenu")
       section#intro-brand
         .table
           .block.table-c.t-5-10(v-bind:style="'background-image: url(' + data.introbrand.background + ');'")
@@ -76,6 +76,7 @@ export default {
   components: {
     'page-navigation': Navigation
   },
+  props: ['submenu'],
   data () {
     return {
       loading: false,

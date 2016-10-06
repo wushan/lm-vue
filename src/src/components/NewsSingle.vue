@@ -1,7 +1,7 @@
 <template lang="pug">
   main
     #main
-      page-navigation(v-bind:inquiryLength="inquiryLength")
+      page-navigation(v-bind:inquiryLength="inquiryLength", v-bind:submenu="submenu")
       #news(v-if="article")
         section#news-single
           header(v-bind:style="'background-image: url('+ article.thumbnail + ');'")
@@ -62,7 +62,7 @@ export default {
   components: {
     'page-navigation': Navigation
   },
-  props: ['inquiryLength'],
+  props: ['inquiryLength', 'submenu'],
   data () {
     return {
       loading: false,

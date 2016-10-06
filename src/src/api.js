@@ -8,23 +8,31 @@
 import Inventory from './assets/schema/inventory.json'
 import Inquiry from './assets/schema/inquiry.json'
 // import Dealer from './assets/schema/dealer.json'
+import General from './assets/schema/general.json'
 import Machine from './assets/schema/machine.json'
 import ErrorShooting from './assets/schema/errorshooting.json'
 import request from 'superagent'
-import Vue from 'vue'
+// import Vue from 'vue'
 
 export default {
-  getPost (id, cb) {
-    // Mount some real ajax calls
-    Vue.http.get('https://jsonplaceholder.typicode.com/posts/' + id).then((response) => {
-    // success callback
-      if (response.data) {
-        cb(null, response.data)
+  getGeneral (cb) {
+    setTimeout(() => {
+      if (General) {
+        console.log(General)
+        cb(null, General)
+      } else {
+        cb(new Error('Data not found.'))
       }
-    }, (response) => {
-  // error callback
-      cb(new Error(response.data))
-    })
+    }, 500)
+    // request
+    // .get('//lymco.4webdemo.com/backend/api/frontapi/get_app')
+    // .end(function (err, res) {
+    //   if (err || !res.ok) {
+    //     console.log(err)
+    //   } else {
+    //     cb(null, res.body)
+    //   }
+    // })
   },
   getHome (cb) {
     request

@@ -6,6 +6,9 @@
 					router-link(to='/about', activeClass="active") ABOUT US
 				li
 					router-link(to='/product/series', activeClass="active") PRODUCTS
+					ul
+						li(v-for="sub in submenu")
+							a(href="javascript:;") {{ sub.name }}
 				li
 					router-link(to='/news', activeClass="active") NEWS
 				li
@@ -38,7 +41,7 @@ export default {
       this.$parent.$parent.$emit('openSubscription')
     }
   },
-  props: ['inquiryLength'],
+  props: ['inquiryLength', 'submenu'],
   data () {
     return {
     }

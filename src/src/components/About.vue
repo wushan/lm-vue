@@ -1,7 +1,7 @@
 <template lang="pug">
     main
         #main
-            page-navigation(v-bind:inquiryLength="inquiryLength")
+            page-navigation(v-bind:inquiryLength="inquiryLength", v-bind:submenu="submenu")
             #about
                 section
                     .container.restrict-large
@@ -53,7 +53,7 @@ export default {
   components: {
     'page-navigation': Navigation
   },
-  props: ['inquiryLength'],
+  props: ['inquiryLength', 'submenu'],
   data () {
     return {
       loading: false,

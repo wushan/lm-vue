@@ -1,0 +1,28 @@
+{
+	"category": [
+		{
+			"name": "CATE 1",
+			"id": 1
+		},
+		{
+			"name": "CATE 2",
+			"id": 2
+		},
+		{
+			"name": "CATE 3",
+			"id": 3
+		},
+		{
+			"name": "CATE 4",
+			"id": 4
+		},
+		{
+			"name": "CATE 5",
+			"id": 5
+		},
+		{
+			"name": "CATE 6",
+			"id": 6
+		}
+	]
+}

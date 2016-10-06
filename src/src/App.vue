@@ -2,7 +2,7 @@
   #application(v-on:click="toggleMenu", v-bind:class="{ off_canvas_on: isActive }")
     #wrapper
       transition(name="fade", mode="out-in")
-        router-view(v-bind:inquiryLength="inquiryLength", :isAuth="isAuth")
+        router-view(v-bind:inquiryLength="inquiryLength", v-bind:submenu="submenu", :isAuth="isAuth")
       footer#footer
         .footer-inner
           .block
@@ -52,6 +52,8 @@ import Contact from './components/Contact.vue'
 // Side Effect
 import Subscription from './components/Subscription.vue'
 import Login from './components/Login.vue'
+
+import Api from './api'
 export default {
   components: {
     'contact': Contact,
@@ -64,7 +66,8 @@ export default {
       subscription: false,
       login: false,
       inquiryLength: 0,
-      isAuth: true
+      isAuth: true,
+      submenu: null
     }
   },
   created () {
@@ -83,11 +86,24 @@ export default {
     this.$on('updateInquiry', function () {
       this.inquiryLength = Inquiry.getLength()
     })
+    this.fetchData()
   },
   mounted () {
     this.inquiryLength = Inquiry.getLength()
   },
   methods: {
+    fetchData () {
+      this.error = this.data = null
+      this.loading = true
+      Api.getGeneral((err, data) => {
+        this.loading = false
+        if (err) {
+          this.error = err.toString()
+        } else {
+          this.submenu = data.category
+        }
+      })
+    },
     toggleMenu () {
       if (this.$data.isActive) {
         this.$data.isActive = false
