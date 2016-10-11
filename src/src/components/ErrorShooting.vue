@@ -18,33 +18,37 @@
                                         h5 Please Select Machine Type
                                         ul.machine-type-list
                                             li(v-for="model in models")
-                                                a.type(@click="startSearch(model.id)") {{ model.name }}
-
-                    .container.error-list(v-if="searchResults")
-                        .restrict-large
-                            .error-pagination
-                                a(href="javascript:;")
-                                    .first-step
-                                    span FIRST STEP
-                                a(href="javascript:;")
-                                    .prev-step
-                                    span PREV STEP
-                            ul
-                                each i in Array(4)
-                                    li
-                                        .title
-                                            a.btn.rounded.green.full(href="javascript:;")
-                                                span Status A
-                                                .fa.fa-lg.fa-caret-right
-                                        .error-message
-                                            .content
-                                                .description
-                                                    p.
-                                                        eq;oeiw roguh erogu erogi herqpg943 glh er 0r98e ;pierhg er08eroi34g;i er0 aerg098ergpi ea[0r8gierhi her hg h- g;porehg er98g ergjer  089rg epr9u= rehg'49gber eriogj;apig e;prigher'piojerg pihgihgiegirehl goer hg;opi hgo;i hio i ]
-                                                .thumbnail
-                                                    img(src="../assets/images/components/errorshooting.png")
-                                                .download
-                                                    a.btn.rounded.green.full.centered(href="javascript:;") PDF DOWNLOAD
+                                                a.type(@click="startSearch(model.id)") {{ model.name }}/{{model.id}}
+                    .container(v-if="error")
+                        p {{ error }}
+                    transition(name="fade", mode="out-in")
+                      .container.error-list(v-if="searchResults")
+                          .restrict-large
+                              .error-pagination
+                                  a(@click="firstStep")
+                                      .first-step
+                                      span FIRST STEP
+                                  a(@click="navPrev")
+                                      .prev-step
+                                      span PREV STEP
+                              ul
+                                  li(v-for="result in filteredData.steps")
+                                      .title
+                                          a.btn.rounded.green.full(v-if="result.steps" @click="updateResults(result.id, result)")
+                                              span {{ result.name }}
+                                              .fa.fa-lg.fa-caret-right
+                                          a.btn.rounded.green.full(v-else)
+                                              span {{ result.name }}
+                                              .fa.fa-lg.fa-caret-right
+                                      .error-message
+                                          .content
+                                              .description
+                                                  p DEBUG/{{ result.id }}
+                                                  p {{ result.description }}
+                                              .thumbnail
+                                                  img(v-bind:src="result.image")
+                                              .download
+                                                  a.btn.rounded.green.full.centered(v-bind:href="result.downloads") PDF DOWNLOAD
 
         transition(name="fade", mode="out-in")
             #loader(v-if="loading")
@@ -61,6 +65,7 @@ window.jQuery = window.$ = $
 require('imports?$=jquery!../assets/vendor/jquery.sticky.js')
 let timer
 export default {
+  name: 'errorshooting',
   components: {
     'page-navigation': Navigation
   },
@@ -72,7 +77,8 @@ export default {
       isSearching: false,
       models: null,
       selectedModel: '',
-      searchResults: null
+      searchResults: null,
+      query: null
     }
   },
   created () {
@@ -83,13 +89,49 @@ export default {
       topSpacing: 0,
       zIndex: 999
     })
-    console.log(this.inquiryLength)
+    if (this.$route.params.model && this.$route.params.errorcode) {
+      this.initialSearch(this.$route.params.model, this.$route.params.errorcode)
+    }
+  },
+  watch: {
+    '$route.query': 'setQuery'
+  },
+  computed: {
+    filteredData () {
+      var filteredData
+      console.log('math')
+      if (this.query) {
+        filteredData = this.findNode(this.query, this.searchResults)
+      } else {
+        filteredData = this.searchResults
+      }
+      return filteredData
+    }
   },
   methods: {
+    firstStep () {
+      // Clear query
+      this.query = ''
+      this.$router.push('/errorshooting/' + this.$route.params.model + '/' + this.$route.params.errorcode)
+    },
+    navPrev () {
+      this.$router.go(-1)
+    },
+    setQuery () {
+      console.log('Query Setted')
+      if (this.$route.query.solution) {
+        this.query = this.$route.query.solution
+        console.log(this.$route.query.solution)
+        console.log(this.query)
+        console.log(typeof this.$route.query.solution)
+      } else {
+        this.query = null
+      }
+    },
     fetchData () {
       this.error = this.dealer = null
       this.loading = true
-      Api.getMachine((err, data) => {
+      Api.getMachine(1, (err, data) => {
         this.loading = false
         if (err) {
           this.error = err.toString()
@@ -108,26 +150,84 @@ export default {
       } else {
         this.isSearching = true
         console.log('searching')
+        if (this.searchResults) {
+          this.searchResults = null
+        }
         timer = setTimeout(() => {
           this.isSearching = false
           console.log('tick')
         }, 3000)
       }
     },
-    startSearch (id) {
+    initialSearch (id, errorcode) {
       this.selectedModel = id
       this.error = this.dealer = null
       this.loading = true
       this.isSearching = false
-      Api.getSolution(id, this.errorcode, (err, data) => {
+      let errorstring
+      if (errorcode) {
+        errorstring = errorcode
+      } else {
+        errorstring = this.errorcode
+      }
+      Api.getSolution(1, id, errorstring, (err, data) => {
         this.loading = false
         if (err) {
           this.error = err.toString()
         } else {
-          this.searchResults = data
-          this.$router.replace('/errorshooting/' + id + '/' + this.errorcode)
+          this.searchResults = data.error
+          this.setQuery()
         }
       })
+    },
+    startSearch (id, errorcode) {
+      this.selectedModel = id
+      this.error = this.dealer = null
+      this.loading = true
+      this.isSearching = false
+      let errorstring
+      if (errorcode) {
+        errorstring = errorcode
+      } else {
+        errorstring = this.errorcode
+      }
+      Api.getSolution(1, id, errorstring, (err, data) => {
+        this.loading = false
+        if (err) {
+          this.error = err.toString()
+        } else {
+          this.searchResults = data.error
+          this.setQuery()
+          this.$router.push('/errorshooting/' + id + '/' + errorstring)
+        }
+      })
+    },
+    updateResults (id, data) {
+      // Update searchResults via query string
+      this.$router.push({query: { solution: id }})
+    },
+    findNode (id, currentNode) {
+      var i
+      var currentChild
+      var result
+
+      if (id === currentNode.id) {
+        return currentNode
+      } else {
+        // Use a for loop instead of forEach to avoid nested functions
+        // Otherwise "return" will not work properly
+        for (i = 0; i < currentNode.steps.length; i += 1) {
+          currentChild = currentNode.steps[i]
+          // Search in the current child
+          result = this.findNode(id, currentChild)
+          // Return the result if the node has been found
+          if (result !== false) {
+            return result
+          }
+        }
+        // The node has not been found and we have no more options
+        return false
+      }
     }
   }
 }
@@ -293,6 +393,7 @@ export default {
                 width: 25px;
                 height: 25px;
                 margin: auto;
+                cursor: pointer;
             }
             .prev-step {
                 background-image: url('../assets/images/components/prev-step.png');

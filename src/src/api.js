@@ -9,8 +9,8 @@ import Inventory from './assets/schema/inventory.json'
 import Inquiry from './assets/schema/inquiry.json'
 // import Dealer from './assets/schema/dealer.json'
 import General from './assets/schema/general.json'
-import Machine from './assets/schema/machine.json'
-import ErrorShooting from './assets/schema/errorshooting.json'
+// import Machine from './assets/schema/machine.json'
+// import ErrorShooting from './assets/schema/errorshooting.json'
 import request from 'superagent'
 // import Vue from 'vue'
 
@@ -18,7 +18,6 @@ export default {
   getGeneral (cb) {
     setTimeout(() => {
       if (General) {
-        console.log(General)
         cb(null, General)
       } else {
         cb(new Error('Data not found.'))
@@ -143,22 +142,36 @@ export default {
       }
     })
   },
-  getMachine (cb) {
-    setTimeout(() => {
-      if (Machine) {
-        cb(null, Machine)
-      } else {
+  getMachine (id, cb) {
+    request.post('//lymco.4webdemo.com/backend/api/frontapi/get_machine')
+    .type('form')
+    .send({id: '1'})
+    .end(function (err, res) {
+      if (err || !res.ok) {
+        console.log(err)
         cb(new Error('Data not found.'))
+      } else {
+        // alert('yay got ' + JSON.stringify(res.body))
+        console.log(res.body)
+        cb(null, res.body)
       }
-    }, 500)
+    })
   },
-  getSolution (id, code, cb) {
-    setTimeout(() => {
-      if (ErrorShooting) {
-        cb(null, ErrorShooting)
-      } else {
+  getSolution (id, mid, code, cb) {
+    request.post('//lymco.4webdemo.com/backend/api/frontapi/get_errorshooting')
+    .type('form')
+    .send({id: id})
+    .send({mid: mid})
+    .send({errorcode: code})
+    .end(function (err, res) {
+      if (err || !res.ok) {
+        console.log(err)
         cb(new Error('Data not found.'))
+      } else {
+        // alert('yay got ' + JSON.stringify(res.body))
+        console.log(res.body)
+        cb(null, res.body)
       }
-    }, 500)
+    })
   }
 }

@@ -66,7 +66,7 @@ export default {
       subscription: false,
       login: false,
       inquiryLength: 0,
-      isAuth: true,
+      isAuth: false,
       submenu: null
     }
   },
