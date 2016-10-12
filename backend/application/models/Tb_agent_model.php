@@ -50,4 +50,20 @@ class Tb_agent_model extends CI_Model
         if ($query->num_rows() > 0) return $query->row();
         return false;
     }
+
+    public function get_login_agent($account=false,$password=false){
+        $this->db->where('account',$account);
+        $this->db->where('password',$password);
+        $query = $this->db->get('tb_agent');
+        if ($query->num_rows() > 0) return $query->row();
+        return false;
+    }
+
+    public function get_is_login($account=false,$is_login=false){
+        $this->db->where('account',$account);
+        $this->db->where('is_login',$is_login);
+        $query = $this->db->get('tb_agent');
+        if ($query->num_rows() > 0) return $query->row();
+        return false;
+    }
 }

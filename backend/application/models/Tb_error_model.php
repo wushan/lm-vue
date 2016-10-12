@@ -39,6 +39,8 @@ class Tb_error_model extends CI_Model
                 if ($get_search_error) {
                     foreach ($query->result() as $row) {
                         $this->db->select('tb_error.EID as id,tb_error.title as name,tb_error.content as description,tb_error.image,tb_error.file_path as downloads,tb_error.errorCodeID');
+                        $row->image=base_url( $row->image);
+                        $row->downloads=base_url( $row->downloads);
                         $row->steps = $this->get_error($row->errorCodeID, $row->id,true);
                     }
                 }

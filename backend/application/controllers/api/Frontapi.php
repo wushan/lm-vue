@@ -12,6 +12,7 @@ class Frontapi extends MY_Controller
         $this->load->model('tb_agent_model', 'agt');
         $this->load->model('tb_inventory_model', 'inventory');
         $this->load->model('tb_error_model', 'error');
+        $this->load->model('tb_captcha_model', 'captcha');
     }
 
     public function get_homepage()
@@ -227,15 +228,58 @@ class Frontapi extends MY_Controller
         header("Content-Type: application/json; charset=UTF-8");
         $id = $this->input->post('id');
         $errorcode = $this->input->post('errorcode');
-
+        $mid = $this->input->post('mid');
         $agent = $this->agt->get_agent_by_aid($id);
         $buy = $this->process_agent_buy($agent->buy);
         $error_code = $this->error->get_search_error_code($errorcode);
-        $get_agent_model = $this->process_model($buy, $error_code);
-
+        $get_agent_model = $this->process_model($buy, $error_code,$mid);
 
         $data = $get_agent_model;
         echo json_encode($data);
+    }
+
+    public function get_captcha(){
+        header("Content-Type: application/json; charset=UTF-8");
+        $this->captcha->delete_captcha();
+        $this->captcha->get_captcha();
+        $captcha=rand(1000, 9999);
+        $this->db->insert('tb_captcha',array('cap'=>$captcha,'create_time'=>date('Y-m-d H:i:s')));
+        echo json_encode($captcha);
+    }
+
+    public function get_login(){
+        header("Content-Type: application/json; charset=UTF-8");
+        $account = $this->input->post('account');
+        $password = $this->input->post('password');
+        $captcha = $this->input->post('captcha');
+        $agent=$this->agt->get_login_agent($account,$password);
+        $captcha=$this->captcha->get_login_captcha($captcha);
+        if($agent && $captcha){
+           $login=uniqid();
+           $this->db->update('tb_agent',array('is_login'=>$login),array('AID'=>$agent->AID));
+            $agent->is_login=$login;
+            $data=array(
+                'id'=>$agent->AID,
+                'name'=>$agent->company,
+                'is_login'=>$agent->is_login
+            );
+            echo json_encode($data);
+        }else{
+            return false;
+        }
+    }
+
+    public function get_is_login(){
+        header("Content-Type: application/json; charset=UTF-8");
+        $account = $this->input->post('account');
+        $is_login = $this->input->post('is_login');
+        $agent=$this->agt->get_is_login($account,$is_login);
+        if($agent){
+            echo true;
+        }else{
+            echo false;
+        }
+
     }
 
     /******************************private****************************************/
@@ -444,15 +488,14 @@ class Frontapi extends MY_Controller
         return false;
     }
 
-    private function process_model($buy, $error_code)
+    private function process_model($buy, $error_code,$mid)
     {
         $modelID = json_decode($error_code->modelID);
         $error = $this->error->get_error($error_code->ECID, '0', true);
         if ($buy) {
             foreach ($buy as $row) {
-
-                if (in_array($row['id'], $modelID)) {
-                    $data[] = array(
+                if (in_array($row['id'], $modelID) && $row['id']==$mid) {
+                    $data = array(
                         'id' => $row['id'],
                         'name' => $row['name'],
                         'error' => array(
