@@ -239,7 +239,7 @@ class Frontapi extends MY_Controller
     public function get_errorshooting()
     {
         header("Content-Type: application/json; charset=UTF-8");
-
+        header('Cache-Control: no-cache, must-revalidate');
         $AID = $this->input->post('id');
         $is_login = $this->input->post('is_login');
         $agent=$this->agt->get_is_login($AID,$is_login);
@@ -255,7 +255,12 @@ class Frontapi extends MY_Controller
             $data = $get_agent_model;
             echo json_encode($data);
         }else{
-            echo false;
+            header('HTTP/1.1 404 Not Found');
+            $data=array(
+                'status' => FALSE,
+                'error' => 'Search Failed',
+            );
+            echo json_encode($data);
         }
 
     }
@@ -271,6 +276,7 @@ class Frontapi extends MY_Controller
 
     public function get_login(){
         header("Content-Type: application/json; charset=UTF-8");
+        header('Cache-Control: no-cache, must-revalidate');
         $account = $this->input->post('account');
         $password = $this->input->post('password');
         $captcha = $this->input->post('captcha');
@@ -287,7 +293,11 @@ class Frontapi extends MY_Controller
             );
             echo json_encode($data);
         }else{
-            return false;
+            $data=array(
+                'status' => FALSE,
+                'error' => 'Login Failed',
+            );
+            echo json_encode($data);
         }
     }
 
