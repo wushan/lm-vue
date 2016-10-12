@@ -59,8 +59,8 @@ class Tb_agent_model extends CI_Model
         return false;
     }
 
-    public function get_is_login($account=false,$is_login=false){
-        $this->db->where('account',$account);
+    public function get_is_login($AID=false,$is_login=false){
+        $this->db->where('AID',$AID);
         $this->db->where('is_login',$is_login);
         $query = $this->db->get('tb_agent');
         if ($query->num_rows() > 0) return $query->row();

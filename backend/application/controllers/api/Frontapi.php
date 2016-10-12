@@ -187,13 +187,12 @@ class Frontapi extends MY_Controller
     {
         header("Content-Type: application/json; charset=UTF-8");
 
-
-        $account = $this->input->post('account');
+        $AID = $this->input->post('id');
         $is_login = $this->input->post('is_login');
-        $agent=$this->agt->get_is_login($account,$is_login);
+        $agent=$this->agt->get_is_login($AID,$is_login);
         if($agent){
-            $id = $this->input->post('id');
-            $agent = $this->agt->get_agent_by_aid($id);
+//            $id = $this->input->post('id');
+            $agent = $this->agt->get_agent_by_aid($AID);
             $orders = $this->agt->get_order($agent->AID);
             $data = array(
                 'dealername' => $agent->company,
@@ -221,12 +220,12 @@ class Frontapi extends MY_Controller
     public function get_machine()
     {
         header("Content-Type: application/json; charset=UTF-8");
-        $account = $this->input->post('account');
+        $AID = $this->input->post('id');
         $is_login = $this->input->post('is_login');
-        $agent=$this->agt->get_is_login($account,$is_login);
+        $agent=$this->agt->get_is_login($AID,$is_login);
         if($agent){
-            $id = $this->input->post('id');
-            $agent = $this->agt->get_agent_by_aid($id);
+//            $id = $this->input->post('id');
+            $agent = $this->agt->get_agent_by_aid($AID);
             $buy = $this->process_agent_buy($agent->buy);
             $data = $buy;
             echo json_encode($data);
@@ -241,14 +240,14 @@ class Frontapi extends MY_Controller
     {
         header("Content-Type: application/json; charset=UTF-8");
 
-        $account = $this->input->post('account');
+        $AID = $this->input->post('id');
         $is_login = $this->input->post('is_login');
-        $agent=$this->agt->get_is_login($account,$is_login);
+        $agent=$this->agt->get_is_login($AID,$is_login);
         if($agent){
-            $id = $this->input->post('id');
+//            $id = $this->input->post('id');
             $errorcode = $this->input->post('errorcode');
             $mid = $this->input->post('mid');
-            $agent = $this->agt->get_agent_by_aid($id);
+            $agent = $this->agt->get_agent_by_aid($AID);
             $buy = $this->process_agent_buy($agent->buy);
             $error_code = $this->error->get_search_error_code($errorcode);
             $get_agent_model = $this->process_model($buy, $error_code,$mid);
@@ -294,13 +293,21 @@ class Frontapi extends MY_Controller
 
     public function get_is_login(){
         header("Content-Type: application/json; charset=UTF-8");
-        $account = $this->input->post('account');
+        header('Cache-Control: no-cache, must-revalidate');
+        header('HTTP/1.1 500 Internal Server Error');
+        $AID = $this->input->post('id');
         $is_login = $this->input->post('is_login');
-        $agent=$this->agt->get_is_login($account,$is_login);
+        $agent=$this->agt->get_is_login($AID,$is_login);
         if($agent){
-            echo true;
+            http_response_code(200);
+            echo json_encode('success');
         }else{
-            echo false;
+//            http_response_code(401);
+            $data=array(
+                'status' => FALSE,
+                'error' => 'Internal Server Error',
+            );
+            echo json_encode($data);
         }
 
     }
