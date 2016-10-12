@@ -187,19 +187,25 @@ class Frontapi extends MY_Controller
     {
         header("Content-Type: application/json; charset=UTF-8");
 
-        $id = $this->input->post('id');
-        $agent = $this->agt->get_agent_by_aid($id);
-        if (!$agent) {
-            return false;
-        }
-        $orders = $this->agt->get_order($agent->AID);
 
-        $data = array(
-            'dealername' => $agent->company,
-            'dealerid' => $agent->AID,
-            'orders' => $this->process_orders($orders)
-        );
-        echo json_encode($data);
+        $account = $this->input->post('account');
+        $is_login = $this->input->post('is_login');
+        $agent=$this->agt->get_is_login($account,$is_login);
+        if($agent){
+            $id = $this->input->post('id');
+            $agent = $this->agt->get_agent_by_aid($id);
+            $orders = $this->agt->get_order($agent->AID);
+            $data = array(
+                'dealername' => $agent->company,
+                'dealerid' => $agent->AID,
+                'orders' => $this->process_orders($orders)
+            );
+            echo json_encode($data);
+        }else{
+            echo false;
+            return;
+        }
+
     }
 
     public function get_inventory()
@@ -215,27 +221,44 @@ class Frontapi extends MY_Controller
     public function get_machine()
     {
         header("Content-Type: application/json; charset=UTF-8");
-        $id = $this->input->post('id');
-        $agent = $this->agt->get_agent_by_aid($id);
-        $buy = $this->process_agent_buy($agent->buy);
-        $data = $buy;
-        echo json_encode($data);
+        $account = $this->input->post('account');
+        $is_login = $this->input->post('is_login');
+        $agent=$this->agt->get_is_login($account,$is_login);
+        if($agent){
+            $id = $this->input->post('id');
+            $agent = $this->agt->get_agent_by_aid($id);
+            $buy = $this->process_agent_buy($agent->buy);
+            $data = $buy;
+            echo json_encode($data);
+        }else{
+            echo false;
+            return;
+        }
     }
 
 
     public function get_errorshooting()
     {
         header("Content-Type: application/json; charset=UTF-8");
-        $id = $this->input->post('id');
-        $errorcode = $this->input->post('errorcode');
-        $mid = $this->input->post('mid');
-        $agent = $this->agt->get_agent_by_aid($id);
-        $buy = $this->process_agent_buy($agent->buy);
-        $error_code = $this->error->get_search_error_code($errorcode);
-        $get_agent_model = $this->process_model($buy, $error_code,$mid);
 
-        $data = $get_agent_model;
-        echo json_encode($data);
+        $account = $this->input->post('account');
+        $is_login = $this->input->post('is_login');
+        $agent=$this->agt->get_is_login($account,$is_login);
+        if($agent){
+            $id = $this->input->post('id');
+            $errorcode = $this->input->post('errorcode');
+            $mid = $this->input->post('mid');
+            $agent = $this->agt->get_agent_by_aid($id);
+            $buy = $this->process_agent_buy($agent->buy);
+            $error_code = $this->error->get_search_error_code($errorcode);
+            $get_agent_model = $this->process_model($buy, $error_code,$mid);
+
+            $data = $get_agent_model;
+            echo json_encode($data);
+        }else{
+            echo false;
+        }
+
     }
 
     public function get_captcha(){
