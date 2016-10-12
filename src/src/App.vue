@@ -52,7 +52,8 @@ import Contact from './components/Contact.vue'
 // Side Effect
 import Subscription from './components/Subscription.vue'
 import Login from './components/Login.vue'
-
+import Store from './assets/vendor/store'
+import Auth from './auth/auth'
 import Api from './api'
 export default {
   components: {
@@ -68,6 +69,23 @@ export default {
       inquiryLength: 0,
       isAuth: false,
       submenu: null
+    }
+  },
+  beforeCreate () {
+    var user
+    if (Store.get('lymco-auth')) {
+      user = Store.get('lymco-auth')
+      Auth.check(user.id, user.is_login, (err, data) => {
+        if (err) {
+          this.error = err.toString()
+        } else {
+          console.log(data)
+          if (data === 'success') {
+            this.isAuth = true
+            this.login = false
+          }
+        }
+      })
     }
   },
   created () {
@@ -86,6 +104,11 @@ export default {
     this.$on('updateInquiry', function () {
       this.inquiryLength = Inquiry.getLength()
     })
+    this.$on('isLogin', function () {
+      this.isAuth = true
+      this.login = false
+    })
+    // Check Login Stats
     this.fetchData()
   },
   mounted () {
@@ -95,12 +118,21 @@ export default {
     fetchData () {
       this.error = this.data = null
       this.loading = true
-      Api.getGeneral((err, data) => {
+      // Api.getGeneral((err, data) => {
+      //   this.loading = false
+      //   if (err) {
+      //     this.error = err.toString()
+      //   } else {
+      //     this.submenu = data.category
+      //   }
+      // })
+      Api.getCategories((err, data) => {
         this.loading = false
         if (err) {
           this.error = err.toString()
         } else {
-          this.submenu = data.category
+          this.submenu = data.categories
+          console.log(data.categories)
         }
       })
     },

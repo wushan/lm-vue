@@ -110,6 +110,7 @@
 <script>
 import Navigation from './Navigation.vue'
 import Api from '../api'
+import Store from '../assets/vendor/store'
 import {reverse, filterBy, findBy} from '../filter.js'
 // Expose Jquery Globally.
 import $ from 'jquery'
@@ -118,6 +119,7 @@ require('imports?$=jquery!../assets/vendor/jquery.sticky.js')
 require('imports?$=jquery!../assets/vendor/jquery.mousewheel.js')
 require('imports?$=jquery!../assets/vendor/jquery.mCustomScrollbar.js')
 export default {
+  name: 'Dealer',
   components: {
     'page-navigation': Navigation
   },
@@ -135,11 +137,6 @@ export default {
     }
   },
   created () {
-    if (this.isAuth) {
-      this.fetchData()
-    } else {
-      this.$parent.$emit('showLogin', 1)
-    }
   },
   mounted () {
     $('.sticker').sticky({
@@ -149,7 +146,7 @@ export default {
     $('.order-history-table').mCustomScrollbar({
       theme: 'light'
     })
-    console.log('mounted')
+    this.fetchData()
   },
   updated () {
     console.log('updated')
@@ -158,26 +155,45 @@ export default {
       mouseWheel: true
     })
   },
+  watch: {
+    'isAuth': 'updateView'
+  },
   methods: {
+    updateView () {
+      if (this.isAuth) {
+        this.fetchData()
+      }
+    },
     fetchData () {
       this.error = this.dealer = null
       this.loading = true
-      Api.getDealer(1, (err, data) => {
+      var user
+      if (Store.get('lymco-auth')) {
+        user = Store.get('lymco-auth')
+        Api.getDealer(user.id, user.is_login, (err, data) => {
+          this.loading = false
+          if (err) {
+            this.error = err.toString()
+            console.log(err)
+          } else {
+            this.dealer = data
+            console.log(data)
+          }
+        })
+      } else {
         this.loading = false
-        if (err) {
-          this.error = err.toString()
-          console.log(err)
-        } else {
-          this.dealer = data
-          console.log(data)
-        }
-      })
+        this.$parent.$emit('showLogin', 1)
+      }
     },
     reverse,
     filterBy,
     findBy,
     getDetails (order) {
-      this.selectedOrder = order
+      if (!order.detail) {
+        window.alert('無詳細資料')
+      } else {
+        this.selectedOrder = order
+      }
     }
   },
   computed: {

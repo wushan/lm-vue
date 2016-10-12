@@ -43,7 +43,7 @@
                         span.bold SCROLL
                         img(src="../assets/images/components/scrolljar.png")
                 #category-list
-                    .category.track-animate(v-for="category in data.categories")
+                    .category.track-animate(v-for="category in data.categories", v-bind:id="'series' + category.id")
                         .coverage(v-bind:style="'background-image: url(' + category.image + ');'")
                             img(v-bind:src="category.image")
                         .content

@@ -8,7 +8,7 @@
 					router-link(to='/product/series', activeClass="active") PRODUCTS
 					ul
 						li(v-for="sub in submenu")
-							a(href="javascript:;") {{ sub.name }}
+							router-link(:to="{path: '/product/series', hash: 'series' + sub.id}") {{ sub.name }}
 				li
 					router-link(to='/news', activeClass="active") NEWS
 				li

@@ -15,10 +15,14 @@
                   time.green {{ article.updated_time }}
                   h1 {{ article.title }}
           article.post
-            .container.restrict-large
-              #news-single-slider
-                .item(v-for="slide in article.media")
+            #news-single-slider-wrapper
+              .background
+                .fake-item(v-for="slide in fakemedia")
                   img(v-bind:src="slide.url")
+              .container.restrict-small
+                #news-single-slider
+                  .item(v-for="slide in article.media")
+                    img(v-bind:src="slide.url")
             
             .share-component.restrict
               a.fa.fa-2x.fa-facebook(href="javascript:;")
@@ -57,11 +61,12 @@ import Api from '../api'
 import $ from 'jquery'
 window.jQuery = window.$ = $
 require('imports?$=jquery!../assets/vendor/jquery.sticky.js')
-require('imports?$=jquery!../assets/vendor/slick.min.js')
+require('imports?$=jquery!../assets/vendor/jquery.bxslider.js')
 export default {
   components: {
     'page-navigation': Navigation
   },
+  name: 'Article',
   props: ['inquiryLength', 'submenu'],
   data () {
     return {
@@ -77,6 +82,40 @@ export default {
   },
   watch: {
     '$route': 'fetchData'
+  },
+  computed: {
+    fakemedia () {
+      var newMediaArray = []
+      var i
+      switch (this.article.media.length) {
+        case 1:
+          console.log('case 1')
+          newMediaArray = this.article.media
+          for (i = 0; i < 3; i++) {
+            newMediaArray.push(this.article.media[0])
+          }
+          break
+        case 2:
+          console.log('case 2')
+          newMediaArray = this.article.media
+          for (i = 0; i < 2; i++) {
+            newMediaArray.push(this.article.media[0])
+          }
+          break
+        case 3:
+          console.log('case 3')
+          newMediaArray = this.article.media
+          for (i = 0; i < 1; i++) {
+            newMediaArray.push(this.article.media[0])
+          }
+          break
+        case 4:
+          console.log('case 4')
+          newMediaArray = this.article.media
+          break
+      }
+      return newMediaArray
+    }
   },
   methods: {
     fetchData () {
@@ -95,119 +134,13 @@ export default {
     },
     initSlick () {
       this.$nextTick(function () {
-        if (this.article.media.length === 3) {
-          $('#news-single-slider').slick({
-            infinite: true,
-            dots: true,
-            arrows: true,
-            slidesToShow: this.article.media.length - 1,
-            slidesToScroll: 1,
-            centerMode: true,
-            centerPadding: '240px',
-            responsive: [
-              {
-                breakpoint: 1024,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                  infinite: true,
-                  centerMode: true,
-                  dots: true,
-                  centerPadding: '160px'
-                }
-              },
-              {
-                breakpoint: 800,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                  infinite: true,
-                  centerMode: true,
-                  dots: true,
-                  centerPadding: '100px'
-                }
-              },
-              {
-                breakpoint: 600,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                  infinite: true,
-                  centerMode: true,
-                  dots: true,
-                  centerPadding: '100px'
-                }
-              },
-              {
-                breakpoint: 480,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                  infinite: true,
-                  centerMode: true,
-                  dots: true,
-                  centerPadding: '50px'
-                }
-              }
-            ]
-          })
-        } else if (this.article.media.length === 4) {
-          $('#news-single-slider').slick({
-            infinite: true,
-            dots: true,
-            arrows: true,
-            slidesToShow: this.article.media.length - 1,
-            slidesToScroll: 1,
-            centerMode: true,
-            centerPadding: '50px',
-            responsive: [
-              {
-                breakpoint: 1024,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                  infinite: true,
-                  centerMode: true,
-                  dots: true,
-                  centerPadding: '160px'
-                }
-              },
-              {
-                breakpoint: 800,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                  infinite: true,
-                  centerMode: true,
-                  dots: true,
-                  centerPadding: '100px'
-                }
-              },
-              {
-                breakpoint: 600,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                  infinite: true,
-                  centerMode: true,
-                  dots: true,
-                  centerPadding: '100px'
-                }
-              },
-              {
-                breakpoint: 480,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                  infinite: true,
-                  centerMode: true,
-                  dots: true,
-                  centerPadding: '50px'
-                }
-              }
-            ]
-          })
-        }
+        $('#news-single-slider').bxSlider({
+          auto: false,
+          autoControls: true,
+          pager: false,
+          nextText: '>',
+          prevText: '<'
+        })
       })
     }
   }
@@ -221,7 +154,7 @@ export default {
   @import "bower_components/breakpoint-sass/stylesheets/breakpoint";
   @import "src/assets/styles/general/variable/variable";
   @import "src/assets/styles/general/helper/helper";
-  
+  @import "src/assets/styles/vendor/jquery.bxslider";
   #news-single {
     background-color: $smokygray;
     header {
@@ -312,83 +245,49 @@ export default {
       margin: 0 .5em;
     }
   }
-  #news-single-slider {
-    // margin: 2em 0;
-    // position: relative;
-    // left: -8.5em;
+  #news-single-slider-wrapper {
+    position: relative;
     @extend .clr;
     text-align: center;
-    .slick-prev, .slick-next {
-      z-index: 7;
-      height: 40px;
-      width: 20px;
-      background-color: $main;
-      cursor: pointer;
-      opacity: .75;
-      &:before {
-        font-size: 16px;
-      }
-      &:hover {
-        opacity: 1;
-      }
+    .bx-wrapper .bx-controls-direction a {
+      height: 60px;
+      margin-top: -30px;
+      text-indent: 0;
+      line-height:  60px;
+      color: $white;
+      font-size: 1.2em;
     }
-    .slick-prev {
-      left: 0;
-      &:before {
-        content: '<';
-      }
-    }
-    .slick-next {
+    .bx-wrapper .bx-next {
       right: 0;
-      &:before {
-        content: '>';
-      }
+      background-image: none;
+      background-color: $main; 
+    }
+    .bx-wrapper .bx-prev {
+      left: 0;
+      background-image: none;
+      background-color: $main; 
     }
     .item {
       display: inline-block;
       vertical-align: middle;
-      width: 48%;
-      margin: 0 1%;
+      
     }
     img {
-      box-shadow: 0 3px 6px rgba($black, .66);
+      width: 100%; 
     }
-    .slick-slide {
-      transition: .3s transform ease;
-      margin: 0 2px;
-      background-color: $white;
-      img {
-        width: 100%;
-        opacity: .4;
+    .background {
+      position: absolute;
+      top: 7em;
+      left: 0;
+      right: 0;
+      width: 100%;
+      opacity: .6; 
+      .fake-item {
+        @include gallery(3 of 12 .1);
       }
-      @include breakpoint(1024px) {
-        margin: 0 10px;
-      }
-    }
-    .slick-list {
-      padding-top: 50px !important;
-      padding-bottom: 50px !important;
-      overflow: initial; 
-      @include breakpoint(1024px) {
-        // padding-top: 100px !important;
-        // padding-bottom: 100px !important;
-      }
-    }
-    .slick-current {
-      img {
-        opacity: 1;
-      }
-      position: relative;
-      z-index: 1;
-      transform: scale(1.2);
-      @include breakpoint(1024px) {
-        transform: scale(1.7);
-      }
-      @include breakpoint(1440px) {
-        // transform: scale(1.5);
-      }
-      @include breakpoint(1680px) {
-        // transform: scale(1.3);
+      & + .container{
+        position: relative;
+        margin-top: -6em;
       }
     }
   }

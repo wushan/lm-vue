@@ -128,10 +128,11 @@ export default {
       }
     }, 500)
   },
-  getDealer (id, cb) {
+  getDealer (id, isLogin, cb) {
     request.post('//lymco.4webdemo.com/backend/api/frontapi/get_dealer')
     .type('form')
     .send({id: id})
+    .send({is_login: isLogin})
     .end(function (err, res) {
       if (err || !res.ok) {
         cb(new Error('Data not found.'))
@@ -142,10 +143,11 @@ export default {
       }
     })
   },
-  getMachine (id, cb) {
+  getMachine (id, isLogin, cb) {
     request.post('//lymco.4webdemo.com/backend/api/frontapi/get_machine')
     .type('form')
-    .send({id: '1'})
+    .send({id: id})
+    .send({is_login: isLogin})
     .end(function (err, res) {
       if (err || !res.ok) {
         console.log(err)
@@ -157,15 +159,42 @@ export default {
       }
     })
   },
-  getSolution (id, mid, code, cb) {
+  getSolution (id, isLogin, mid, code, cb) {
     request.post('//lymco.4webdemo.com/backend/api/frontapi/get_errorshooting')
     .type('form')
     .send({id: id})
+    .send({is_login: isLogin})
     .send({mid: mid})
     .send({errorcode: code})
     .end(function (err, res) {
       if (err || !res.ok) {
         console.log(err)
+        cb(new Error('Data not found.'))
+      } else {
+        // alert('yay got ' + JSON.stringify(res.body))
+        console.log(res.body)
+        cb(null, res.body)
+      }
+    })
+  },
+  getCaptcha (cb) {
+    request
+    .get('//lymco.4webdemo.com/backend/api/frontapi/get_captcha')
+    .end(function (err, res) {
+      if (err || !res.ok) {
+        console.log(err)
+      } else {
+        cb(null, res.body)
+      }
+    })
+  },
+  login (data, cb) {
+    request.post('//lymco.4webdemo.com/backend/api/frontapi/get_login')
+    .type('form')
+    .send(data)
+    .end(function (err, res) {
+      if (err || !res.ok) {
+        window.alert(err)
         cb(new Error('Data not found.'))
       } else {
         // alert('yay got ' + JSON.stringify(res.body))

@@ -47,7 +47,14 @@ const router = new VueRouter({
     { path: '/contact', component: Contact },
     { path: '/errorshooting', component: ErrorShooting },
     { path: '/errorshooting/:model/:errorcode', component: ErrorShooting }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        selector: to.hash
+      }
+    }
+  }
 })
 
 new Vue({

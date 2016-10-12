@@ -59,6 +59,7 @@
 <script>
 import Navigation from './Navigation.vue'
 import Api from '../api'
+import Store from '../assets/vendor/store'
 // Expose Jquery Globally.
 import $ from 'jquery'
 window.jQuery = window.$ = $
@@ -69,7 +70,7 @@ export default {
   components: {
     'page-navigation': Navigation
   },
-  props: ['inquiryLength', 'submenu'],
+  props: ['inquiryLength', 'submenu', 'isAuth'],
   data () {
     return {
       loading: false,
@@ -94,7 +95,8 @@ export default {
     }
   },
   watch: {
-    '$route.query': 'setQuery'
+    '$route.query': 'setQuery',
+    'isAuth': 'updateView'
   },
   computed: {
     filteredData () {
@@ -109,6 +111,11 @@ export default {
     }
   },
   methods: {
+    updateView () {
+      if (this.isAuth) {
+        this.fetchData()
+      }
+    },
     firstStep () {
       // Clear query
       this.query = ''
@@ -131,14 +138,21 @@ export default {
     fetchData () {
       this.error = this.dealer = null
       this.loading = true
-      Api.getMachine(1, (err, data) => {
+      var user
+      if (Store.get('lymco-auth')) {
+        user = Store.get('lymco-auth')
+        Api.getMachine(user.id, user.is_login, (err, data) => {
+          this.loading = false
+          if (err) {
+            this.error = err.toString()
+          } else {
+            this.models = data
+          }
+        })
+      } else {
         this.loading = false
-        if (err) {
-          this.error = err.toString()
-        } else {
-          this.models = data
-        }
-      })
+        this.$parent.$emit('showLogin', 1)
+      }
     },
     searching () {
       if (this.isSearching) {
@@ -170,15 +184,22 @@ export default {
       } else {
         errorstring = this.errorcode
       }
-      Api.getSolution(1, id, errorstring, (err, data) => {
+      var user
+      if (Store.get('lymco-auth')) {
+        user = Store.get('lymco-auth')
+        Api.getSolution(user.id, user.is_login, id, errorstring, (err, data) => {
+          this.loading = false
+          if (err) {
+            this.error = err.toString()
+          } else {
+            this.searchResults = data.error
+            this.setQuery()
+          }
+        })
+      } else {
         this.loading = false
-        if (err) {
-          this.error = err.toString()
-        } else {
-          this.searchResults = data.error
-          this.setQuery()
-        }
-      })
+        this.$parent.$emit('showLogin', 1)
+      }
     },
     startSearch (id, errorcode) {
       this.selectedModel = id
@@ -191,16 +212,23 @@ export default {
       } else {
         errorstring = this.errorcode
       }
-      Api.getSolution(1, id, errorstring, (err, data) => {
+      var user
+      if (Store.get('lymco-auth')) {
+        user = Store.get('lymco-auth')
+        Api.getSolution(user.id, user.is_login, id, errorstring, (err, data) => {
+          this.loading = false
+          if (err) {
+            this.error = err.toString()
+          } else {
+            this.searchResults = data.error
+            this.setQuery()
+            this.$router.push('/errorshooting/' + id + '/' + errorstring)
+          }
+        })
+      } else {
         this.loading = false
-        if (err) {
-          this.error = err.toString()
-        } else {
-          this.searchResults = data.error
-          this.setQuery()
-          this.$router.push('/errorshooting/' + id + '/' + errorstring)
-        }
-      })
+        this.$parent.$emit('showLogin', 1)
+      }
     },
     updateResults (id, data) {
       // Update searchResults via query string

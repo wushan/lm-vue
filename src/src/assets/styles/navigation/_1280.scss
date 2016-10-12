@@ -43,6 +43,15 @@
 					a {
 						display: block;
 						padding: .8em 2em;
+						&:hover {
+							transition: .3s all ease;
+							background-color: darken($main, 10%);
+						}
+					}
+					&:last-child {
+						a {
+							border-radius: 0 0 6px 6px;
+						}
 					}
 				}
 			}
