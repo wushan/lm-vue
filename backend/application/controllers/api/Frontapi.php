@@ -332,6 +332,34 @@ class Frontapi extends MY_Controller
         }
         return false;
     }
+
+    public function get_inquiry_item(){
+        header("Content-Type: application/json; charset=UTF-8");
+        $pid = $this->input->post('pid');
+        $inid = $this->input->post('inid');
+        if($pid){
+            foreach(json_decode($pid) as $prow){
+                $category=array(
+                    'id'=>$this->product->get_products_by_pid($prow)->PID,
+                    'image'=>$this->product->get_products_by_pid($prow)->pdimage,
+                    'name'=>$this->product->get_products_by_pid($prow)->name
+                );
+            }
+        }
+        if($inid){
+            foreach(json_decode($inid) as $irow){
+                $inventory=array(
+                    'id'=> $this->inventory->get_inventory_by_inid($irow)->INID,
+                    'image'=>$this->inventory->get_inventory_by_inid($irow)->image,
+                    'name'=>$this->inventory->get_inventory_by_inid($irow)->name
+                );
+
+            }
+        }
+        echo json_encode($data=array('inventory'=>$inventory,'category'=>$category));
+        return false;
+    }
+
     public function get_inquiry(){
         header("Content-Type: application/json; charset=UTF-8");
         if ($post = $this->input->post()) {  //欄位名稱:pid,inid,name,email,phone,company,country,subject,message,is_allow  //is_allow 傳0 or 1 即可 ,pid 是分類id ,inid是現貨id
