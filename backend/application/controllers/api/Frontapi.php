@@ -13,6 +13,7 @@ class Frontapi extends MY_Controller
         $this->load->model('tb_inventory_model', 'inventory');
         $this->load->model('tb_error_model', 'error');
         $this->load->model('tb_captcha_model', 'captcha');
+        $this->load->model('tb_inventory_model','inventory');
     }
 
     public function get_homepage()
@@ -322,6 +323,25 @@ class Frontapi extends MY_Controller
         }
 
     }
+
+    public function get_contact(){
+        header("Content-Type: application/json; charset=UTF-8");
+        if ($post = $this->input->post()) {  //欄位名稱:name,email,phone,company,country,subject,message,is_allow  //is_allow 傳0 or 1 即可
+            $post['create_time'] = date('Y-m-d H:i:s');
+            $this->db->insert('tb_contact_list',$post);
+        }
+        return false;
+    }
+    public function get_inquiry(){
+        header("Content-Type: application/json; charset=UTF-8");
+        if ($post = $this->input->post()) {  //欄位名稱:pid,inid,name,email,phone,company,country,subject,message,is_allow  //is_allow 傳0 or 1 即可 ,pid 是分類id ,inid是現貨id
+            $post['create_time'] = date('Y-m-d H:i:s');
+            $this->db->insert('tb_inquiry',$post);
+        }
+
+        return false;
+    }
+
 
     /******************************private****************************************/
     private function process_news($news)

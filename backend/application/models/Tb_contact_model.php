@@ -16,4 +16,19 @@ class Tb_contact_model extends CI_Model
         if ($query->num_rows() > 0) return $query->row();
         return false;
     }
+
+    public function get_contact_list()
+    {
+        $query = $this->db->get('tb_contact_list');
+
+        if ($query->num_rows() > 0) return $query->result();
+        return false;
+    }
+
+    public function get_contact_list_by_clid($CLID=false){
+        $this->db->where('CLID',$CLID);
+        $query = $this->db->get('tb_contact_list');
+        if ($query->num_rows() > 0) return $query->row();
+        return false;
+    }
 }
