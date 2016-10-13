@@ -139,7 +139,7 @@ export default {
                         }
                     }
                     @include breakpoint(1200px) {
-                        background-position: -560px center;
+                        background-position: -730px center;
                         .content {
                             max-width: none;
                             @include span(7 of 12);
@@ -148,7 +148,7 @@ export default {
                         }
                     }
                     @include breakpoint(1300px) {
-                        background-position: -440px center;
+                        background-position: -600px center;
                         
                     }
                     @include breakpoint(1680px) {

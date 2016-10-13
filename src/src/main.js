@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import VeeValidate from 'vee-validate'
 
 import App from './App.vue'
 import Index from './components/Index.vue'
@@ -22,8 +23,20 @@ import OnScreen from 'onscreen'
 // window.Parallax = Parallax
 // $('#scene').Parallax()
 // console.log(Parallax)
+const config = {
+  errorBagName: 'errors', // change if property conflicts.
+  delay: 0,
+  locale: 'en',
+  messages: null,
+  strict: true
+}
+
+Vue.use(VeeValidate, config)
 Vue.use(VueResource)
 Vue.use(VueRouter)
+// Expose Jquery Globally.
+import $ from 'jquery'
+window.jQuery = window.$ = $
 
 const router = new VueRouter({
   mode: 'history',
@@ -66,9 +79,18 @@ new Vue({
     this.$on('toggle', function () {
       if (this.$children[0].$data.isActive) {
         this.$children[0].$data.isActive = false
+        $('html, body').css({
+          position: 'static',
+          overflow: 'auto',
+          height: 'auto'
+        })
       } else {
         this.$children[0].$data.isActive = true
-        console.log('gg')
+        $('html, body').css({
+          position: 'relative',
+          overflow: 'hidden',
+          height: '100%'
+        })
       }
     })
     // Onscreen

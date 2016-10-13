@@ -55,6 +55,9 @@ import Login from './components/Login.vue'
 import Store from './assets/vendor/store'
 import Auth from './auth/auth'
 import Api from './api'
+// Expose Jquery Globally.
+import $ from 'jquery'
+window.jQuery = window.$ = $
 export default {
   components: {
     'contact': Contact,
@@ -72,6 +75,10 @@ export default {
     }
   },
   beforeCreate () {
+    if (!Store.enabled) {
+      window.alert('Local storage is not supported by your browser. Please disable "Private Mode", or upgrade to a modern browser.')
+      return
+    }
     var user
     if (Store.get('lymco-auth')) {
       user = Store.get('lymco-auth')
@@ -139,6 +146,11 @@ export default {
     toggleMenu () {
       if (this.$data.isActive) {
         this.$data.isActive = false
+        $('html, body').css({
+          position: 'static',
+          overflow: 'auto',
+          height: 'auto'
+        })
       }
     },
     toggleSubscription () {
@@ -146,6 +158,7 @@ export default {
         this.subscription = false
       } else {
         this.subscription = true
+        this.isActive = false
       }
     }
   }

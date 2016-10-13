@@ -59,7 +59,7 @@
                                             img(v-bind:src="product.thumbnail")
                         
                 section#discover
-                    a(href="javascript:;") BACK TO TOP
+                    a(@click="scrollTop") BACK TO TOP
         transition(name="fade", mode="out-in")
             #loader(v-if="loading")
                 .uil-ring-css(style="transform:scale(0.6);")
@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import jump from 'jump.js'
 import Navigation from './Navigation.vue'
 import Inventory from './Inventory.vue'
 import Api from '../api'
@@ -111,6 +112,9 @@ export default {
     '$route': 'toggleInventory'
   },
   methods: {
+    scrollTop () {
+      jump('#app')
+    },
     fetchData () {
       this.error = this.data = null
       this.loading = true
@@ -170,8 +174,11 @@ export default {
         .title {
             color: $white;
             h1 {
-                font-size: 3.6em;
-                line-height: 1; 
+                font-size: 3em;
+                line-height: 1;
+                @include breakpoint(1024px) {
+                  font-size: 3.6em;
+                }
                 span {
                     display: block;
                 }
@@ -183,6 +190,7 @@ export default {
         padding: 2em;
         box-sizing: border-box;
         text-align: center;
+        transition: .3s all ease;
         .title {
             h1 {
                 margin-top: 0;
@@ -196,7 +204,7 @@ export default {
             text-align: right;
             position: absolute;
             bottom: 5%;
-            right: 1em;
+            right: 4em;
             .title {
                 h1 {
                     margin: 0;
@@ -206,6 +214,15 @@ export default {
             .call-action {
                 padding: .5em 0;
             }
+        }
+        @include breakpoint(1366px) {
+            right: 6em;
+        }
+        @include breakpoint(1440px) {
+            right: 8em;
+        }
+        @include breakpoint(1600px) {
+            right: 10em;
         }
     }
     #category-highlights {
@@ -293,6 +310,21 @@ export default {
                     background-repeat: no-repeat;
                     background-size: auto 95%;
                     background-position: left top;
+                }
+            }
+        }
+        @include breakpoint(1600px) {
+            .block {
+                &:last-child {
+                    @include span(4 of 12 1 last);
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-image: url('../assets/images/components/product-bg-1.png');
+                    background-repeat: no-repeat;
+                    background-size: auto 95%;
+                    background-position: right top;
                 }
             }
         }

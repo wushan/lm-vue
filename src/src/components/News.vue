@@ -194,17 +194,22 @@ export default {
       @extend .clr;
       .block {
         position: relative;
+        box-sizing: border-box;
         &:first-child {
           margin-bottom: 3em;
-          &:after {
-            content: '';
-            border: 1px solid $main;
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 1em;
-            left: 1em;
+          border: 1px solid $main;
+          @include breakpoint(768px) {
+            border: 0;
+            &:after {
+              content: '';
+              border: 1px solid $main;
+              display: block;
+              width: 100%;
+              height: 100%;
+              position: absolute;
+              top: 1em;
+              left: 1em;
+            }
           }
         }
         img {
@@ -312,6 +317,7 @@ export default {
       vertical-align: middle;
       color: $black;
       position: relative;
+      cursor: pointer;
       &:after {
         content: '';
         display: block;

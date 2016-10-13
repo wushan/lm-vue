@@ -106,6 +106,7 @@ export default {
           this.error = err.toString()
         } else {
           this.data = data
+          console.log(data)
         }
       })
     },

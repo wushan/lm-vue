@@ -293,6 +293,7 @@ class Frontapi extends MY_Controller
             );
             echo json_encode($data);
         }else{
+            header('HTTP/1.1 401 Unauthorized');
             $data=array(
                 'status' => FALSE,
                 'error' => 'Login Failed',

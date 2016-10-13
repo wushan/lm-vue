@@ -26,7 +26,7 @@
                 input.rounded(type="text", placeholder="Captcha")
             .grid.g-3-12
               button.btn.rounded.green.full(type="submit") Send
-      a#close.btn.basic(@click="leaveSubscription") X
+      a#close(@click="leaveSubscription") X
 </template>
 
 <script>
@@ -92,15 +92,13 @@ export default {
   .subscription-wrapper {
     position: relative;
     #close {
-      display: block;
       position: absolute;
-      width: 40px;
-      height: 40px;
-      top: 0;
       right: 0;
-      padding: 0;
-      text-align: center;
-      line-height: 40px;
+      top: 0;
+      padding: .4em .8em;
+      color: $main;
+      font-size: 2em;
+      cursor: pointer;
     }
   }
 </style>

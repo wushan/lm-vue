@@ -220,11 +220,20 @@ export default {
     background-color: $darkestgray;
     background-image: url('../assets/images/components/dealer-bg.png');
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: -400px 0;
+    transition: .3s background ease;
+    @include breakpoint(768px) {
+      background-position: -100px 0;
+    }
+    @include breakpoint(768px) {
+      background-position: 0 0;
+    }
     @include breakpoint(1440px) {
       background-size: 100% auto;
     }
     .title {
-      color: $main;
+      color: darken($main, 10%);
       h1 {
         margin: 0;
       }
@@ -279,8 +288,8 @@ export default {
         Label the data
         */
         td:nth-of-type(1):before { content: "DATE"; }
-        td:nth-of-type(2):before { content: "WARRANTY EXPIRATION"; }
-        td:nth-of-type(3):before { content: "MACHINES MODEL"; }
+        td:nth-of-type(2):before { content: "WARRANTY"; }
+        td:nth-of-type(3):before { content: "MODEL"; }
         td:nth-of-type(4):before { content: "SERIAL"; }
         td:nth-of-type(5):before { content: "DETAILS"; }
       }

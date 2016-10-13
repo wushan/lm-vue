@@ -10,7 +10,6 @@
                                 |   CONTACT
                                 span.bold INFO
                             hr
-
                     .container.restrict-large.contact-wrapper
                         .row
                             .block
@@ -32,33 +31,39 @@
                                         .row
                                             .grid.g-5-12
                                                 .controlgroup
-                                                    input(v-model="inquiryForm.name", type="text", placeholder="NAME")
+                                                    input(v-validate.initial="name", data-rules="required", v-model="name", type="text", placeholder="NAME", :class="{'has-error': errors.has('name')}")
+                                                    span.error(v-show="errors.has('name')") {{ errors.first('name') }}
                                             .grid.g-7-12
                                                 .controlgroup
-                                                    input(v-model="inquiryForm.email", type="email", placeholder="EMAIL")
-                                        .row
+                                                    input(v-validate.initial="email", v-model="email", name="email", type="text", placeholder="EMAIL", data-rules="required|email", :class="{'has-error': errors.has('email')}")
+                                                    span.error(v-show="errors.has('email')") {{ errors.first('email') }}
+                                        .row        
                                             .grid.g-6-12
                                                 .controlgroup
-                                                    input(v-model="inquiryForm.company", type="text", placeholder="COMPANY NAME")
+                                                    input(v-model="company", type="text", placeholder="COMPANY NAME")
                                             .grid.g-6-12
                                                 .controlgroup
                                                     .select-wrapper
-                                                        select(v-model="inquiryForm.country")
+                                                        select(v-model="country")
                                                           option(v-for="option in countries" v-bind:value="option.value") {{ option.text }}
                                         .row
                                             .controlgroup
-                                                input(v-model.number="inquiryForm.phone", type="text", placeholder="PHONE(MOBILE)")
+                                                input(v-model.number="phone", type="text", placeholder="PHONE(MOBILE)")
                                         .row
                                             .controlgroup
-                                                input(v-model="inquiryForm.subject", type="text", placeholder="SUBJECT")
+                                                input(v-validate.initial="subject", data-rules="required", v-model="subject", type="text", placeholder="SUBJECT", :class="{'has-error': errors.has('subject')}")
+                                                span.error(v-show="errors.has('subject')") {{ errors.first('subject') }}
                                         .row
                                             .controlgroup
-                                                textarea(v-model="inquiryForm.message", placeholder="MESSAGE")
+                                                textarea(v-validate.initial="message", data-rules="required", v-model="message", placeholder="MESSAGE", :class="{'has-error': errors.has('message')}")
+                                                span.error(v-show="errors.has('message')") {{ errors.first('message') }}
+
                                         .privacy-checkbox
                                             .controlgroup
                                                 .check-item
-                                                    input#allowmail(type="checkbox")
+                                                    input#allowmail(v-validate.initial="agreement", data-rules="required", v-model="agreement", type="checkbox")
                                                     label(for="allowmail") Allow Lymco to send me periodic product updates and newsletter. |  Privacy : Any information we reveive from you will only be used to respond to your inquiry, unless authorized by you.
+                                                    span.error(v-show="errors.has('agreement')") {{ errors.first('agreement') }}
                                     .call-action.right
                                         button.btn.basic(type="reset") RESET
                                         button.btn.basic(@click.prevent="submit") SUBMIT
@@ -82,6 +87,8 @@ export default {
   props: ['inquiryLength', 'submenu'],
   data () {
     return {
+      v: '',
+      validate: '',
       loading: false,
       countries: [
         { value: 'AF', text: 'Afghanistan' },
@@ -334,16 +341,15 @@ export default {
         { value: 'ZM', text: 'Zambia' },
         { value: 'ZW', text: 'Zimbabwe' }
       ],
-      inquiryForm: {
-        name: null,
-        email: null,
-        company: null,
-        country: 'TW',
-        phone: null,
-        subject: null,
-        message: null,
-        newsletter: false
-      }
+      name: null,
+      email: null,
+      company: null,
+      country: 'TW',
+      phone: null,
+      subject: null,
+      message: null,
+      newsletter: false,
+      agreement: false
     }
   },
   mounted () {
@@ -354,8 +360,14 @@ export default {
     console.log(this.inquiryLength)
   },
   methods: {
-    submit () {
-      console.log('send')
+    submit (e) {
+      this.$validator.validateAll()
+      if (this.errors.any()) {
+        e.stopPropagation()
+        e.preventDefault()
+      } else {
+        console.log('send')
+      }
     }
   }
 }
@@ -403,6 +415,9 @@ export default {
         .call-action {
             .btn.basic {
                 background-color: darken($main, 15%);
+                &:hover {
+                    background-color: darken($main, 20%);
+                }
             }
         }
     }
@@ -450,6 +465,15 @@ export default {
             &:focus {
                 background-color: rgba($main, .3);
             }
+            &.has-error {
+                border-color: #d00b0b;
+                border-width: 2px;
+                background-color: rgba(#d00b0b, .33);
+                & + .error {
+                    font-size: 12px;
+                    color: #d00b0b;
+                }
+            }
         }
         input[type="text"],input[type="number"],input[type="email"],input[type="password"] input[type="search"] {
             background-color: transparent;
@@ -460,6 +484,15 @@ export default {
             color: $white;
             &:focus {
                 background-color: rgba($main, .3);
+            }
+            &.has-error {
+                border-color: #d00b0b;
+                border-width: 2px;
+                background-color: rgba(#d00b0b, .33);
+                & + .error {
+                    font-size: 12px;
+                    color: #d00b0b;
+                }
             }
         }
         .check-item {

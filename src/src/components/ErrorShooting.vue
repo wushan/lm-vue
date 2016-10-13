@@ -12,7 +12,7 @@
                         form#searchForm.machine-search-form
                             .controlgroup
                                 .controls
-                                    input.rounded(type="text", placeholder="Input Error Code", v-model="errorcode" @keyup="searching")
+                                    input.rounded(type="text", placeholder="Input Error Code", v-model="errorcode", @keyup="searching", @focus="searching")
                                     .fa.fa-search.fa-2x
                                     .machine-type(v-if="isSearching")
                                         h5 Please Select Machine Type
