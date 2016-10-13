@@ -202,5 +202,21 @@ export default {
         cb(null, res.body)
       }
     })
+  },
+  getInquiryItems (pid, inid, cb) {
+    request.post('//lymco.4webdemo.com/backend/api/frontapi/get_inquiry_item')
+    .type('form')
+    .send({pid: pid})
+    .send({inid: inid})
+    .end(function (err, res) {
+      if (err || !res.ok) {
+        window.alert(err)
+        cb(new Error('Data not found.'))
+      } else {
+        // alert('yay got ' + JSON.stringify(res.body))
+        console.log(res.body)
+        cb(null, res.body)
+      }
+    })
   }
 }
