@@ -73,6 +73,7 @@
 </template>
 
 <script>
+import Store from '../assets/vendor/store'
 import Navigation from './Navigation.vue'
 import Api from '../api'
 import Inquiry from '../cart/inquiry'
@@ -81,6 +82,7 @@ import $ from 'jquery'
 window.jQuery = window.$ = $
 require('imports?$=jquery!../assets/vendor/jquery.sticky.js')
 export default {
+  name: 'Inquiry',
   components: {
     'page-navigation': Navigation
   },
@@ -352,7 +354,9 @@ export default {
     }
   },
   created () {
-    this.fetchData()
+    if (Store.get('inquiry') || Store.get('inventory')) {
+      this.fetchData()
+    }
   },
   mounted () {
     $('.sticker').sticky({
@@ -363,10 +367,13 @@ export default {
   methods: {
     fetchData () {
       // Fetch localStorge
-      let productsId = Inquiry.getAll('inquiry')
+      let categoryids = Inquiry.getAll('inquiry')
+      let inventoryids = Inquiry.getAll('inventory')
+      console.log(categoryids)
+      console.log(inventoryids)
       this.error = this.data = null
       this.loading = true
-      Api.getProducts(productsId, (err, data) => {
+      Api.getInquiryItems(categoryids, inventoryids, (err, data) => {
         this.loading = false
         if (err) {
           this.error = err.toString()
