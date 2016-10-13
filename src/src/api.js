@@ -5,7 +5,7 @@
 // import NewsSingle from './assets/schema/news-single.json'
 // import Categories from './assets/schema/product-category.json'
 // import Product from './assets/schema/product-single.json'
-import Inventory from './assets/schema/inventory.json'
+// import Inventory from './assets/schema/inventory.json'
 import Inquiry from './assets/schema/inquiry.json'
 // import Dealer from './assets/schema/dealer.json'
 import General from './assets/schema/general.json'
@@ -120,13 +120,15 @@ export default {
     }, 500)
   },
   getInventory (cb) {
-    setTimeout(() => {
-      if (Inventory) {
-        cb(null, Inventory)
+    request
+    .get('//lymco.4webdemo.com/backend/api/frontapi/get_inventory')
+    .end(function (err, res) {
+      if (err || !res.ok) {
+        console.log(err)
       } else {
-        cb(new Error('Data not found.'))
+        cb(null, res.body)
       }
-    }, 500)
+    })
   },
   getDealer (id, isLogin, cb) {
     request.post('//lymco.4webdemo.com/backend/api/frontapi/get_dealer')
@@ -208,6 +210,21 @@ export default {
     .type('form')
     .send({pid: pid})
     .send({inid: inid})
+    .end(function (err, res) {
+      if (err || !res.ok) {
+        window.alert(err)
+        cb(new Error('Data not found.'))
+      } else {
+        // alert('yay got ' + JSON.stringify(res.body))
+        console.log(res.body)
+        cb(null, res.body)
+      }
+    })
+  },
+  postContact (data, cb) {
+    request.post('//lymco.4webdemo.com/backend/api/frontapi/get_contact')
+    .type('form')
+    .send({data})
     .end(function (err, res) {
       if (err || !res.ok) {
         window.alert(err)

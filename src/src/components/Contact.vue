@@ -75,6 +75,7 @@
 
 <script>
 import Navigation from './Navigation.vue'
+import Api from '../api'
 // Expose Jquery Globally.
 import $ from 'jquery'
 window.jQuery = window.$ = $
@@ -361,12 +362,32 @@ export default {
   },
   methods: {
     submit (e) {
+      var contactfromdata
       this.$validator.validateAll()
       if (this.errors.any()) {
         e.stopPropagation()
         e.preventDefault()
       } else {
-        console.log('send')
+        // name,email,phone,company,country,subject,message,is_allow
+        contactfromdata = {
+          name: this.name,
+          email: this.email,
+          phone: this.phone,
+          company: this.company,
+          country: this.country,
+          subject: this.subject,
+          message: this.message,
+          is_allow: (this.agreement) ? 1 : 0
+        }
+        console.log(contactfromdata)
+        Api.postContact(contactfromdata, (err, data) => {
+          this.loading = false
+          if (err) {
+            this.error = err.toString()
+          } else {
+            this.data = data
+          }
+        })
       }
     }
   }
