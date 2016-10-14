@@ -21,14 +21,22 @@
                                     th ITEM ID
                                     th REMOVE
                                 tbody
-                                  tr(v-for="product in products", track-by="id")
-                                    td
-                                      img(v-bind:src="product.image")
-                                    td {{ product.name }}
-                                    td {{ product.inventory }}
-                                    td {{ product.model }}
-                                    td
-                                      a.btn.rounded.green(@click="removeInventoryItem(product.id)") REMOVE
+                                    tr(v-for="product in products.category", track-by="id")
+                                        td
+                                          img(v-bind:src="product.image")
+                                        td {{ product.name }}
+                                        td /
+                                        td {{ product.id }}
+                                        td
+                                          a.btn.rounded.green(@click="removeInquiryItem(product.id)") REMOVE
+                                    tr(v-for="product in products.inventory", track-by="id")
+                                        td
+                                          img(v-bind:src="product.image")
+                                        td {{ product.name }}
+                                        td YES
+                                        td {{ product.id }}
+                                        td
+                                          a.btn.rounded.green(@click="removeInventoryItem(product.id)") REMOVE
 
                             .inquiry-from.container.restrict
                                 form#inquiryForm
@@ -36,10 +44,12 @@
                                         .row
                                             .grid.g-5-12
                                                 .controlgroup
-                                                    input(v-model="inquiryForm.name", type="text", placeholder="NAME")
+                                                    input(v-validate.initial="inquiryForm.name", data-rules="required",v-model="inquiryForm.name", type="text", placeholder="NAME", :class="{'has-error': errors.has('inquiryForm.name')}")
+                                                    span.error(v-show="errors.has('inquiryForm.name')") {{ errors.first('inquiryForm.name') }}
                                             .grid.g-7-12
                                                 .controlgroup
-                                                    input(v-model="inquiryForm.email", type="email", placeholder="EMAIL")
+                                                    input(v-validate.initial="inquiryForm.email", data-rules="required|email" v-model="inquiryForm.email", type="email", placeholder="EMAIL", :class="{'has-error': errors.has('inquiryForm.email')}")
+                                                    span.error(v-show="errors.has('inquiryForm.email')") {{ errors.first('inquiryForm.email') }}
                                         .row
                                             .grid.g-6-12
                                                 .controlgroup
@@ -54,10 +64,13 @@
                                                 input(v-model.number="inquiryForm.phone", type="text", placeholder="PHONE(MOBILE)")
                                         .row
                                             .controlgroup
-                                                input(v-model="inquiryForm.subject", type="text", placeholder="SUBJECT")
+                                                input(v-validate.initial="inquiryForm.subject", data-rules="required", v-model="inquiryForm.subject", type="text", placeholder="SUBJECT", :class="{'has-error': errors.has('inquiryForm.subject')}")
+                                                span.error(v-show="errors.has('inquiryForm.subject')") {{ errors.first('inquiryForm.subject') }}
                                         .row
                                             .controlgroup
-                                                textarea(v-model="inquiryForm.message", placeholder="MESSAGE")
+                                                textarea(v-validate.initial="inquiryForm.message", data-rules="required", v-model="inquiryForm.message", placeholder="MESSAGE", :class="{'has-error': errors.has('inquiryForm.message')}")
+                                                span.error(v-show="errors.has('inquiryForm.message')") {{ errors.first('inquiryForm.message') }}
+
                                         .privacy-checkbox
                                             .controlgroup
                                                 .check-item
@@ -89,6 +102,7 @@ export default {
   props: ['inquiryLength', 'submenu'],
   data () {
     return {
+      loading: null,
       products: [],
       countries: [
         { value: 'AF', text: 'Afghanistan' },
@@ -369,11 +383,20 @@ export default {
       // Fetch localStorge
       let categoryids = Inquiry.getAll('inquiry')
       let inventoryids = Inquiry.getAll('inventory')
-      console.log(categoryids)
-      console.log(inventoryids)
+      var categoryidArray = {}
+      var inventoryidArray = {}
+      // Convert Array to JSON Object
+      for (var i = 0; i < categoryids.length; i++) {
+        categoryidArray[i] = categoryids[i]
+      }
+      for (var index = 0; index < inventoryids.length; index++) {
+        inventoryidArray[index] = inventoryids[index]
+      }
+      categoryidArray = JSON.stringify(categoryidArray)
+      inventoryidArray = JSON.stringify(inventoryidArray)
       this.error = this.data = null
       this.loading = true
-      Api.getInquiryItems(categoryids, inventoryids, (err, data) => {
+      Api.getInquiryItems(categoryidArray, inventoryidArray, (err, data) => {
         this.loading = false
         if (err) {
           this.error = err.toString()
@@ -382,14 +405,14 @@ export default {
         }
       })
     },
-    removeInventoryItem (id) {
+    removeInquiryItem (id) {
       console.log(id)
       // Remove from localStorge
-      Inquiry.remove(id)
+      Inquiry.removeInquiry(id)
       // Remove from data
-      for (var i = 0; i < this.products.length; i++) {
-        if (this.products[i].id === id) {
-          this.products.splice(i, 1)
+      for (var i = 0; i < this.products.category.length; i++) {
+        if (this.products.category[i].id === id) {
+          this.products.category.splice(i, 1)
           // Emit an event to parent
           this.$parent.$emit('updateInquiry', 1)
         } else {
@@ -397,11 +420,65 @@ export default {
         }
       }
     },
-    submit () {
-      // var myForm = document.getElementById('inquiryForm')
-      // Do some validate then POST to backend.
-      console.log('submit inquiry.')
-      console.log(this.inquiryForm)
+    removeInventoryItem (id) {
+      console.log(id)
+      // Remove from localStorge
+      Inquiry.removeInventory(id)
+      // Remove from data
+      for (var i = 0; i < this.products.inventory.length; i++) {
+        if (this.products.inventory[i].id === id) {
+          this.products.inventory.splice(i, 1)
+          // Emit an event to parent
+          this.$parent.$emit('updateInquiry', 1)
+        } else {
+          console.log('no matched item.')
+        }
+      }
+    },
+    submit (e) {
+      var contactfromdata
+      this.$validator.validateAll()
+      if (this.errors.any()) {
+        e.stopPropagation()
+        e.preventDefault()
+      } else {
+        // Fetch localStorge
+        let categoryids = Inquiry.getAll('inquiry')
+        let inventoryids = Inquiry.getAll('inventory')
+        var categoryidArray = {}
+        var inventoryidArray = {}
+        // Convert Array to JSON Object
+        for (var i = 0; i < categoryids.length; i++) {
+          categoryidArray[i] = categoryids[i]
+        }
+        for (var index = 0; index < inventoryids.length; index++) {
+          inventoryidArray[index] = inventoryids[index]
+        }
+        categoryidArray = JSON.stringify(categoryidArray)
+        inventoryidArray = JSON.stringify(inventoryidArray)
+        // name,email,phone,company,country,subject,message,is_allow
+        contactfromdata = {
+          pid: categoryidArray,
+          inid: inventoryidArray,
+          name: this.inquiryForm.name,
+          email: this.inquiryForm.email,
+          phone: this.inquiryForm.phone,
+          company: this.inquiryForm.company,
+          country: this.inquiryForm.country,
+          subject: this.inquiryForm.subject,
+          message: this.inquiryForm.message,
+          is_allow: (this.inquiryForm.agreement) ? 1 : 0
+        }
+        console.log(contactfromdata)
+        Api.postInquiry(contactfromdata, (err, data) => {
+          this.loading = false
+          if (err) {
+            this.error = err.toString()
+          } else {
+            this.data = data
+          }
+        })
+      }
     }
   }
 }
@@ -437,6 +514,9 @@ export default {
       overflow-x: auto;
       .btn.rounded.green {
         padding: .3em 2em;
+      }
+      img {
+        width: 60px; 
       }
     }
     table {

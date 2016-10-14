@@ -235,5 +235,20 @@ export default {
         cb(null, res.body)
       }
     })
+  },
+  postInquiry (data, cb) {
+    request.post('//lymco.4webdemo.com/backend/api/frontapi/get_inquiry')
+    .type('form')
+    .send({data})
+    .end(function (err, res) {
+      if (err || !res.ok) {
+        window.alert(err)
+        cb(new Error('Data not found.'))
+      } else {
+        // alert('yay got ' + JSON.stringify(res.body))
+        console.log(res.body)
+        cb(null, res.body)
+      }
+    })
   }
 }

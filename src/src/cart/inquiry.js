@@ -1,8 +1,8 @@
 import Store from '../assets/vendor/store'
 export default {
   getLength () {
-    if (Store.get('inquiry')) {
-      return Store.get('inquiry').length
+    if (Store.get('inquiry') || Store.get('inventory')) {
+      return Store.get('inquiry').length + Store.get('inventory').length
     } else {
       return '0'
     }
@@ -49,7 +49,7 @@ export default {
     // window.localStorage.setItem('product', id)
     return console.log(window.localStorage)
   },
-  remove (id) {
+  removeInquiry (id) {
     if (Store.get('inquiry')) {
       // Find Index
       let currentArray = Array.from(Store.get('inquiry'))
@@ -61,6 +61,21 @@ export default {
       currentArray.splice(productIndex, 1)
       // Push back
       Store.set('inquiry', currentArray)
+    }
+    return console.log(window.localStorage)
+  },
+  removeInventory (id) {
+    if (Store.get('inventory')) {
+      // Find Index
+      let currentArray = Array.from(Store.get('inventory'))
+      console.log(currentArray)
+      let productIndex = currentArray.findIndex((x) => x === id)
+      console.log(productIndex)
+      // Splice
+      // if (productIndex)
+      currentArray.splice(productIndex, 1)
+      // Push back
+      Store.set('inventory', currentArray)
     }
     return console.log(window.localStorage)
   },
