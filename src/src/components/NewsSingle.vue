@@ -48,6 +48,10 @@
         section
           p.
             There isn't a matched article during the search.
+    transition(name="fade", mode="out-in")
+      #loader(v-if="loading")
+          .uil-ring-css(style="transform:scale(0.6);")
+              div
 
 
           
@@ -72,7 +76,8 @@ export default {
     return {
       loading: false,
       error: null,
-      article: null
+      article: null,
+      slider: null
     }
   },
   mounted () {
@@ -126,21 +131,27 @@ export default {
         if (err) {
           this.error = err.toString()
         } else {
-          console.log(data)
           this.article = data
+          // if ($('#news-single-slider'))
           this.initSlick()
         }
       })
     },
     initSlick () {
       this.$nextTick(function () {
-        $('#news-single-slider').bxSlider({
-          auto: false,
-          autoControls: true,
-          pager: false,
-          nextText: '>',
-          prevText: '<'
+        if (this.slider) {
+          this.slider.destroySlider()
+        }
+        this.$nextTick(function () {
+          this.slider = $('#news-single-slider').bxSlider({
+            auto: false,
+            autoControls: true,
+            pager: false,
+            nextText: '>',
+            prevText: '<'
+          })
         })
+        // this.slider.reloadSlider()
       })
     }
   }

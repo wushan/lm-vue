@@ -31,7 +31,7 @@
                         #slider(v-if="data")
                             .item(v-for="slide in data.slides", :style="'background-image: url(' + slide.image + ');'")
                                 .overlay
-                                    .container.restrict-large(v-html="slide.paragraph")
+                                    .container.restrict-large(v-html="slide.title")
 
                     .container.restrict.track-animate(v-if="data", v-html="data.contentD")
                       
@@ -53,6 +53,7 @@ export default {
   components: {
     'page-navigation': Navigation
   },
+  name: 'About',
   props: ['inquiryLength', 'submenu'],
   data () {
     return {

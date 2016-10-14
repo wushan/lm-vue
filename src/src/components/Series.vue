@@ -300,6 +300,7 @@ export default {
             @include breakpoint(768px) {
                 h1 {
                     margin: 0;
+                    line-height: 1.4; 
                 }
                 .thumbnail {
                     @include span(6 of 12 1);
@@ -359,17 +360,18 @@ export default {
             }
             .content {
                 h1 {
-                    height: 5em;
+                    height: 3em;
                     overflow: hidden;
                     line-height: 1.4; 
                     
                 }
                 .context {
-                    height: 10em;
+                    height: 5em;
                     overflow: hidden;
                 }
             }
             ul {
+                height: 13em;
                 margin: 2em 0;
                 padding: 0;
                 list-style-type: none;
@@ -561,6 +563,7 @@ export default {
             margin: 0 .5em;
             box-shadow: 3px 3px 3px rgba($black, .33);
             position: relative;
+            background-color: $white;
             &:before, &:after {
                 pointer-events: none;
                 content: '';
