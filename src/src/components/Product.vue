@@ -78,13 +78,13 @@ export default {
   components: {
     'page-navigation': Navigation
   },
+  props: ['inquiryLength'],
   data () {
     return {
       loading: false,
       product: null,
       error: null,
-      spec: false,
-      inquiryLength: 0
+      spec: false
     }
   },
   created () {
@@ -95,7 +95,6 @@ export default {
       zIndex: 999
     })
     this.fetchData()
-    this.inquiryLength = Inquiry.getLength()
   },
   computed: {
     splitTable: function () {
@@ -149,7 +148,7 @@ export default {
     },
     addInquiry (id) {
       Inquiry.add(id)
-      this.inquiryLength = Inquiry.getLength()
+      this.$parent.$emit('updateInquiry')
     },
     removeInquiry () {
       Inquiry.remove()
