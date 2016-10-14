@@ -365,10 +365,22 @@ class Frontapi extends MY_Controller
             $post['create_time'] = date('Y-m-d H:i:s');
             $this->db->insert('tb_inquiry',$post);
         }
-
         return false;
     }
 
+    public function error_report(){
+        header("Content-Type: application/json; charset=UTF-8");
+        if ($post = $this->input->post()) {
+            if (isset($_FILES['errorFile']) && !$_FILES['errorFile']['error']):  //檔案上傳欄位名稱為 "errorFile"
+                $file = $this->upload('errorReport', false, 'error');           //欄位名稱:errors 型態為陣列
+                $post['file_path'] = $file['file_path'];
+                $post['file_name'] = $file['file_name'];
+            endif;
+            $post['create_time'] = date('Y-m-d H:i:s');
+            $this->db->insert('tb_error_report',$post);
+        }
+        return false;
+    }
 
     /******************************private****************************************/
     private function process_news($news)

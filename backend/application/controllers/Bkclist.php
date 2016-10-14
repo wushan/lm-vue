@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class bkclist extends MY_Controller
+class Bkclist extends MY_Controller
 {
     public function __construct()
     {
