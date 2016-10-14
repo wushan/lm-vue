@@ -306,7 +306,6 @@ class Frontapi extends MY_Controller
     public function get_is_login(){
         header("Content-Type: application/json; charset=UTF-8");
         header('Cache-Control: no-cache, must-revalidate');
-        header('HTTP/1.1 500 Internal Server Error');
         $AID = $this->input->post('id');
         $is_login = $this->input->post('is_login');
         $agent=$this->agt->get_is_login($AID,$is_login);
@@ -314,10 +313,10 @@ class Frontapi extends MY_Controller
             http_response_code(200);
             echo json_encode('success');
         }else{
-//            http_response_code(401);
+            header('HTTP/1.1 401 Auth Failed');
             $data=array(
                 'status' => FALSE,
-                'error' => 'Internal Server Error',
+                'error' => 'Auth Failed',
             );
             echo json_encode($data);
         }
@@ -326,7 +325,7 @@ class Frontapi extends MY_Controller
 
     public function get_contact(){
         header("Content-Type: application/json; charset=UTF-8");
-        if ($post = $this->input->post()) {  //欄位名稱:name,email,phone,company,country,subject,message,is_allow  //is_allow 傳0 or 1 即可
+        if ($post = $this->input->post('data')) {  //欄位名稱:name,email,phone,company,country,subject,message,is_allow  //is_allow 傳0 or 1 即可
             $post['create_time'] = date('Y-m-d H:i:s');
             $this->db->insert('tb_contact_list',$post);
         }
@@ -339,18 +338,18 @@ class Frontapi extends MY_Controller
         $inid = $this->input->post('inid');
         if($pid){
             foreach(json_decode($pid) as $prow){
-                $category=array(
+                $category[]=array(
                     'id'=>$this->product->get_products_by_pid($prow)->PID,
-                    'image'=>$this->product->get_products_by_pid($prow)->pdimage,
+                    'image'=>base_url($this->product->get_products_by_pid($prow)->pdimage),
                     'name'=>$this->product->get_products_by_pid($prow)->name
                 );
             }
         }
         if($inid){
             foreach(json_decode($inid) as $irow){
-                $inventory=array(
+                $inventory[]=array(
                     'id'=> $this->inventory->get_inventory_by_inid($irow)->INID,
-                    'image'=>$this->inventory->get_inventory_by_inid($irow)->image,
+                    'image'=>base_url($this->inventory->get_inventory_by_inid($irow)->image),
                     'name'=>$this->inventory->get_inventory_by_inid($irow)->name
                 );
 
@@ -362,7 +361,7 @@ class Frontapi extends MY_Controller
 
     public function get_inquiry(){
         header("Content-Type: application/json; charset=UTF-8");
-        if ($post = $this->input->post()) {  //欄位名稱:pid,inid,name,email,phone,company,country,subject,message,is_allow  //is_allow 傳0 or 1 即可 ,pid 是分類id ,inid是現貨id
+        if ($post = $this->input->post('data')) {  //欄位名稱:pid,inid,name,email,phone,company,country,subject,message,is_allow  //is_allow 傳0 or 1 即可 ,pid 是分類id ,inid是現貨id
             $post['create_time'] = date('Y-m-d H:i:s');
             $this->db->insert('tb_inquiry',$post);
         }
