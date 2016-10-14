@@ -8,6 +8,7 @@ export default {
     .send({is_login: islogin})
     .end(function (err, res) {
       if (err || !res.ok) {
+        Store.remove('lymco-auth')
         cb(new Error('Data not found.'))
       } else {
         // alert('yay got ' + JSON.stringify(res.body))
