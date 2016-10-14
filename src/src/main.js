@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import VeeValidate from 'vee-validate'
-
 import App from './App.vue'
 import Index from './components/Index.vue'
 import About from './components/About.vue'
@@ -38,6 +37,11 @@ Vue.use(VueRouter)
 import $ from 'jquery'
 window.jQuery = window.$ = $
 
+// Scroll Behaves
+const scrollBehavior = (to, from, savedPosition) => {
+  return { x: 0, y: 0 }
+}
+
 const router = new VueRouter({
   mode: 'history',
   base: __dirname,
@@ -61,13 +65,7 @@ const router = new VueRouter({
     { path: '/errorshooting', component: ErrorShooting },
     { path: '/errorshooting/:model/:errorcode', component: ErrorShooting }
   ],
-  scrollBehavior (to, from, savedPosition) {
-    if (to.hash) {
-      return {
-        selector: to.hash
-      }
-    }
-  }
+  scrollBehavior
 })
 
 new Vue({
