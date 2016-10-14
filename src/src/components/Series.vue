@@ -77,6 +77,7 @@ window.jQuery = window.$ = $
 require('imports?$=jquery!../assets/vendor/jquery.sticky.js')
 require('imports?$=jquery!../assets/vendor/slick.min.js')
 export default {
+  name: 'Series',
   components: {
     'page-navigation': Navigation,
     'my-inventory': Inventory
@@ -98,9 +99,9 @@ export default {
       // 自動開啟，條件還缺登入
       this.inventory = true
     }
+    this.fetchData()
   },
   mounted () {
-    this.fetchData()
   },
   updated () {
     $('.sticker').sticky({
@@ -109,9 +110,15 @@ export default {
     })
   },
   watch: {
-    '$route': 'toggleInventory'
+    '$route': 'toggleInventory',
+    '$route.hash': 'hashChange'
   },
   methods: {
+    hashChange () {
+      jump(this.$route.hash, {
+        offset: -139
+      })
+    },
     scrollTop () {
       jump('#app')
     },
@@ -146,6 +153,11 @@ export default {
             centerPadding: '0px'
           })
         })
+        if (this.$route.hash) {
+          jump(this.$route.hash, {
+            offset: -139
+          })
+        }
       })
     },
     toggleInventory () {
