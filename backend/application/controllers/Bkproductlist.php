@@ -16,6 +16,15 @@ class Bkproductlist extends MY_Controller
 
         $plist=$this->product->get_product_list();
 
+        if($post=$this->input->post(null,true)){
+            if(isset($post['order'])){
+                foreach($post['order'] as $i => $row){
+                    $this->db->update('tb_product_list', array('order'=>$row), array('PLID' => $i));
+                }
+            }
+            redirect('bkproductlist');
+        }
+
         $data=array(
             'plist'=>$plist
         );

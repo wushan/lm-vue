@@ -44,20 +44,20 @@
                                                     <label class="col-sm-2 control-label">日期</label>
 
                                                     <div class="col-sm-3">
-                                                        <input class="form-control"  type="date" name="order_date" value="<?=date('Y-m-d',strtotime($order->order_date))?>" required>
+                                                        <input class="form-control datepicker" data-dateformat="yy-mm-dd" type="text" name="order_date" value="<?=$order->order_date?>" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">保養日期</label>
+                                                    <label class="col-sm-2 control-label">保固日期</label>
 
                                                     <div class="col-sm-3">
-                                                        <input class="form-control"  type="date" name="warranty_date" value="<?=date('Y-m-d',strtotime($order->warranty_date))?>" required>
+                                                        <input class="form-control datepicker" data-dateformat="yy-mm-dd" type="text" name="warranty_date" value="<?=$order->warranty_date?>" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">產品型號</label>
+                                                    <label class="col-sm-2 control-label">產品序號</label>
 
                                                     <div class="col-sm-3">
                                                         <input class="form-control" maxlength="150" type="text" name="machine_model" value="<?=$order->machine_model?>" required>

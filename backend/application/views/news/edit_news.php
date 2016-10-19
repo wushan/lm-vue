@@ -33,7 +33,7 @@
                                             <label class="col-sm-2 control-label">日期</label>
 
                                             <div class="col-sm-3">
-                                                <input class="form-control" type="date" name="date" value="<?= date('Y-m-d', strtotime($news->date)) ?>">
+                                                <input class="form-control datepicker" data-dateformat="yy-mm-dd" type="text" name="date" value="<?= date('Y-m-d', strtotime($news->date)) ?>">
                                             </div>
                                         </div>
 
@@ -45,6 +45,10 @@
 
                                                 <p class="help-block">
                                                     圖片最佳大小為400*250
+                                                </p>
+
+                                                <p class="help-block">
+                                                    <a class="btn btn-danger" onclick="location.href='<?= site_url("bknews/del_edit_img/". $news->NID.'/0') ?>';"><i class="glyphicon glyphicon-trash"></i> <span>刪除圖片</span></a>
                                                 </p>
 
                                                 <p class="help-block">
@@ -62,7 +66,9 @@
                                                 <p class="help-block">
                                                     圖片最佳大小為1440*500
                                                 </p>
-
+                                                <p class="help-block">
+                                                    <a class="btn btn-danger" onclick="location.href='<?= site_url("bknews/del_edit_img/". $news->NID.'/1') ?>';"><i class="glyphicon glyphicon-trash"></i> <span>刪除圖片</span></a>
+                                                </p>
                                                 <p class="help-block">
                                                     <img id="preview" src="<?= ($news && file_exists($news->bgimage)) ? base_url($news->bgimage) : '' ?>">
                                                 </p>
@@ -78,7 +84,9 @@
                                                 <p class="help-block">
                                                     圖片最佳大小為900*500
                                                 </p>
-
+                                                <p class="help-block">
+                                                    <a class="btn btn-danger" onclick="location.href='<?= site_url("bknews/del_edit_img/". $news->NID.'/2') ?>';"><i class="glyphicon glyphicon-trash"></i> <span>刪除圖片</span></a>
+                                                </p>
                                                 <p class="help-block">
                                                     <img id="preview" src="<?= ($news && file_exists($news->newsimageA)) ? base_url($news->newsimageA) : '' ?>">
                                                 </p>
@@ -91,7 +99,9 @@
                                                 <p class="help-block">
                                                     圖片最佳大小為900*500
                                                 </p>
-
+                                                <p class="help-block">
+                                                    <a class="btn btn-danger" onclick="location.href='<?= site_url("bknews/del_edit_img/". $news->NID.'/3') ?>';"><i class="glyphicon glyphicon-trash"></i> <span>刪除圖片</span></a>
+                                                </p>
                                                 <p class="help-block">
                                                     <img id="preview" src="<?= ($news && file_exists($news->newsimageB)) ? base_url($news->newsimageB) : '' ?>">
                                                 </p>
@@ -104,7 +114,9 @@
                                                 <p class="help-block">
                                                     圖片最佳大小為900*500
                                                 </p>
-
+                                                <p class="help-block">
+                                                    <a class="btn btn-danger" onclick="location.href='<?= site_url("bknews/del_edit_img/". $news->NID.'/4') ?>';"><i class="glyphicon glyphicon-trash"></i> <span>刪除圖片</span></a>
+                                                </p>
                                                 <p class="help-block">
                                                     <img id="preview" src="<?= ($news && file_exists($news->newsimageC)) ? base_url($news->newsimageC) : '' ?>">
                                                 </p>
@@ -117,7 +129,9 @@
                                                 <p class="help-block">
                                                     圖片最佳大小為900*500
                                                 </p>
-
+                                                <p class="help-block">
+                                                    <a class="btn btn-danger" onclick="location.href='<?= site_url("bknews/del_edit_img/". $news->NID.'/5') ?>';"><i class="glyphicon glyphicon-trash"></i> <span>刪除圖片</span></a>
+                                                </p>
                                                 <p class="help-block">
                                                     <img id="preview" src="<?= ($news && file_exists($news->newsimageD)) ? base_url($news->newsimageD) : '' ?>">
                                                 </p>

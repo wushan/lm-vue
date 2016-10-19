@@ -31,7 +31,7 @@
                                             <label class="col-sm-2 control-label">日期</label>
 
                                             <div class="col-sm-3">
-                                                <input class="form-control"  type="date" name="date" required>
+                                                <input class="form-control datepicker" data-dateformat="yy-mm-dd" type="text" name="date" required>
                                             </div>
                                         </div>
 

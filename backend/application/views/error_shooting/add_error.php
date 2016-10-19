@@ -47,7 +47,7 @@
                                             <label class="col-sm-2 control-label">PDF</label>
 
                                             <div class="col-sm-9">
-                                                <input type="file" class="btn btn-default" name="errorFile" required>
+                                                <input type="file" class="btn btn-default" name="errorFile" >
 
                                                 <p class="help-block">
                                                     <!--                                                    圖片最佳大小為850*175-->

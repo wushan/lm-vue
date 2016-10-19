@@ -36,7 +36,9 @@ class Bkagent extends MY_Controller
         if ($post = $this->input->post(null, true)) {
             $post['update_time'] = date('Y-m-d H:i:s');
             $post['is_add'] = 1;
-            $post['buy'] = json_encode(array_unique($post['buy']));
+            if(isset($post['buy'])) {
+                $post['buy'] = json_encode(array_unique($post['buy']));
+            }
             $this->db->update('tb_agent', $post, array('AID' => $AID));
             $this->db->delete('tb_agent', array('is_add' => 0));
             redirect('bkagent');

@@ -42,7 +42,7 @@
                                             <label class="col-sm-2 control-label">日期</label>
 
                                             <div class="col-sm-2">
-                                                <input class="form-control"  type="date" name="detail_date" value="<?=date('Y-m-d',strtotime($order_detail->detail_date))?>" required>
+                                                <input class="form-control datepicker" data-dateformat="yy-mm-dd" type="text" name="detail_date" value="<?=$order_detail->detail_date?>" required>
                                             </div>
                                         </div>
 
