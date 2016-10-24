@@ -49,6 +49,25 @@
                                                   img(v-bind:src="result.image")
                                               .download
                                                   a.btn.rounded.green.full.centered(v-bind:href="result.downloads") PDF DOWNLOAD
+                          .restrict-large
+                            form.send-errors#send-errors
+                              .row
+                                .block
+                                  .row
+                                    .grid.g-4-12 SUBMIT TICKET TO LYMCO
+                                    .grid.g-8-12
+                                      .controlgroup
+                                        input#file(name="file", type="file", @change="updateFileInput")
+                                        label(for="file")
+                                          .filename
+                                          span Browse
+                                .block
+                                  .controlgroup
+                                    .table
+                                      .table-c.t-8-10
+                                        textarea(name="description", v-model="errorFrom.description")
+                                      .table-c.t-2-10
+                                        button.fatty.btn.basic.full(@click.prevent.stop="sendErrors") SEND
 
         transition(name="fade", mode="out-in")
             #loader(v-if="loading")
@@ -79,11 +98,39 @@ export default {
       models: null,
       selectedModel: '',
       searchResults: null,
-      query: null
+      query: null,
+      errorFrom: {
+        description: '',
+        files: null
+      }
     }
   },
   created () {
     this.fetchData()
+    // ;(function ($, window, document) {
+    //   $('input[type=file]').each(function () {
+    //     var $input = $(this)
+    //     var $label = $input.next('label')
+    //     var labelVal = $label.html()
+    //     $input.on('change', function (e) {
+    //       var fileName = ''
+    //       if (this.files && this.files.length > 1) {
+    //         fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length)
+    //       } else if (e.target.value) {
+    //         fileName = e.target.value.split('\\').pop()
+    //       }
+    //       if (fileName) {
+    //         $label.find('.filename').html(fileName)
+    //       } else {
+    //         $label.html(labelVal)
+    //       }
+    //     })
+    //     // Firefox bug fix
+    //     $input
+    //     .on('focus', function () { $input.addClass('has-focus') })
+    //     .on('blur', function () { $input.removeClass('has-focus') })
+    //   })
+    // })($, window, document)
   },
   mounted () {
     $('.sticker').sticky({
@@ -256,6 +303,29 @@ export default {
         // The node has not been found and we have no more options
         return false
       }
+    },
+    updateFileInput (e) {
+      var files = e.target.files || e.dataTransfer.files
+      var filename = e.target.value.split('\\').pop()
+      e.target.nextSibling.childNodes[0].innerText = filename
+      // console.log(e.target.nextSibling.childNodes[0].innerText)
+      if (!files.length) {
+        return
+      }
+      this.errorFrom.files = files
+    },
+    sendErrors () {
+      console.log(this.errorFrom.description)
+      console.log(this.errorFrom.files)
+      console.log(this.$route.fullPath)
+      Api.sendErrorFrom(this.errorFrom.files, this.$route.fullPath, this.errorFrom.description, (err, data) => {
+        this.loading = false
+        if (err) {
+          this.error = err.toString()
+        } else {
+          console.log(data)
+        }
+      })
     }
   }
 }
@@ -448,5 +518,23 @@ export default {
             left: 1em;
             top: .5em;
         }
+    }
+    .send-errors {
+      .block {
+        display: inline-block;
+        vertical-align: middle;
+        width: 48%;
+        margin-right: 2%;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+      textarea {
+        min-height: 100px;  
+      }
+      .fatty {
+        padding: 1em 2em;
+        border-radius: 6px;
+      }
     }
 </style>

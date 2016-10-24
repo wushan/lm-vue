@@ -250,5 +250,21 @@ export default {
         cb(null, res.body)
       }
     })
+  },
+  sendErrorFrom (file, path, description, cb) {
+    request.post('')
+    .send({path})
+    .send({description})
+    .attach('file', file[0])
+    .end(function (err, res) {
+      if (err || !res.ok) {
+        window.alert(err)
+        cb(new Error('Data not found.'))
+      } else {
+        // alert('yay got ' + JSON.stringify(res.body))
+        console.log(res.body)
+        cb(null, res.body)
+      }
+    })
   }
 }

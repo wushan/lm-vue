@@ -75,6 +75,67 @@ input[type="text"], input[type=search], input[type="email"], input[type="passwor
     border-radius: 22px;
   }
 }
+//File
+input[type=file] {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  &:focus {
+    &+label {
+      span {
+        background-color: $main;
+      }
+    }
+  }
+  &+label {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    float: none;
+    width: 100%;
+    line-height: inherit;
+    text-align: left;
+    &:hover {
+      span {
+        background-color: $main;
+      }
+    }
+    & * {
+      pointer-events: none;
+    }
+    span {
+      border-radius: 18px;
+      color: white;
+      background-color: $main;
+      height: 36px;
+      line-height: 36px;
+      padding: 0 1em;
+      display: inline-block;
+      vertical-align: middle;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+    .filename {
+      width: calc( 100% - 110px );
+      display: inline-block;
+      vertical-align: middle;
+      border: 1px solid $gray;
+      color: $black;
+      box-sizing: border-box;
+      height: 36px;
+      line-height: 36px;
+      background-color: $white;
+      padding: 0 .4em;
+      outline: none;
+      border-radius: 18px;
+    }
+  }
+}
 //Select
 .controlgroup {
   .select-wrapper {
