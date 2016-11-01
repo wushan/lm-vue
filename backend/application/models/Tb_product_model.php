@@ -101,7 +101,7 @@ class Tb_product_model extends CI_Model
 
     public function get_products_by_pid($PID = false)
     {
-        $this->db->select('list.image as list_image,list.name as list_name,tb_products.*');
+        $this->db->select('list.BGimage as list_image,list.name as list_name,tb_products.*');
         $this->db->where('PID', $PID);
         $this->db->join('tb_product_list as list', 'list.PLID=tb_products.PLID', 'left');
         $query = $this->db->get('tb_products');

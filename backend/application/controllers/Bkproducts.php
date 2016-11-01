@@ -37,7 +37,7 @@ class Bkproducts extends MY_Controller
         if ($post = $this->input->post(null, true)) {
 
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
-                $post['bgimage'] = $this->upload('products', 1000);
+                $post['bgimage'] = $this->upload('products', 1920);
             endif;
             if (isset($_FILES['imageA']) && !$_FILES['imageA']['error']):
                 $post['pdimage'] = $this->upload('products', 600, 'A');
@@ -81,7 +81,7 @@ class Bkproducts extends MY_Controller
         if ($post = $this->input->post(null, true)) {
 
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
-                $post['bgimage'] = $this->upload('products', 1000);
+                $post['bgimage'] = $this->upload('products', 1920);
                 if ($product && file_exists($product->bgimage)) {
                     unlink($product->bgimage);
                 }

@@ -344,6 +344,8 @@ class Frontapi extends MY_Controller
                     'name'=>$this->product->get_products_by_pid($prow)->name
                 );
             }
+        }else{
+            $category=array();
         }
         if($inid){
             foreach(json_decode($inid) as $irow){
@@ -354,13 +356,14 @@ class Frontapi extends MY_Controller
                 );
 
             }
+        }else{
+            $inventory=array();
         }
         echo json_encode($data=array('inventory'=>$inventory,'category'=>$category));
         return false;
     }
 
     public function get_inquiry(){
-        header("Content-Type: application/json; charset=UTF-8");
         if ($post = $this->input->post('data')) {  //欄位名稱:pid,inid,name,email,phone,company,country,subject,message,is_allow  //is_allow 傳0 or 1 即可 ,pid 是分類id ,inid是現貨id
             $post['create_time'] = date('Y-m-d H:i:s');
             $this->db->insert('tb_inquiry',$post);
@@ -372,7 +375,7 @@ class Frontapi extends MY_Controller
         header("Content-Type: application/json; charset=UTF-8");
         if ($post = $this->input->post()) {
             if (isset($_FILES['errorFile']) && !$_FILES['errorFile']['error']):  //檔案上傳欄位名稱為 "errorFile"
-                $file = $this->upload('errorReport', false, 'error');           //欄位名稱:errors 型態為陣列
+                $file = $this->upload('errorReport', false, 'error');           //欄位名稱:errors 型態為json
                 $post['file_path'] = $file['file_path'];
                 $post['file_name'] = $file['file_name'];
             endif;

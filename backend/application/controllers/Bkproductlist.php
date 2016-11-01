@@ -38,6 +38,9 @@ class Bkproductlist extends MY_Controller
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
                 $post['image']=$this->upload('product_list', 1000);
             endif;
+            if (isset($_FILES['imageA']) && !$_FILES['imageA']['error']):
+                $post['BGimage']=$this->upload('product_list', 1920,'A');
+            endif;
             $post['create_time'] = date('Y-m-d H:i:s');
             $this->db->insert('tb_product_list', $post);
             redirect('bkproductlist');
@@ -64,6 +67,12 @@ class Bkproductlist extends MY_Controller
                     unlink($plist->image);
                 }
             endif;
+            if (isset($_FILES['imageA']) && !$_FILES['imageA']['error']):
+                $post['BGimage']=$this->upload('product_list', 1920,'A');
+                if($plist && file_exists($plist->BGimage)){
+                    unlink($plist->BGimage);
+                }
+            endif;
             $post['update_time'] = date('Y-m-d H:i:s');
             $this->db->update('tb_product_list', $post, array('PLID' => $PLID));
             redirect('bkproductlist');
@@ -82,6 +91,9 @@ class Bkproductlist extends MY_Controller
         if ($plist) {
             if($plist && file_exists($plist->image)){
                 unlink($plist->image);
+            }
+            if($plist && file_exists($plist->BGimage)){
+                unlink($plist->BGimage);
             }
             $this->db->delete('tb_product_list', array('PLID' => $PLID));
         }

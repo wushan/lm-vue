@@ -123,7 +123,7 @@
                                                         <input type="file" class="btn btn-default" id="UploadImg" name="image">
 
                                                         <p class="help-block">
-                                                            圖片最佳大小為1000*1000
+                                                            圖片最佳大小為1920*650
                                                         </p>
 
                                                         <p class="help-block">
