@@ -252,10 +252,12 @@ export default {
     })
   },
   sendErrorFrom (file, path, description, cb) {
-    request.post('')
-    .send({path})
-    .send({description})
-    .attach('file', file[0])
+    request.post('//lymco.4webdemo.com/backend/api/frontapi/error_report')
+    // .send({path})
+    .field('errors[path]', path)
+    .field('errors[description]', description)
+    .attach('errorFile', file[0])
+    // .send({errors: {path, description}})
     .end(function (err, res) {
       if (err || !res.ok) {
         window.alert(err)
