@@ -98,6 +98,7 @@ class Bknews extends MY_Controller
                 }
             endif;
             $post['update_time'] = date('Y-m-d H:i:s');
+
             $this->db->update('tb_news', $post, array('NID' => $NID));
             redirect('bknews');
         }

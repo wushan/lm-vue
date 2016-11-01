@@ -161,7 +161,7 @@ class Frontapi extends MY_Controller
         $data = array(
             'id' => $news->NID,
             'created_time' => date('m/d/Y', strtotime($news->date)),
-            'updated_time' => date('m/d/Y', strtotime($news->update_time)),
+            'updated_time' => date('m/d/Y', strtotime($news->date)),
             'title' => $news->title,
             'content' => str_replace("\n", "</p>\n<p>", $news->content . '</p>'),
             'excerpt' => str_replace("\n", "</p>\n<p>", $news->excerpt . '</p>'),
@@ -390,7 +390,7 @@ class Frontapi extends MY_Controller
                 $data[] = array(
                     'id' => $row->NID,
                     'created_time' => date('m/d/Y', strtotime($row->date)),
-                    'updated_time' => date('m/d/Y', strtotime($row->update_time)),
+                    'updated_time' => date('m/d/Y', strtotime($row->date)),
                     'title' => $row->title,
                     'excerpt' => str_replace("\n", "</p>\n<p>", $row->excerpt . '</p>'),
                     'thumbnail' => base_url($row->thumbnail)
