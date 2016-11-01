@@ -46,7 +46,6 @@ class Bknews extends MY_Controller
                 $post['newsimageD']=$this->upload('news', 950,'D');
             endif;
             $post['create_time'] = date('Y-m-d H:i:s');
-            $post['date'] .= date(' H:i:s');
             $this->db->insert('tb_news', $post);
             redirect('bknews');
         }
@@ -99,7 +98,7 @@ class Bknews extends MY_Controller
                 }
             endif;
             $post['update_time'] = date('Y-m-d H:i:s');
-            $post['date'] .= date(' H:i:s');
+
             $this->db->update('tb_news', $post, array('NID' => $NID));
             redirect('bknews');
         }
@@ -117,6 +116,9 @@ class Bknews extends MY_Controller
     {
         $news = $this->news->get_news_by_nid($NID);
         if ($NID) {
+            if($news && file_exists($news->thumbnail)){
+                unlink($news->thumbnail);
+            }
             if($news && file_exists($news->bgimage)){
                 unlink($news->bgimage);
             }
@@ -135,6 +137,19 @@ class Bknews extends MY_Controller
             $this->db->delete('tb_news', array('NID' => $NID));
         }
         redirect('bknews');
+    }
+
+    public function del_edit_img($NID = false,$which=false)
+    {
+        $news = $this->news->get_news_by_nid($NID);
+        $img=array('thumbnail','bgimage','newsimageA','newsimageB','newsimageC','newsimageD');
+        if ($news) {
+            if($news && file_exists($news->$img[$which])){
+                unlink($news->$img[$which]);
+            }
+            $this->db->update('tb_news',array($img[$which]=>null), array('NID' => $NID));
+        }
+        redirect('bknews/edit_news/'.$NID);
     }
 
     private function get_view($page, $data = '')

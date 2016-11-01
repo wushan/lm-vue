@@ -33,14 +33,15 @@
                 </header>
 
                 <div>
+                    <form method="post" action="<?=site_url('bkproductlist')?>">
                     <div class="widget-body no-padding">
 
                         <div class="widget-body-toolbar">
                             <div class="row">
                                 <div class="col-xs-6 text-left">
+                                    <button class="btn btn-success"><span>修改排序</span></button>
                                     <a class="btn btn-primary" onclick="location.href='<?= site_url("bkproductlist/add_product_list") ?>';"><i class="fa fa-plus"></i> <span>新增產品系列</span></a>
                                 </div>
-
                             </div>
                         </div>
 
@@ -48,8 +49,8 @@
                             <table class="table table-bordered" id="table">
                                 <thead>
                                 <tr>
-                                    <th>排序</th>
-                                    <th width="50%">圖片預覽</th>
+                                    <th width="8%">排序</th>
+                                    <th width="35%">圖片預覽</th>
                                     <th width="30%">名稱</th>
                                     <th>編輯</th>
                                 </tr>
@@ -58,7 +59,7 @@
                                 <? if ($plist) { ?>
                                     <? foreach ($plist as $row) { ?>
                                         <tr>
-                                            <td><?= $row->order ?></td>
+                                            <td><input class="form-control text-center" style="width: 100%;" min="1" type="number" name="order[<?=$row->PLID?>]" value="<?= $row->order ?>"></td>
                                             <td>
                                                 <? if (isset($row->image)) { ?>
                                                     <div id="preview">
@@ -80,6 +81,7 @@
                         </div>
 
                     </div>
+                    </form>
                 </div>
             </div>
         </article>

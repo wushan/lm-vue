@@ -16,6 +16,15 @@ class Bkpd extends MY_Controller
 
         $pd=$this->product->get_pd();
 
+        if($post=$this->input->post(null,true)){
+            if(isset($post['order'])){
+                foreach($post['order'] as $i => $row){
+                    $this->db->update('tb_pd', array('order'=>$row), array('PDID' => $i));
+                }
+            }
+            redirect('bkpd');
+        }
+
         $data=array(
             'pd'=>$pd
         );

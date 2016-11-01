@@ -87,7 +87,7 @@
                                                         </label>
                                                         <label class="radio radio-inline">
                                                             <input type="radio" name="which_bg" value="1" <?= ($product->which_bg == 1) ? 'checked' : '' ?>>
-                                                            產品背景圖
+                                                            分類背景圖
                                                         </label>
                                                     </div>
                                                 </div>
@@ -123,7 +123,7 @@
                                                         <input type="file" class="btn btn-default" id="UploadImg" name="image">
 
                                                         <p class="help-block">
-                                                            圖片最佳大小為850*175
+                                                            圖片最佳大小為1920*650
                                                         </p>
 
                                                         <p class="help-block">
@@ -213,11 +213,15 @@
                                                         <p class="help-block">
                                                             圖片最佳大小為800*450
                                                         </p>
-
+                                                        <p class="help-block">
+                                                            <a class="btn btn-danger" onclick="location.href='<?= site_url("bkproducts/del_edit_img/".$product->PID.'/0') ?>';"><i class="glyphicon glyphicon-trash"></i> <span>刪除圖片</span></a>
+                                                        </p>
                                                         <p class="help-block">
                                                             <img id="preview" src="<?= ($product && file_exists($product->carouselA_image)) ? base_url($product->carouselA_image) : '' ?>">
                                                         </p>
+
                                                     </div>
+
                                                 </div>
 
                                                 <div class="form-group">
@@ -251,10 +255,13 @@
                                                         <p class="help-block">
                                                             圖片最佳大小為800*450
                                                         </p>
-
+                                                        <p class="help-block">
+                                                            <a class="btn btn-danger" onclick="location.href='<?= site_url("bkproducts/del_edit_img/".$product->PID.'/1') ?>';"><i class="glyphicon glyphicon-trash"></i> <span>刪除圖片</span></a>
+                                                        </p>
                                                         <p class="help-block">
                                                             <img id="preview" src="<?= ($product && file_exists($product->carouselB_image)) ? base_url($product->carouselB_image) : '' ?>">
                                                         </p>
+
                                                     </div>
                                                 </div>
 
@@ -289,10 +296,13 @@
                                                         <p class="help-block">
                                                             圖片最佳大小為800*450
                                                         </p>
-
+                                                        <p class="help-block">
+                                                            <a class="btn btn-danger" onclick="location.href='<?= site_url("bkproducts/del_edit_img/".$product->PID.'/2') ?>';"><i class="glyphicon glyphicon-trash"></i> <span>刪除圖片</span></a>
+                                                        </p>
                                                         <p class="help-block">
                                                             <img id="preview" src="<?= ($product && file_exists($product->carouselC_image)) ? base_url($product->carouselC_image) : '' ?>">
                                                         </p>
+
                                                     </div>
                                                 </div>
 
@@ -316,15 +326,18 @@
                                                 <div id="features">
                                                     <? if ($features) { ?>
                                                         <? for ($i = 0; $i < count($features->title); $i++) { ?>
-                                                            <div class="form-group">
+                                                            <div class="form-group <?=$i?>">
                                                                 <label class="col-sm-2 control-label">名稱</label>
 
                                                                 <div class="col-sm-4">
                                                                     <input class="form-control" maxlength="150" type="text" name="features[title][]" value="<?=$features->title[$i]?>">
                                                                 </div>
+                                                                <div class="col-sm-4">
+                                                                    <a class="btn btn-danger" onclick="del_features(<?=$i?>)" href="javascript:;"><i class="glyphicon glyphicon-trash"></i> <span>刪除特色</span></a>
+                                                                </div>
                                                             </div>
 
-                                                            <div class="form-group">
+                                                            <div class="form-group <?=$i?>">
                                                                 <label class="col-sm-2 control-label">介紹</label>
 
                                                                 <div class="col-sm-4">
@@ -364,9 +377,16 @@
     });
 
     $(function () {
+        var i =<?=rand(100,200)?>;
         $('#add_features').click(function () {
-            $("#features").append('<div class="form-group"><label class="col-sm-2 control-label">名稱</label><div class="col-sm-4"><input class="form-control" maxlength="150" type="text" name="features[title][]" required></div></div><div class="form-group"><label class="col-sm-2 control-label">介紹</label><div class="col-sm-4"><textarea class="form-control" rows="8" name="features[intro][]" required></textarea></div></div>');
+            $("#features").append('<div class="form-group '+i+'"'+'><label class="col-sm-2 control-label">名稱</label><div class="col-sm-4"><input class="form-control" maxlength="150" type="text" name="features[title][]" required></div>   <div class="col-sm-4"><a class="btn btn-danger" onclick="del_features('+i+')" href="javascript:;"><i class="glyphicon glyphicon-trash"></i> <span>刪除特色</span></a></div></div><div class="form-group '+i+'"'+'><label class="col-sm-2 control-label">介紹</label><div class="col-sm-4"><textarea class="form-control" rows="8" name="features[intro][]" required></textarea></div></div>');
+            i++
         });
+
     });
+
+    function del_features(i){
+       $('.'+i).remove();
+    }
 
 </script>

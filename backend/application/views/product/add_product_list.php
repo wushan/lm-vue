@@ -52,6 +52,22 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label">產品背景圖</label>
+
+                                            <div class="col-sm-9">
+                                                <input type="file" class="btn btn-default" id="UploadImg" name="imageA">
+
+                                                <p class="help-block">
+                                                    圖片最佳大小為1920*650
+                                                </p>
+
+                                                <p class="help-block">
+                                                    <img id="preview" src="">
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label class="col-sm-2 control-label">名稱</label>
 
                                             <div class="col-sm-6">

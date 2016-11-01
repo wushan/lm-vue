@@ -16,6 +16,15 @@ class Bkproducts extends MY_Controller
 
         $product = $this->product->get_products();
 
+        if($post=$this->input->post(null,true)){
+            if(isset($post['order'])){
+                foreach($post['order'] as $i => $row){
+                    $this->db->update('tb_products', array('order'=>$row), array('PID' => $i));
+                }
+            }
+            redirect('bkproducts');
+        }
+
         $data = array(
             'product' => $product
         );
@@ -28,7 +37,7 @@ class Bkproducts extends MY_Controller
         if ($post = $this->input->post(null, true)) {
 
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
-                $post['bgimage'] = $this->upload('products', 850);
+                $post['bgimage'] = $this->upload('products', 1920);
             endif;
             if (isset($_FILES['imageA']) && !$_FILES['imageA']['error']):
                 $post['pdimage'] = $this->upload('products', 600, 'A');
@@ -72,7 +81,7 @@ class Bkproducts extends MY_Controller
         if ($post = $this->input->post(null, true)) {
 
             if (isset($_FILES['image']) && !$_FILES['image']['error']):
-                $post['bgimage'] = $this->upload('products', 850);
+                $post['bgimage'] = $this->upload('products', 1920);
                 if ($product && file_exists($product->bgimage)) {
                     unlink($product->bgimage);
                 }
@@ -150,6 +159,18 @@ class Bkproducts extends MY_Controller
         redirect('bkproducts');
     }
 
+    public function del_edit_img($PID = false,$which=false)
+    {
+        $product = $this->product->get_products_by_pid($PID);
+        $img=array('carouselA_image','carouselB_image','carouselC_image');
+        if ($product) {
+            if (file_exists($product->$img[$which])) {
+                unlink($product->$img[$which]);
+            }
+            $this->db->update('tb_products',array($img[$which]=>null), array('PID' => $PID));
+        }
+        redirect('bkproducts/edit_products/'.$PID);
+    }
 
     public function spec_column($PID=false)
     {

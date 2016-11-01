@@ -85,7 +85,7 @@
                                                         </label>
                                                         <label class="radio radio-inline">
                                                             <input type="radio" name="which_bg" value="1" >
-                                                            產品背景圖
+                                                            分類背景圖
                                                         </label>
                                                     </div>
                                                 </div>
@@ -120,7 +120,7 @@
                                                         <input type="file" class="btn btn-default" id="UploadImg" name="image" required>
 
                                                         <p class="help-block">
-                                                            圖片最佳大小為850*175
+                                                            圖片最佳大小為1920*650
                                                         </p>
 
                                                         <p class="help-block">
