@@ -242,7 +242,7 @@ export default {
     .send({data})
     .end(function (err, res) {
       if (err || !res.ok) {
-        window.alert(err)
+        console.table(err)
         cb(new Error('Data not found.'))
       } else {
         // alert('yay got ' + JSON.stringify(res.body))

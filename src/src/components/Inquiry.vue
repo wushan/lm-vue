@@ -385,12 +385,16 @@ export default {
       let inventoryids = Inquiry.getAll('inventory')
       var categoryidArray = {}
       var inventoryidArray = {}
-      // Convert Array to JSON Object
-      for (var i = 0; i < categoryids.length; i++) {
-        categoryidArray[i] = categoryids[i]
+      if (categoryids) {
+        // Convert Array to JSON Object
+        for (var i = 0; i < categoryids.length; i++) {
+          categoryidArray[i] = categoryids[i]
+        }
       }
-      for (var index = 0; index < inventoryids.length; index++) {
-        inventoryidArray[index] = inventoryids[index]
+      if (inventoryids) {
+        for (var index = 0; index < inventoryids.length; index++) {
+          inventoryidArray[index] = inventoryids[index]
+        }
       }
       categoryidArray = JSON.stringify(categoryidArray)
       inventoryidArray = JSON.stringify(inventoryidArray)

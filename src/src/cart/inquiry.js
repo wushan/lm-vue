@@ -1,11 +1,24 @@
 import Store from '../assets/vendor/store'
 export default {
   getLength () {
-    if (Store.get('inquiry') || Store.get('inventory')) {
-      return Store.get('inquiry').length + Store.get('inventory').length
+    var inquiry
+    var inventory
+    // if (Store.get('inquiry') || Store.get('inventory')) {
+    //   return Store.get('inquiry').length + Store.get('inventory').length
+    // } else {
+    //   return '0'
+    // }
+    if (Store.get('inquiry')) {
+      inquiry = Store.get('inquiry').length
     } else {
-      return '0'
+      inquiry = 0
     }
+    if (Store.get('inventory')) {
+      inventory = Store.get('inventory').length
+    } else {
+      inventory = 0
+    }
+    return inquiry + inventory
   },
   add (id) {
     // If inquiry Exist
